@@ -6,8 +6,8 @@
     "altKey": {
         "Quote": "/sales/invoices/create",
         "KeyB": "/purchases/bills/create",
-        "KeyR": "/sales/revenues/create",
-        "KeyP": "/purchases/payments/create",
+        "KeyR": "/banking/transactions/create?type=income",
+        "KeyP": "/banking/transactions/create?type=expense",
         "KeyC": "/sales/customers/create",
         "KeyV": "/purchases/vendors/create",
         "KeyN": "/common/items/create"

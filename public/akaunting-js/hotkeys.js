@@ -1,9 +1,12 @@
 let shortcuts;
 
-axios.get('public/shortcuts-config.json')
-  .then(function (response) {
-    shortcuts = response.data
-  })
+fetch('public/shortcuts-config.json')
+  .then(response => response.json())
+  .then(response => {
+    shortcuts = response;
+  }).catch(error => {
+    console.log(error);
+  });
 
 const handlePageEvent = (event, routeData) => {
     const hotkeys = Object.keys(routeData);
