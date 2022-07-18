@@ -22,5 +22,7 @@
 
     @stack('body_scripts')
 
+    @livewire('livewire-ui-spotlight')
+
     @livewireScripts
 @stack('scripts_end')

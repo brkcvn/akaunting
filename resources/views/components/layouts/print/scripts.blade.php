@@ -19,6 +19,8 @@
 
 @stack('body_scripts')
 
+@livewire('livewire-ui-spotlight')
+
 @livewireScripts
 
 <!-- Livewire -->

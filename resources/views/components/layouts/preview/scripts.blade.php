@@ -7,6 +7,8 @@
 
     @stack('body_scripts')
 
+    @livewire('livewire-ui-spotlight')
+
     @livewireScripts
     
     <script src="{{ asset('public/vendor/alpinejs/alpine.min.js') }}"></script>
