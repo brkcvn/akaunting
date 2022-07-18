@@ -1,4 +1,4 @@
-import Errors from './error';
+import Errors from '@/plugins/error';
 
 export default class Form {
     constructor(form_id) {

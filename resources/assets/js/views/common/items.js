@@ -4,16 +4,16 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./../../bootstrap');
+require('@/bootstrap');
 
 import Vue from 'vue';
 
-import DashboardPlugin from './../../plugins/dashboard-plugin';
+import DashboardPlugin from '@/plugins/dashboard-plugin';
 
-import Global from './../../mixins/global';
+import Global from '@/mixins/global';
 
-import Form from './../../plugins/form';
-import BulkAction from './../../plugins/bulk-action';
+import Form from '@/plugins/form';
+import BulkAction from '@/plugins/bulk-action';
 
 // plugin setup
 Vue.use(DashboardPlugin);

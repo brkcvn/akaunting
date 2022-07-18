@@ -1,6 +1,5 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import NProgressAxios from './nprogress-axios';
 
 export default class BulkAction {
     constructor(path) {

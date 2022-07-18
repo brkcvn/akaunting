@@ -2,37 +2,37 @@ import Vue from 'vue';
 
 import axios from 'axios';
 
-import AkauntingDropzoneFileUpload from './../components/AkauntingDropzoneFileUpload';
-import AkauntingContactCard from './../components/AkauntingContactCard';
-import AkauntingCompanyEdit from './../components/AkauntingCompanyEdit';
-import AkauntingEditItemColumns from './../components/AkauntingEditItemColumns';
-import AkauntingItemButton from './../components/AkauntingItemButton';
-import AkauntingDocumentButton from './../components/AkauntingDocumentButton';
-import AkauntingSearch from './../components/AkauntingSearch';
-import AkauntingModal from './../components/AkauntingModal';
-import AkauntingMoney from './../components/AkauntingMoney';
-import AkauntingModalAddNew from './../components/AkauntingModalAddNew';
-import AkauntingRadioGroup from './../components/AkauntingRadioGroup';
-import AkauntingSelect from './../components/AkauntingSelect';
-import AkauntingSelectRemote from './../components/AkauntingSelectRemote';
-import AkauntingDate from './../components/AkauntingDate';
-import AkauntingRecurring from './../components/AkauntingRecurring';
-import AkauntingHtmlEditor from './../components/AkauntingHtmlEditor';
-import AkauntingCountdown from './../components/AkauntingCountdown';
-import AkauntingCurrencyConversion from './../components/AkauntingCurrencyConversion';
-import AkauntingConnectTransactions from './../components/AkauntingConnectTransactions';
-import AkauntingSwitch from './../components/AkauntingSwitch';
-import AkauntingSlider from './../components/AkauntingSlider';
-import AkauntingColor from './../components/AkauntingColor';
-import CardForm from './../components/CreditCard/CardForm';
+import AkauntingDropzoneFileUpload from '@/components/AkauntingDropzoneFileUpload';
+import AkauntingContactCard from '@/components/AkauntingContactCard';
+import AkauntingCompanyEdit from '@/components/AkauntingCompanyEdit';
+import AkauntingEditItemColumns from '@/components/AkauntingEditItemColumns.vue';
+import AkauntingItemButton from '@/components/AkauntingItemButton';
+import AkauntingDocumentButton from '@/components/AkauntingDocumentButton';
+import AkauntingSearch from '@/components/AkauntingSearch';
+import AkauntingModal from '@/components/AkauntingModal';
+import AkauntingMoney from '@/components/AkauntingMoney';
+import AkauntingModalAddNew from '@/components/AkauntingModalAddNew';
+import AkauntingRadioGroup from '@/components/AkauntingRadioGroup';
+import AkauntingSelect from '@/components/AkauntingSelect';
+import AkauntingSelectRemote from '@/components/AkauntingSelectRemote';
+import AkauntingDate from '@/components/AkauntingDate';
+import AkauntingRecurring from '@/components/AkauntingRecurring';
+import AkauntingHtmlEditor from '@/components/AkauntingHtmlEditor';
+import AkauntingCountdown from '@/components/AkauntingCountdown';
+import AkauntingCurrencyConversion from '@/components/AkauntingCurrencyConversion';
+import AkauntingConnectTransactions from '@/components/AkauntingConnectTransactions';
+import AkauntingSwitch from '@/components/AkauntingSwitch';
+import AkauntingSlider from '@/components/AkauntingSlider';
+import AkauntingColor from '@/components/AkauntingColor';
+import CardForm from '@/components/CreditCard/CardForm';
 
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import NProgressAxios from './../plugins/nprogress-axios';
+import NProgressAxios from '@/plugins/nprogress-axios';
 
 import { Select, Option, Steps, Step, Button, Link, Tooltip, ColorPicker } from 'element-ui';
 
-import Form from './../plugins/form';
+import Form from '@/plugins/form';
 import Swiper, { Navigation, Pagination } from 'swiper';
 import GLightbox from 'glightbox';
 

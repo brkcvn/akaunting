@@ -1,0 +1,17 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/js/auth/app.js",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/assets/js/views/auth/common.js": {
+    "file": "assets/js/auth/common.js",
+    "src": "resources/assets/js/views/auth/common.js",
+    "isEntry": true
+  },
+  "resources/assets/sass/app.css": {
+    "file": "assets/css/app.css",
+    "src": "resources/assets/sass/app.css",
+    "isEntry": true
+  }
+}

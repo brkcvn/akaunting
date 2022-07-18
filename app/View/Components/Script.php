@@ -45,7 +45,7 @@ class Script extends Component
 
     protected function getSource($alias, $folder, $file)
     {
-        $path = 'public/js/';
+        $path = 'public/build/assets/js/';
         $version = version('short');
 
         if ($alias != 'core') {
@@ -65,7 +65,7 @@ class Script extends Component
             $path .= $folder . '/';
         }
 
-        $path .= $file . '.min.js?v=' . $version;
+        $path .= $file . '.js?v=' . $version;
 
         return $path;
     }

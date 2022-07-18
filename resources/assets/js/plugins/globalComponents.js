@@ -1,10 +1,10 @@
-import BaseInput from './../components/Inputs/BaseInput';
-import Card from './../components/Cards/Card.vue';
-import Modal from './../components/Modal.vue';
-import StatsCard from './../components/Cards/StatsCard.vue';
-import BaseButton from './../components/BaseButton.vue';
-import Badge from './../components/Badge.vue';
-import BaseAlert from './../components/BaseAlert';
+import BaseInput from '@/components/Inputs/BaseInput';
+import Card from '@/components/Cards/Card.vue';
+import Modal from '@/components/Modal.vue';
+import StatsCard from '@/components/Cards/StatsCard.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import Badge from '@/components/Badge.vue';
+import BaseAlert from '@/components/BaseAlert';
 import { Input, Tooltip, Popover } from 'element-ui';
 /**
  * You can register global components here and use them as a plugin in your main Vue instance

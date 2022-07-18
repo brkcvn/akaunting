@@ -4,11 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./../../bootstrap');
-
+import './../../bootstrap';
 import Vue from 'vue';
 
-import Form from './../../plugins/form';
+import Form from '@/plugins/form';
 import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
 
 const login = new Vue({
@@ -21,6 +20,8 @@ const login = new Vue({
     },
 
     mounted() {
+        debugger;
+
         Swiper.use([Navigation, Pagination, Autoplay]);
 
         new Swiper(".swiper-container", {

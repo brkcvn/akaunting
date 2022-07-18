@@ -1,7 +1,7 @@
 // Polyfills for js features used in the Dashboard but not supported in some browsers (mainly IE)
-import './../polyfills';
+import '@/polyfills';
 // Notifications plugin. Used on Notifications page
-import Notifications from './../components/NotificationPlugin';
+import Notifications from '@/components/NotificationPlugin';
 // Validation plugin used to validate forms
 import VeeValidate from 'vee-validate';
 // A plugin file where you could register global components used across the app
