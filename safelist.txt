@@ -4,3 +4,4 @@ ltr:-right-1.5
 rtl:-left-1.5
 lg:pl-24
 hover:bg-purple
+focus:ring-0

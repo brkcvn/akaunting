@@ -47449,6 +47449,11 @@ body{
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:bg-purple:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(85 88 139 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-100:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -47467,11 +47472,6 @@ body{
 .hover\:bg-green-700:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(83 121 62 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-purple:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(85 88 139 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-blue-500:hover{
@@ -47611,6 +47611,13 @@ body{
 .focus\:outline-none:focus{
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.focus\:ring-0:focus{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  -webkit-box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+          box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
 .focus\:ring-purple:focus{
