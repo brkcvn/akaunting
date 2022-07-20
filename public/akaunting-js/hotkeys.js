@@ -1,9 +1,12 @@
 let shortcuts;
 
-axios.get('public/shortcuts-config.json')
-  .then(function (response) {
-    shortcuts = response.data
-  })
+fetch('public/shortcuts-config.json')
+  .then(response => response.json())
+  .then(response => {
+    shortcuts = response;
+  }).catch(error => {
+    console.log(error);
+  });
 
 const handlePageEvent = (event, routeData) => {
     const hotkeys = Object.keys(routeData);
@@ -15,12 +18,15 @@ const handlePageEvent = (event, routeData) => {
 
 const handlePrint = () => {
     window.location.replace(window.location.href + '/print');
+
 };
 
 const handleKeydown = (event) => {
     const keyName = event.key;
-    const urlPath = window.location.href;
-    const constainsDocID = !isNaN(urlPath.substr(-1));
+    const print_template_html = document.querySelector('.print-template');
+    const matchingRoute = '';
+    // const constainsDocID = !isNaN(urlPath.substr(-1));
+    // const urlPath = window.location.href;
 
     if (keyName === ('Meta' || 'Control' || 'Alt')) {
         return;
@@ -42,13 +48,8 @@ const handleKeydown = (event) => {
             : {};
     }
 
-    const matchingRoute = Object.keys(shortcuts.pages).filter(route => urlPath.includes(route));
-
-    matchingRoute 
-        ? constainsDocID && event.code === 'KeyP'
-            ? handlePrint()
-            : handlePageEvent(event, matchingRoute)
-        : {};
+    // constainsDocID && event.code === 'KeyP' ? handlePrint() : handlePageEvent(event, matchingRoute);
+    print_template_html !== null && event.code === 'KeyP' ? handlePrint() : handlePageEvent(event, matchingRoute);
 };
 
 const handleShortCuts = (target) => {
