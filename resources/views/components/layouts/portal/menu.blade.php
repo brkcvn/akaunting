@@ -11,7 +11,7 @@
 
 @stack('menu_start')
 
-<div data-real-menu class="w-70 h-screen flex hidden fixed top-0 js-menu z-20 xl:z-10 transition-all ltr:-left-80 rtl:-right-80 xl:ltr:left-0 xl:rtl:right-0">
+<div x-data="{}" data-real-menu class="w-70 h-screen flex hidden fixed top-0 js-menu z-20 xl:z-10 transition-all ltr:-left-80 rtl:-right-80 xl:ltr:left-0 xl:rtl:right-0">
     <div class="w-14 py-7 px-1 bg-lilac-900 z-10 menu-scroll overflow-y-auto overflow-x-hidden">
         <div 
             data-tooltip-target="tooltip-profile"
@@ -60,7 +60,7 @@
             @endcan
             
             <x-tooltip id="tooltip-search" placement="right" message="{{ trans('general.search') }}">
-                <button type="button" class="flex items-center menu-button justify-center w-8 h-8 mb-2.5 relative cursor-pointer">
+                <button x-on:click="$dispatch('open-spotlight-modal')" type="button" class="flex items-center menu-button justify-center w-8 h-8 mb-2.5 relative cursor-pointer">
                     <span name="search" class="material-icons-outlined text-purple text-2xl">search</span>
                 </button>
             </x-tooltip>
