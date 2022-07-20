@@ -20,8 +20,6 @@ const login = new Vue({
     },
 
     mounted() {
-        debugger;
-
         Swiper.use([Navigation, Pagination, Autoplay]);
 
         new Swiper(".swiper-container", {
