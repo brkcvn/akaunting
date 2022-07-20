@@ -43,6 +43,14 @@ return [
     'apps_managing'         => 'Check the most trending apps and start managing your finances professionally today.',
     'ready'                 => 'Ready',
     'popular_this_week'     => 'Popular this week',
+    'install_cloud'         => 'Use on Cloud Service',
+    'get_cloud'             => 'Get Cloud Service',
+    'get_premium_cloud'     => 'Get Premium Cloud',
+    'switch_to_cloud'       => 'Switch to Cloud',
+    'hosted_on_akaunting'   => 'Hosted on akaunting.com',
+    'only_works_cloud'      => 'This app is available only on <strong>Cloud</strong>.',
+    'only_premium_plan'     => 'This app is available only on <strong>Premium Cloud</strong>.',
+    'not_found'             => 'No app found',
 
     'about'                 => 'About',
 

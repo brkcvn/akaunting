@@ -63,7 +63,7 @@
 
                 <div class="grid sm:grid-cols-8 gap-x-4 gap-y-6 my-3.5">
                     <div class="sm:col-span-8">
-                        <label for="cardName" class="form-control-label text-black text-sm font-medium">
+                        <label for="cardName" class="text-black text-sm font-medium">
                             {{ textCardName }}
                         </label>
 
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="sm:col-span-8">
-                        <label for="cardNumber" class="form-control-label text-black text-sm font-medium">
+                        <label for="cardNumber" class="text-black text-sm font-medium">
                             {{ textCardNumber }}
                         </label>
 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="sm:col-span-3">
-                        <label for="cardMonth" class="form-control-label text-black text-sm font-medium">
+                        <label for="cardMonth" class="text-black text-sm font-medium">
                             {{ textExpirationDate }}
                         </label>
 
@@ -144,7 +144,7 @@
                     </div>
 
                     <div class="sm:col-span-2">
-                        <label for="cardCvv" class="form-control-label text-black text-sm font-medium">
+                        <label for="cardCvv" class="text-black text-sm font-medium">
                             {{ textCvv }}
                         </label>
 
@@ -168,7 +168,7 @@
                         <div class="flex items-center" v-if="storeCard">
                             <input @input="changeStoreCard" :id="'store_card' + _uid" name="store_card" type="checkbox" value="true" class="rounded-sm text-purple border-gray-300 cursor-pointer disabled:bg-gray-200 focus:outline-none focus:ring-transparent">
 
-                            <label :for="'store_card' + _uid" class="form-control-label ltr:ml-2 rtl:ml-2">
+                            <label :for="'store_card' + _uid" class="text-black text-sm font-medium ltr:ml-2 rtl:ml-2">
                                 <strong>{{ textStoreCard }}</strong>
                             </label>
                         </div>
@@ -200,7 +200,7 @@
 
             <div class="grid sm:grid-cols-8 gap-x-4 gap-y-6 my-3.5">
                 <div class="sm:col-span-8">
-                    <label for="cardName" class="form-control-label text-black text-sm font-medium">
+                    <label for="cardName" class="text-black text-sm font-medium">
                         {{ textCardName }}
                     </label>
 
@@ -220,7 +220,7 @@
                 </div>
 
                 <div class="sm:col-span-8">
-                    <label for="cardNumber" class="form-control-label text-black text-sm font-medium">
+                    <label for="cardNumber" class="text-black text-sm font-medium">
                         {{ textCardNumber }}
                     </label>
 
@@ -242,7 +242,7 @@
                 </div>
 
                 <div class="sm:col-span-3">
-                    <label for="cardMonth" class="form-control-label text-black text-sm font-medium">
+                    <label for="cardMonth" class="text-black text-sm font-medium">
                         {{ textExpirationDate }}
                     </label>
 
@@ -260,7 +260,7 @@
                                 v-for="n in 12"
                                 v-bind:disabled="n < minCardMonth"
                                 v-bind:key="n"
-                            >{{generateMonthValue(n)}}</option>
+                            >{{ generateMonthValue(n) }}</option>
                         </select>
                     </div>
                 </div>
@@ -278,12 +278,12 @@
                             v-bind:value="$index + minCardYear"
                             v-for="(n, $index) in 12"
                             v-bind:key="n"
-                        >{{$index + minCardYear}}</option>
+                        >{{ $index + minCardYear }}</option>
                     </select>
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="cardCvv" class="form-control-label text-black text-sm font-medium">
+                    <label for="cardCvv" class="text-black text-sm font-medium">
                         {{ textCvv }}
                     </label>
 
@@ -307,12 +307,12 @@
                     <div class="flex items-center" v-if="storeCard">
                         <input @input="changeStoreCard" :id="'store_card' + _uid" name="store_card" type="checkbox" value="true" class="rounded-sm text-purple border-gray-300 cursor-pointer disabled:bg-gray-200 focus:outline-none focus:ring-transparent">
 
-                        <label :for="'store_card' + _uid" class="form-control-label ltr:ml-2 rtl:ml-2">
+                        <label :for="'store_card' + _uid" class="text-black text-sm font-medium ltr:ml-2 rtl:ml-2">
                             <strong>{{ textStoreCard }}</strong>
                         </label>
                     </div>
 
-                    <button class="relative flex items-center justify-center px-6 py-1.5 bg-green hover:bg-green-700 text-white rounded-lg" v-on:click="invaildCard" :disabled="loading">
+                    <button v-if="! hideButton" class="relative flex items-center justify-center px-6 py-1.5 bg-green hover:bg-green-700 text-white rounded-lg" v-on:click="invaildCard" :disabled="loading">
                         <i
                             v-if="loading"
                             class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"
@@ -371,7 +371,9 @@ export default {
     props: {
         cards: {
             type: [Array, Object],
-            default: [],
+            default: function () {
+                return [];
+            },
             description: "Add Card Style"
         },
 
@@ -452,6 +454,12 @@ export default {
             type: String,
             default: 'Enter CVV',
             description: "Placeholder Card CVV Text"
+        },
+
+        hideButton: {
+            type: Boolean,
+            default: false,
+            description: "Confirm button"
         },
 
         textButton: {
@@ -554,7 +562,6 @@ export default {
             this.register_card = null;
         },
 
-
         onSelectedCard(card_id) {
             this.card_id = card_id;
             this.formData.card_id = card_id;
@@ -623,7 +630,8 @@ export default {
 
             this.unMaskCardNumber();
 
-            /*for (let i = number.length - 1; i >= 0; i--) {
+            /*
+            for (let i = number.length - 1; i >= 0; i--) {
                 let num = number.charAt(i);
 
                 if (isOdd) {
@@ -639,7 +647,8 @@ export default {
                 }
 
                 isOdd = !isOdd;
-            }*/
+            }
+            */
 
             this.formData.card_id = this.card_id;
 

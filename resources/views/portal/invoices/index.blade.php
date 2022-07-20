@@ -117,12 +117,12 @@
                                 <x-table.td class="w-3/12  sm:table-cell">
                                     @stack('document_number_td_inside_start')
 
-                                    <x-slot name="first" class="w-20 font-normal group" data-tooltip-target="tooltip-information-{{ $item->id }}" data-tooltip-placement="left" override="class,data-tooltip-target,data-tooltip-placement">
+                                    <x-slot name="first" class="w-20 font-normal group" data-tooltip-target="tooltip-information-{{ $item->id }}" data-tooltip-placement="left" override="class">
                                         <span class="border-black border-b border-dashed">
                                             {{ $item->document_number }}
                                         </span>
 
-                                        <div class="w-full absolute h-10 -left-10 -mt-6"></div>
+                                        <div class="w-28 absolute h-10 -ml-12 -mt-6"></div>
 
                                         <x-documents.index.information :document="$item" show-route="portal.invoices.show"/>
                                     </x-slot>
@@ -151,27 +151,31 @@
                 <x-pagination :items="$invoices" />
             </x-index.container>
         @else
-            <x-empty-page
-                group="sales"
-                page="invoices"
-                hide-button-import
-                :buttons="[
-                    [
-                        'url' =>  route('transactions.create', ['type' => 'income']),
-                        'permission' => 'create-sales-invoices',
-                        'text' => trans('general.title.new', ['type' => trans_choice('general.incomes', 1)]),
-                        'description' => trans('general.empty.actions.new', ['type' => trans_choice('general.incomes', 1)]),
-                        'active_badge' => false
-                    ],
-                    [
-                        'url' => 'https://akaunting.com/premium-cloud',
-                        'permission' => 'create-sales-invoices',
-                        'text' => trans('import.title', ['type' => trans_choice('general.bank_transactions', 2)]),
-                        'description' => '',
-                        'active_badge' => false
-                    ]
-                ]"
-            />
+            <div class="flex">
+                <div class="w-full text-center">
+                    <div class="my-10">
+                        {{ trans('portal.create_your_invoice') }}
+                    </div>
+
+                    <div class="my-10">
+                        <a href="https://akaunting.com/lp/accounting-software?utm_source=software&utm_medium=invoice_index&utm_campaign=plg" class="bg-purple text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6 hover:bg-purple-700">
+                            {{ trans('portal.get_started') }}
+                        </a>
+                    </div>
+
+                    <div class="my-10">
+                        <img src="https://assets.akaunting.com/software/portal/invoice.gif" class="inline" alt="Get Started" />
+                    </div>
+                </div>
+            </div>
+
+            @push('css')
+                <style>
+                    .hide-empty-page {
+                        display: none;
+                    }
+                </style>
+            @endpush
         @endif
     </x-slot>
 

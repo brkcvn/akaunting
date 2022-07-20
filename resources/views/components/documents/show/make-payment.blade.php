@@ -45,17 +45,17 @@
                         </br>
 
                         @if (! empty($transaction->contact) && $transaction->contact->email)
-                            <x-button id="button-email-send" class="text-purple mt-1" override="class" @click="onEmail('{{ route($transactionEmailRoute, $transaction->id) }}')">
-                                <span class="border-b border-transparent transition-all hover:border-purple">
+                            <x-button id="button-email-send" class="text-purple mt-1" override="class" @click="onEmailViaTemplate('{{ route($transactionEmailRoute, $transaction->id) }}', '{{ $transactionEmailTemplate }}')">
+                                <x-button.hover color="to-purple">
                                     {{ trans('general.title.send', ['type' => trans_choice('general.receipts', 1)]) }}
-                                </span>
+                                </x-button.hover>
                             </x-button>
                         @else
                             <x-tooltip message="{{ trans('invoices.messages.email_required') }}" placement="top">
                                 <x-button class="text-purple mt-1" override="class" disabled="disabled">
-                                    <span class="border-b border-transparent transition-all hover:border-purple">
+                                    <x-button.hover color="to-purple">
                                         {{ trans('general.title.send', ['type' => trans_choice('general.receipts', 1)]) }}
-                                    </span>
+                                    </x-button.hover>
                                 </x-button>
                             </x-tooltip>
                         @endif
@@ -68,9 +68,9 @@
                             class="text-purple mt-1"
                             override="class"
                         >
-                            <span class="border-b border-transparent transition-all hover:border-purple">
+                            <x-button.hover color="to-purple">
                                 {{ trans('general.title.edit', ['type' => trans_choice('general.payments', 1)]) }}
-                            </span>
+                            </x-button.hover>
                         </x-button>
 
                         <span> - </span>
@@ -89,7 +89,7 @@
                             :message="$message"
                             :label="trans('general.title.delete', ['type' => trans_choice('general.payments', 1)])"
                             class="text-purple mt-1"
-                            text-class="border-b border-transparent transition-all hover:border-purple"
+                            text-class="bg-no-repeat bg-0-2 bg-0-full hover:bg-full-2 bg-gradient-to-b from-transparent to-purple transition-backgroundSize"
                             override="class"
                         />
                     </div>

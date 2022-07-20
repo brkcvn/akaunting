@@ -62,12 +62,11 @@
                                     <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 py-3">
                                         <base-input name="name" data-name="name"
                                         form-classes="sm:col-span-2"
-                                        class="required"
                                         v-model="model.name"
                                         :error="onFailErrorGet('name')"
                                         />
 
-                                        <base-input class="sm:col-span-2 required" :error="onFailErrorGet('code')">
+                                        <base-input class="sm:col-span-2" :error="onFailErrorGet('code')">
                                             <el-select name="code" v-model="model.select" @change="onChangeCodeItem(model.select)" filterable>
                                                 <el-option
                                                 v-for="option in currency_codes"
@@ -81,7 +80,6 @@
 
                                         <base-input name="rate" data-name="rate" :placeholder="translations.currencies.rate"
                                         form-classes="sm:col-span-2"
-                                        class="required"
                                         v-model="model.rate"
                                         :error="onFailErrorGet('rate')"
                                         />
@@ -91,16 +89,17 @@
                                                 {{ translations.currencies.cancel }}
                                             </base-button>
 
-                                            <base-button
+                                            <button
+                                                type="submit"
                                                 :disabled="button_loading"
                                                 class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100"
-                                                @click="onEditForm(item)"
+                                                @click="onEditForm(item, $event)"
                                             >
                                                 <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
                                                 <span :class="[{'opacity-0': button_loading}]">
                                                     {{ translations.currencies.save }}
                                                 </span>
-                                            </base-button>
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
@@ -121,7 +120,7 @@
                         <div v-if="currencies.length" class="w-full border-b hover:bg-gray-100" style="height:53px;">
                             <button type="button" class="w-full h-full flex items-center justify-center text-purple font-medium disabled:bg-gray-200" @click="onAddItem()">
                                 <span class="material-icons-outlined text-base font-bold ltr:mr-1 rtl:ml-1">add</span>
-                                <span class="border-b border-transparent transition-all">{{ translations.currencies.new_currency }}</span>
+                                <span class="bg-no-repeat bg-0-2 bg-0-full hover:bg-full-2 bg-gradient-to-b from-transparent to-purple transition-backgroundSize">{{ translations.currencies.new_currency }}</span>
                             </button>
                         </div>
 
@@ -131,13 +130,13 @@
 
                         <div v-if="new_datas" class="grid sm:grid-cols-7 gap-x-8 gap-y-6 my-3.5 w-full">
                             <base-input :label="translations.currencies.name" name="name" data-name="name" :placeholder="translations.currencies.name"
-                            class="sm:col-span-3 required"
+                            class="sm:col-span-3"
                             v-model="model.name"
                             :error="onFailErrorGet('name')"
                             />
 
-                            <base-input :label="translations.currencies.code" class="sm:col-span-2 required" :error="onFailErrorGet('code')">
-                                <el-select name="code" v-model="model.select" required="required" @change="onChangeCodeItem(model.select)"filterable>
+                            <base-input :label="translations.currencies.code" class="sm:col-span-2" :error="onFailErrorGet('code')">
+                                <el-select name="code" v-model="model.select" @change="onChangeCodeItem(model.select)"filterable>
                                     <el-option
                                     v-for="option in currency_codes"
                                     :key="option"
@@ -149,7 +148,7 @@
                             </base-input>
 
                             <base-input :label="translations.currencies.rate" name="rate" data-name="rate" :placeholder="translations.currencies.rate"
-                            class="sm:col-span-2 required"
+                            class="sm:col-span-2"
                             v-model="model.rate"
                             :error="onFailErrorGet('rate')"
                             />
@@ -159,12 +158,12 @@
                                     {{ translations.currencies.cancel }}
                                 </base-button>
 
-                                <base-button :disabled="button_loading" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="onSubmitForm()">
+                                <button type="submit" :disabled="button_loading" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="onSubmitForm($event)">
                                     <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
                                     <span :class="[{'opacity-0': button_loading}]">
                                         {{ translations.currencies.save }}
                                     </span>
-                                </base-button>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -293,7 +292,9 @@ export default {
             }, this);
         },
 
-        onEditForm(item) {
+        onEditForm(item, event) {
+            event.preventDefault();
+
             this.onSubmitEvent(
                 "PATCH",
                 url + "/wizard/currencies/" + item.id,
@@ -303,7 +304,9 @@ export default {
             );
         },
 
-        onSubmitForm() {
+        onSubmitForm(event) {
+            event.preventDefault();
+
             this.onSubmitEvent(
                 "POST",
                 url + "/wizard/currencies",

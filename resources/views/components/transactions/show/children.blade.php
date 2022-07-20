@@ -2,8 +2,10 @@
     <button class="relative w-full text-left cursor-pointer group"
         x-on:click="children !== 1 ? children = 1 : children = null"
     >
-        <span class="font-medium border-b border-transparent transition-all group-hover:border-black">
-            {{ trans_choice('general.transactions', 2) }}
+        <span class="font-medium">
+            <x-button.hover group-hover>
+                {{ trans_choice('general.transactions', 2) }}
+            </x-button.hover>
         </span>
 
         <div class="text-black-400 text-sm">

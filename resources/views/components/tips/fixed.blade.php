@@ -14,9 +14,11 @@
                 {!! $item->description !!}
             </p>
 
-            <a href="{{ $item->action }}" class="font-light text-sm border-b border-transparent transition-all hover:border-black" target="_blank">
-                {{ $item->learn_more }}
-            </a>
+            <x-link href="{{ $item->action }}" class="font-light text-sm" override="class" target="_blank">
+                <x-link.hover>
+                    {{ $item->learn_more }}
+                </x-link.hover>
+            </x-link>
         </div>
 
         <div class="absolute ltr:right-0 rtl:left-0 -top-4">

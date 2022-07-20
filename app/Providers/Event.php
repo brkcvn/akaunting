@@ -16,6 +16,8 @@ class Event extends Provider
             'App\Listeners\Update\CreateModuleUpdatedHistory',
             'App\Listeners\Module\UpdateExtraModules',
             'App\Listeners\Update\V30\Version300',
+            'App\Listeners\Update\V30\Version303',
+            'App\Listeners\Update\V30\Version304',
         ],
         'Illuminate\Auth\Events\Login' => [
             'App\Listeners\Auth\Login',
@@ -29,12 +31,6 @@ class Event extends Provider
         ],
         'App\Events\Auth\LandingPageShowing' => [
             'App\Listeners\Auth\AddLandingPages',
-        ],
-        'App\Events\Auth\InvitationCreated' => [
-            'App\Listeners\Auth\SendUserInvitation',
-        ],
-        'App\Events\Auth\UserDeleted' => [
-            'App\Listeners\Auth\DeleteUserInvitation',
         ],
         'App\Events\Document\DocumentCreated' => [
             'App\Listeners\Document\CreateDocumentCreatedHistory',

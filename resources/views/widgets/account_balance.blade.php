@@ -5,7 +5,10 @@
         @foreach($accounts as $item)
             <li class="flex justify-between">
                 {{ $item->name }}
-                <span class="font-medium">{{ $item->balance_formatted }}</span>
+
+                <span class="font-medium">
+                    {{ $item->balance_formatted }}
+                </span>
             </li>
         @endforeach
     </ul>

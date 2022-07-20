@@ -54,7 +54,6 @@
                                     <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 py-3">
                                         <base-input name="name" data-name="name" :placeholder="translations.taxes.name"
                                         form-classes="sm:col-span-2"
-                                        class="required"
                                         v-model="model.name"
                                         :error="onFailErrorGet('name')"
                                         />
@@ -63,7 +62,6 @@
 
                                         <base-input name="rate" data-name="rate" :placeholder="translations.taxes.rate"
                                         form-classes="sm:col-span-2"
-                                        class="required"
                                         v-model="model.rate"
                                         :error="onFailErrorGet('rate')"
                                         />
@@ -73,16 +71,17 @@
                                                 {{ translations.taxes.cancel }}
                                             </base-button>
 
-                                            <base-button
+                                            <button
+                                                type="submit"
                                                 :disabled="button_loading"
                                                 class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100"
-                                                @click="onEditForm(item)"
+                                                @click="onEditForm(item, $event)"
                                             >
                                                 <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
                                                 <span :class="[{'opacity-0': button_loading}]">
                                                     {{ translations.taxes.save }}
                                                 </span>
-                                            </base-button>
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
@@ -114,14 +113,14 @@
                     
                     <div v-if="new_datas" class="grid sm:grid-cols-4 gap-x-8 gap-y-6 my-3.5 w-full">
                         <base-input :label="translations.taxes.name" name="name" data-name="name" :placeholder="translations.taxes.name"
-                        class="sm:col-span-2 required"
+                        class="sm:col-span-2"
                         v-model="model.name"
                         :error="onFailErrorGet('name')"
                         />
 
                         <base-input :label="translations.taxes.rate" name="rate" data-name="rate"
                         :placeholder="translations.taxes.rate"
-                        class="sm:col-span-2 required"
+                        class="sm:col-span-2"
                         v-model="model.rate"
                         :error="onFailErrorGet('rate')"
                         />
@@ -131,12 +130,12 @@
                                 {{ translations.taxes.cancel }}
                             </base-button>
 
-                            <base-button :disabled="button_loading" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="onSubmitForm()">
+                            <button type="submit" :disabled="button_loading" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100" @click="onSubmitForm($event)">
                                 <i v-if="button_loading" class="animate-submit delay-[0.28s] absolute w-2 h-2 rounded-full left-0 right-0 -top-3.5 m-auto before:absolute before:w-2 before:h-2 before:rounded-full before:animate-submit before:delay-[0.14s] after:absolute after:w-2 after:h-2 after:rounded-full after:animate-submit before:-left-3.5 after:-right-3.5 after:delay-[0.42s]"></i> 
                                 <span :class="[{'opacity-0': button_loading}]">
                                     {{ translations.taxes.save }}
                                 </span>
-                            </base-button>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -227,7 +226,9 @@ export default {
             this.onEjetItem(event, this.taxes, event.tax_id);
         },
 
-        onEditForm(item) {
+        onEditForm(item, event) {
+            event.preventDefault();
+
             this.onSubmitEvent(
                 "PATCH",
                 url + "/wizard/taxes/" + item.id,
@@ -247,7 +248,9 @@ export default {
             this.add_taxes = true;
         },
 
-        onSubmitForm() {
+        onSubmitForm(event) {
+            event.preventDefault();
+            
             this.onSubmitEvent("POST", url + "/wizard/taxes", "type", this.taxes);
 
         },

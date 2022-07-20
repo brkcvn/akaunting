@@ -43,6 +43,13 @@ return [
     'apps_managing'         => 'Verifique os apps mais populares e comece a gerenciar suas finanças profissionalmente hoje.',
     'ready'                 => 'Disponível',
     'popular_this_week'     => 'Popular dessa semana',
+    'install_cloud'         => 'Usar Serviço na Nuvem',
+    'get_cloud'             => 'Obter Serviço de Nuvem',
+    'get_premium_cloud'     => 'Obter Nuvem Premium',
+    'switch_to_cloud'       => 'Alternar para Núvem',
+    'hosted_on_akaunting'   => 'Hospedado em akaunting.com',
+    'only_works_cloud'      => 'Este aplicativo está disponível apenas em <strong>Nuvem</strong>.',
+    'only_premium_plan'     => 'Este aplicativo funciona apenas com o <strong>Serviço Premium na Nuvem</strong>.',
 
     'about'                 => 'Sobre',
 

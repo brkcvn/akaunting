@@ -15,7 +15,7 @@ return [
         'general'           => 'Here you can enter the general information of transaction such as date, amount, account, description, etc.',
         'assign_income'     => 'Select a category and customer to make your reports more detailed.',
         'assign_expense'    => 'Select a category and vendor to make your reports more detailed.',
-        'other'             => 'Enter a reference to keep the transaction linked to your records.',
+        'other'             => 'Enter a number and reference to keep the transaction linked to your records.',
     ],
 
     'slider' => [
@@ -24,6 +24,8 @@ return [
         'create_recurring'  => ':user created this recurring template on :date',
         'schedule'          => 'Repeat every :interval :frequency since :date',
         'children'          => ':count transactions were created automatically',
+        'transfer_headline' => 'From :from_account to :to_account',
+        'transfer_desc'     => 'Transfer created on :date.',
     ],
 
     'share' => [
