@@ -300,7 +300,7 @@
 
 @stack('body_scripts')
 
-@livewire('livewire-ui-spotlight') 
+@livewire('livewire-ui-spotlight')
 
 @livewireScripts
 
