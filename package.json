@@ -4,6 +4,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
+        "serve": "vite preview",
+        "watch": "vite build --watch",
         "production": "vite build"
     },
     "dependencies": {
