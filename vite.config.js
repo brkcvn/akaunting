@@ -28,8 +28,8 @@ export default defineConfig({
               }
               return `assets/${extType}/[name][extname]`;
             },
-            chunkFileNames: 'assets/js/auth/[name].js',
-            entryFileNames: 'assets/js/auth/[name].js',
+            chunkFileNames: 'assets/js/auth/[name].min.js',
+            entryFileNames: 'assets/js/auth/[name].min.js',
           },
         },
       },

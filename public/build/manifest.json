@@ -1,11 +1,11 @@
 {
   "resources/js/app.js": {
-    "file": "assets/js/auth/app.js",
+    "file": "assets/js/auth/app.min.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/assets/js/views/auth/common.js": {
-    "file": "assets/js/auth/common.js",
+    "file": "assets/js/auth/common.min.js",
     "src": "resources/assets/js/views/auth/common.js",
     "isEntry": true
   },

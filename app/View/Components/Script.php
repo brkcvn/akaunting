@@ -65,7 +65,7 @@ class Script extends Component
             $path .= $folder . '/';
         }
 
-        $path .= $file . '.js?v=' . $version;
+        $path .= $file . '.min.js?v=' . $version;
 
         return $path;
     }
