@@ -1,5 +1,6 @@
 <div {{ ((! $attributes->has('override')) || ($attributes->has('override') && ! in_array('class', explode(',', $attributes->get('override'))))) ? $attributes->merge(['class' => 'mb-14', 'data-form-group' => true]) : $attributes }}
     x-data="{ {{ $type }} : {{ ($open) ? "'open'" : "'close'" }} }"
+    x-on:keyup="if ($event.which == 9) { {{ $type }} = 'open' }"
 >
     @if (! empty($head) && $head->isNotEmpty())
     <div class="relative cursor-pointer" x-on:click="{{ $type }} !== 'open' ? {{ $type }} = 'open' : {{ $type }} = 'close'">
