@@ -5,7 +5,7 @@
                 <div class="aka-select aka-select--medium is-open" tabindex="0">
                     <div class="w-full h-33 bg-white hover:bg-gray-100 rounded-lg border border-light-gray disabled:bg-gray-200 mt-1 text-purple font-medium" :class="[{'border-red': error}]">
                         <div class="text-black h-full">
-                            <button type="button" class="w-full h-full flex flex-col items-center justify-center" @click="onContactList">
+                            <button type="button" class="w-full h-full flex flex-col items-center justify-center focus:outline-none focus:ring-transparent focus:border-purple" @click="onContactList">
                                 <span class="material-icons-outlined text-7xl text-black-400">person_add</span>
                                 <span class="text-add-contact"> {{ addContactText }} </span>
                             </button>
