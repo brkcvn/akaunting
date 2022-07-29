@@ -66,9 +66,14 @@
 }
 
 .dz-message .dz-button {
+  height: 100%;
   background: hsla(0,0%,100%,0);
   border: none;
   color: #C7C9D9;
+}
+
+.dz-message .dz-button:focus, .dz-message .dz-button:focus-visible {
+  outline-color: #55588b;
 }
 
 .dz-preview-img {
