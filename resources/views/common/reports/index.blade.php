@@ -21,6 +21,7 @@
         @foreach ($categories as $category)
             @php $category_id = $loop->index; @endphp
             <div
+                data-form-group
                 @class([
                     'mb-14',
                     'mt-4' => (! $loop->first) ? false : true,

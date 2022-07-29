@@ -1,4 +1,4 @@
-<x-form.section class="-mt-10 mb-14" override="class">
+<x-form.section data-form-group class="-mt-10 mb-14" override="class">
     <x-slot name="head">
         <x-form.section.head title="{{ trans_choice('general.schedules', 1) }}" description="{{ trans('recurring.form_description.schedule', ['type' => Str::lower(trans_choice('general.invoices', 1))]) }}" />
     </x-slot>

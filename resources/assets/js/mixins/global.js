@@ -111,6 +111,22 @@ export default {
     },
 
     mounted() {
+            let first_element = document.querySelectorAll('[data-form-group]');
+
+            if (first_element.length > 0) {
+                if (first_element[0].querySelector('input').classList.contains('el-input__inner') == false) {
+                    first_element[0].querySelector('input').focus();
+                }
+            }
+
+            // document.addEventListener('keyup', ((e) => {
+            //     if (e.which == 9) {
+            //         if (first_element.querySelector('input') === document.activeElement){
+            //             this.$dispatch('open-accordion');
+            //         }
+            //     }
+            // }));
+        
         setTimeout(() => {
             this.content_loading = false;
         }, 1500);

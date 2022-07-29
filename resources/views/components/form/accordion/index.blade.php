@@ -1,4 +1,4 @@
-<div {{ ((! $attributes->has('override')) || ($attributes->has('override') && ! in_array('class', explode(',', $attributes->get('override'))))) ? $attributes->merge(['class' => 'mb-14']) : $attributes }}
+<div {{ ((! $attributes->has('override')) || ($attributes->has('override') && ! in_array('class', explode(',', $attributes->get('override'))))) ? $attributes->merge(['class' => 'mb-14', 'data-form-group' => true]) : $attributes }}
     x-data="{ {{ $type }} : {{ ($open) ? "'open'" : "'close'" }} }"
 >
     @if (! empty($head) && $head->isNotEmpty())
@@ -13,6 +13,7 @@
     <div class="overflow-hidden transition-transform origin-top-left ease-linear duration-100" 
         x-ref="accordion_{{ $type }}"
         x-bind:class="{{ $type }} == 'open' ? 'h-auto ' : 'scale-y-0 h-0'"
+        @open-accordion.window="{{ $type }} = true"
     >
         <div class="grid sm:grid-cols-7 gap-x-8 gap-y-6 my-3.5">
             {!! $body !!}

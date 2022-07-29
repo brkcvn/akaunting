@@ -1,4 +1,4 @@
-<div {{ ((! $attributes->has('override')) || ($attributes->has('override') && ! in_array('class', explode(',', $attributes->get('override'))))) ? $attributes->merge(['class' => 'mb-14']) : $attributes }}>
+<div {{ ((! $attributes->has('override')) || ($attributes->has('override') && ! in_array('class', explode(',', $attributes->get('override'))))) ? $attributes->merge(['class' => 'mb-14', 'data-form-group' => true]) : $attributes }}>
     @if (!empty($head) && $head->isNotEmpty())
         {!! $head !!}
     @endif

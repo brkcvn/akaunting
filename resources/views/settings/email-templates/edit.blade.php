@@ -33,7 +33,7 @@
                     @endphp
 
                     <x-form id="setting" method="PATCH" route="settings.email-templates.update" :model="$template">
-                        <div class="mb-14">
+                        <div data-form-group class="mb-14">
                             <div class="border-b-2 border-gray-200 pb-2">
                                 <h2 class="lg:text-lg font-medium text-black" v-if="template_title" v-html="template_title"></h2>
                                 <h2 class="lg:text-lg font-light text-black" v-else>
