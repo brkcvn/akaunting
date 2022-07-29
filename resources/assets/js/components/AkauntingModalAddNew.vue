@@ -7,7 +7,7 @@
             tabindex="-1"
             role="dialog"
             :aria-hidden="!show">
-            <div class="w-full my-10 m-auto flex flex-col" :class="modalDialogClass ? modalDialogClass : 'max-w-screen-sm'">
+            <div data-form-group-modal class="w-full my-10 m-auto flex flex-col" :class="modalDialogClass ? modalDialogClass : 'max-w-screen-sm'">
                 <slot name="modal-content">
                     <div class="modal-content">
                         <div class="p-5 bg-body rounded-tl-lg rounded-tr-lg">
@@ -204,6 +204,14 @@ export default {
                         let form_id = document.getElementById('modal-add-new-form-' + form_prefix).children[0].id;
 
                         this.form = new Form(form_id);
+
+                        let first_element_modal = document.querySelectorAll('[data-form-group-modal]');
+
+                        if (first_element_modal.length > 0) {
+                            if (first_element_modal[0].querySelector('input').classList.contains('el-input__inner') == false) {
+                                first_element_modal[0].querySelector('[type="text"]').focus();
+                            }
+                        }
                     },
 
                     data: function () {
@@ -297,8 +305,7 @@ export default {
             if (e.key === 'Escape') {
                 this.onCancel();
             }
-        });
-    },
+        });    },
 
     methods: {
         closeModal() {
