@@ -10,7 +10,7 @@
         ]"
         :error="formError">
         <div class="flex justify-between relative mt-1">
-            <input type="text" @change="change" :name="name" :id="name" v-model="color" @keyup="addColor" class="w-full text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple">
+            <input ref="inputColor" type="text" @change="change" :name="name" :id="name" v-model="color" @keyup="addColor" class="w-full text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple">
 
             <div class="absolute w-7 h-7 flex rounded-full my-auto bottom-2 right-2 cursor-pointer"
                 ref="dropdownMenu"
@@ -162,6 +162,16 @@ export default {
         setTimeout(function() {
             this.change();
         }.bind(this), 800);
+
+        document.addEventListener('keyup', ((e) => {
+            if (e.which == 9) {
+                if (this.$refs.inputColor === document.activeElement) {
+                    this.isOpen = true;
+                } else {
+                    this.isOpen = false;
+                }
+            }
+        }));
     },
 
     methods: {
