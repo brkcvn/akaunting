@@ -5,13 +5,13 @@
  */
 
 import './../../bootstrap';
-import Vue from 'vue';
+import { createApp } from 'vue';
+debugger;
 
 import Form from '@/plugins/form';
 import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
 
-const login = new Vue({
-    el: '#app',
+export default createApp({
 
     data: function () {
         return {

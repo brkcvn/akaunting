@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import { createVuePlugin } from 'vite-plugin-vue2';
+import vue from '@vitejs/plugin-vue';
 import path from 'path';
- 
+
 export default defineConfig({
     plugins: [
         laravel([
@@ -10,11 +10,19 @@ export default defineConfig({
             'resources/assets/sass/app.css',
             'resources/assets/js/views/auth/common.js'
         ]),
-        createVuePlugin(/* options */)
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+            },
+        }),
     ],
     resolve: {
         alias: {
-          '@/': `${path.resolve(__dirname, './resources/assets/js')}/`
+          '@/': `${path.resolve(__dirname, './resources/assets/js')}/`,
+          vue: "vue/dist/vue.esm-bundler.js"
         }
       },
     build: {
