@@ -47506,16 +47506,7 @@ body{
   background-color: rgb(83 121 62 / var(--tw-bg-opacity));
 }
 
-<<<<<<< HEAD
-.hover\:bg-blue-500:hover{
-=======
-.hover\:bg-purple:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(85 88 139 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-blue-700:hover{
->>>>>>> 546d359d041ee4c0a1e025589fb865e0c13b8656
   --tw-bg-opacity: 1;
   background-color: rgb(0 83 125 / var(--tw-bg-opacity));
 }
