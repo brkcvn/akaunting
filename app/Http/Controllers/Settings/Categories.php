@@ -24,13 +24,17 @@ class Categories extends Controller
      */
     public function index()
     {
-        $categories = Category::with('sub_categories')->collect();
+        $query = Category::with('sub_categories');
 
-        $transfer_id = Category::transfer();
+        if (request()->has('search')) {
+            $query->withSubcategory();
+        }
+
+        $categories = $query->collect();
 
         $types = $this->getCategoryTypes();
 
-        return $this->response('settings.categories.index', compact('categories', 'types', 'transfer_id'));
+        return $this->response('settings.categories.index', compact('categories', 'types'));
     }
 
     /**

@@ -76,6 +76,7 @@ const app = new Vue({
                 ',,'
             ],
             email_template: false,
+            send_to: false,
         }
     },
 
@@ -162,10 +163,17 @@ const app = new Vue({
                 sub_total += item.total;
                 grand_total += item.grand_total;
 
+                let item_tax_ids = [];
+
+                item.tax_ids.forEach(function(item_tax, item_tax_index) {
+                    item_tax_ids.push(item_tax.id);
+                });
+
                 this.form.items[index].name = item.name;
                 this.form.items[index].description = item.description;
                 this.form.items[index].quantity = item.quantity;
                 this.form.items[index].price = item.price;
+                this.form.items[index].tax_ids = item_tax_ids;
                 this.form.items[index].discount = item.discount;
                 this.form.items[index].discount_type = item.discount_type;
                 this.form.items[index].total = item.total;
@@ -262,6 +270,7 @@ const app = new Vue({
 
                 if (inclusives.length) {
                     inclusives.forEach(function(inclusive) {
+                        item.tax_ids[inclusive.tax_index].name = inclusive.tax_name;
                         item.tax_ids[inclusive.tax_index].price = item.grand_total - (item.grand_total / (1 + inclusive.tax_rate / 100));
 
                         inclusive_tax_total += item.tax_ids[inclusive.tax_index].price;
@@ -274,6 +283,7 @@ const app = new Vue({
 
                 if (fixed.length) {
                     fixed.forEach(function(fixed) {
+                        item.tax_ids[fixed.tax_index].name = fixed.tax_name;
                         item.tax_ids[fixed.tax_index].price = fixed.tax_rate * item.quantity;
 
                         total_tax_amount += item.tax_ids[fixed.tax_index].price;
@@ -290,6 +300,7 @@ const app = new Vue({
 
                 if (normal.length) {
                     normal.forEach(function(normal) {
+                        item.tax_ids[normal.tax_index].name = normal.tax_name;
                         item.tax_ids[normal.tax_index].price = price_for_tax * (normal.tax_rate / 100);
 
                         total_tax_amount += item.tax_ids[normal.tax_index].price;
@@ -300,6 +311,7 @@ const app = new Vue({
 
                 if (withholding.length) {
                     withholding.forEach(function(withholding) {
+                        item.tax_ids[withholding.tax_index].name = withholding.tax_name;
                         item.tax_ids[withholding.tax_index].price = -(price_for_tax * (withholding.tax_rate / 100));
 
                         total_tax_amount += item.tax_ids[withholding.tax_index].price;
@@ -312,6 +324,7 @@ const app = new Vue({
 
                 if (compounds.length) {
                     compounds.forEach(function(compound) {
+                        item.tax_ids[compound.tax_index].name = compound.tax_name;
                         item.tax_ids[compound.tax_index].price = (item.grand_total / 100) * compound.tax_rate;
 
                         totals_taxes = this.calculateTotalsTax(totals_taxes, compound.tax_id, compound.tax_name, item.tax_ids[compound.tax_index].price);
@@ -476,6 +489,7 @@ const app = new Vue({
             }
 
             this.tax_id = '';
+            this.items[item_index].add_tax = false;
 
             this.onCalculateTotal();
         },
@@ -946,7 +960,7 @@ const app = new Vue({
            let form_html = document.querySelector('form');
            
            if (form_html && form_html.getAttribute('id') == 'document') {
-               form_html.querySelectorAll('input, textarea, select, ul, li, a, [type="button"]').forEach((element) => {
+               form_html.querySelectorAll('input, textarea, select, ul, li, a').forEach((element) => {
                   element.addEventListener('click', () => {
                       this.onBeforeUnload();
                   });
@@ -957,6 +971,12 @@ const app = new Vue({
                         window.onbeforeunload = null;
                    });
                });
+
+               form_html.querySelectorAll('[type="button"]').forEach((button) => {
+                button.addEventListener('click', () => {
+                     window.onbeforeunload = null;
+                });
+            });
            }
         },
 
@@ -969,6 +989,7 @@ const app = new Vue({
 
         onSubmitViaSendEmail() {
             this.form['senddocument'] = true;
+            this.send_to = true;
 
             this.onSubmit();
         },
@@ -1110,6 +1131,12 @@ const app = new Vue({
             }
 
             this.form.discount = this.form.discount.replace(',', '.');
+        },
+
+        'form.loading': function (newVal, oldVal) {
+            if (! newVal) {
+                this.send_to = false;
+            }
         },
     },
 });

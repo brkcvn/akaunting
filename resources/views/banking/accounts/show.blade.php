@@ -3,7 +3,7 @@
         {{ $account->name }}
     </x-slot>
 
-    <x-slot name="status">
+    <x-slot name="info">
         <div class="mt-3">
             @if (! $account->enabled)
                 <x-index.disable text="{{ trans_choice('general.accounts', 1) }}" />
@@ -144,7 +144,7 @@
                     @stack('account_currency_start')
                     <div class="flex flex-col text-sm mb-5">
                         <div class="font-medium">
-                            {{ trans_choice('general.currencies', 2) }}
+                            {{ trans_choice('general.currencies', 1) }}
                         </div>
 
                         <span>
@@ -156,7 +156,7 @@
                     @stack('account_starting_balance_start')
                     <div class="flex flex-col text-sm mb-5">
                         <div class="font-medium">
-                            {{ trans_choice('accounts.opening_balance', 2) }}
+                            {{ trans('accounts.opening_balance') }}
                         </div>
 
                         <span>
@@ -225,7 +225,7 @@
                                     <x-table>
                                         <x-table.thead>
                                             <x-table.tr class="flex items-center px-1">
-                                                <x-table.th class="w-3/12">
+                                                <x-table.th class="w-6/12 lg:w-3/12">
                                                     <x-slot name="first">
                                                         <x-sortablelink column="paid_at" title="{{ trans('general.date') }}" />
                                                     </x-slot>
@@ -252,7 +252,7 @@
                                                     </x-slot>
                                                 </x-table.th>
 
-                                                <x-table.th class="w-3/12" kind="amount">
+                                                <x-table.th class="w-6/12 lg:w-3/12" kind="amount">
                                                     <x-sortablelink column="amount" title="{{ trans('general.amount') }}" />
                                                 </x-table.th>
                                             </x-table.tr>
@@ -261,7 +261,7 @@
                                         <x-table.tbody>
                                             @foreach($transactions as $item)
                                                 <x-table.tr href="{{ route('transactions.show', $item->id) }}">
-                                                    <x-table.td class="w-3/12">
+                                                    <x-table.td class="w-6/12 lg:w-3/12">
                                                         <x-slot name="first" class="font-bold truncate" override="class">
                                                             <x-date date="{{ $item->paid_at }}" />
                                                         </x-slot>
@@ -300,7 +300,7 @@
                                                         </x-slot>
                                                     </x-table.td>
 
-                                                    <x-table.td class="w-3/12 relative" kind="amount">
+                                                    <x-table.td class="w-6/12 lg:w-3/12" kind="amount">
                                                         <x-money :amount="$item->amount" :currency="$item->currency_code" convert />
                                                     </x-table.td>
 

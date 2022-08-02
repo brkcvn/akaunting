@@ -109,6 +109,8 @@ return [
                 'values' => [
                     'income' => 'general.incomes',
                     'expense' => 'general.expenses',
+                    //'income-transfer' => 'general.income_transfers',
+                    //'expense-transfer' => 'general.expense_transfers',
                 ],
             ],
             'account_id' => [
@@ -120,7 +122,9 @@ return [
                 'route' => ['currencies.index', 'search=enabled:1'],
             ],
             'document_id',
-            'contact_id',
+            'contact_id' => [
+                'route' => 'contacts.index',
+            ],
             'description' => ['searchable' => true],
             'payment_method',
             'reference',
@@ -386,7 +390,14 @@ return [
             'id',
             'name' => ['searchable' => true],
             'enabled' => ['boolean' => true],
-            'type',
+            'type' => [
+                'values' => [
+                    'income' => 'general.incomes',
+                    'expense' => 'general.expenses',
+                    'item' => 'general.items',
+                    'other' => 'general.others',
+                ],
+            ],
             'created_at' => ['date' => true],
             'updated_at' => ['date' => true],
         ],
