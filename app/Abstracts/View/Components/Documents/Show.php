@@ -5,6 +5,7 @@ namespace App\Abstracts\View\Components\Documents;
 use App\Traits\DateTime;
 use App\Traits\Documents;
 use App\Models\Common\Media;
+use App\Traits\Tailwind;
 use App\Traits\ViewComponents;
 use App\Abstracts\View\Component;
 use Illuminate\Support\Facades\Log;
@@ -17,7 +18,7 @@ use Image;
 
 abstract class Show extends Component
 {
-    use DateTime, Documents, ViewComponents;
+    use DateTime, Documents, Tailwind, ViewComponents;
 
     public const OBJECT_TYPE = 'document';
     public const DEFAULT_TYPE = 'invoice';
@@ -211,6 +212,9 @@ abstract class Show extends Component
     /** @var string */
     public $transactionEmailRoute;
 
+    /** @var string */
+    public $transactionEmailTemplate;
+
     /** @var bool */
     public $hideRestore;
 
@@ -334,10 +338,10 @@ abstract class Show extends Component
         bool $hideDivider1 = false, bool $hideDivider2 = false, bool $hideDivider3 = false, bool $hideDivider4 = false,
         string $accordionActive = '',
         bool $hideRecurringMessage = false, string $textRecurringType = '', bool $hideStatusMessage = false, string $textStatusMessage = '',
-        bool $hideCreated = false, bool $hideSend = false, bool $hideMarkSent = false, string $markSentRoute = '', string $textMarkSent = '', 
-        bool $hideReceive = false, bool $hideMarkReceived = false, string $markReceivedRoute = '', string $textMarkReceived = '', 
+        bool $hideCreated = false, bool $hideSend = false, bool $hideMarkSent = false, string $markSentRoute = '', string $textMarkSent = '',
+        bool $hideReceive = false, bool $hideMarkReceived = false, string $markReceivedRoute = '', string $textMarkReceived = '',
         bool $hideGetPaid = false,
-        bool $hideRestore = false, bool $hideAddPayment = false, bool $hideAcceptPayment = false, string $transactionEmailRoute = '',
+        bool $hideRestore = false, bool $hideAddPayment = false, bool $hideAcceptPayment = false, string $transactionEmailRoute = '', string $transactionEmailTemplate = '',
         bool $hideMakePayment = false,
         bool $hideSchedule = false, bool $hideChildren = false,
         bool $hideAttachment = false, $attachment = [],
@@ -438,6 +442,7 @@ abstract class Show extends Component
         $this->hideAcceptPayment = $hideAcceptPayment;
 
         $this->transactionEmailRoute = $this->getTransactionEmailRoute($type, $transactionEmailRoute);
+        $this->transactionEmailTemplate = $this->getTransactionEmailTemplate($type, $transactionEmailTemplate);
 
         $this->hideRestore = $this->getHideRestore($hideRestore);
 
@@ -460,7 +465,7 @@ abstract class Show extends Component
         $this->documentTemplate = $this->getDocumentTemplate($type, $documentTemplate);
         $this->logo = $this->getLogo($logo);
         $this->backgroundColor = $this->getBackgroundColor($type, $backgroundColor);
-        
+
         $this->hideFooter = $hideFooter;
         $this->hideCompanyLogo = $hideCompanyLogo;
         $this->hideCompanyDetails = $hideCompanyDetails;
@@ -875,6 +880,15 @@ abstract class Show extends Component
         return 'modals.transactions.emails.create';
     }
 
+    protected function getTransactionEmailTemplate($type, $transactionEmailTemplate)
+    {
+        if (! empty($transactionEmailTemplate)) {
+            return $transactionEmailTemplate;
+        }
+
+        return config('type.' . static::OBJECT_TYPE . '.' . $type . '.transaction.email_template', false);
+    }
+
     protected function getHideRestore($hideRestore)
     {
         if (! empty($hideRestore)) {
@@ -975,7 +989,7 @@ abstract class Show extends Component
 
         $backgroundColor = setting($this->getSettingKey($type, 'color'), '#55588b');
 
-        return $this->convertClasstoHex($backgroundColor);
+        return $this->getHexCodeOfTailwindClass($backgroundColor);
     }
 
     protected function getTextDocumentTitle($type, $textDocumentTitle)

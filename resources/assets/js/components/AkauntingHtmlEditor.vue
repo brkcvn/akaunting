@@ -43,6 +43,7 @@ export default {
             customToolbar: [
                 ["bold", "italic", "underline"],
                 [{ list: "ordered" }, { list: "bullet" }],
+                ["link"]
             ],
         }
     },
@@ -80,7 +81,14 @@ export default {
         },
 
         content (newVal) {
+            // #337y1z3 This issue reason <p> tag broken email template
+            newVal = newVal.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
+
             this.$emit('input', newVal);
+
+            document.querySelectorAll('.ql-tooltip').forEach((tooltip) => {
+                tooltip.querySelector('input').focus();
+            });
         },
     },
  }

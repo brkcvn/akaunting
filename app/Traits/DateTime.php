@@ -41,6 +41,7 @@ trait DateTime
     public function scopeMonthsOfYear($query, $field)
     {
         $now = Date::now();
+
         $year = $this->getSearchStringValue('year', $now->year);
 
         $financial_start = $this->getFinancialStart($year);

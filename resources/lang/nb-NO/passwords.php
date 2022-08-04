@@ -13,7 +13,6 @@ return [
     |
     */
 
-    'password' => 'Passord må inneholde minst seks tegn og være være lik bekreftelsen.',
     'reset' => 'Passordet ble endret.',
     'sent' => 'Vi har sendt deg en lenke på e-post, som du kan klikke på for å endre passord!',
     'throttled' => 'Vennligst vent før du prøver igjen.',

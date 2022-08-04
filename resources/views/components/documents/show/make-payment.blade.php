@@ -26,14 +26,14 @@
             @stack('timeline_get_paid_body_button_payment_end')
         </div>
 
-        <div class="text-xs mt-4" style="margin-left: 0 !important;">
+        <div class="text-xs mt-6" style="margin-left: 0 !important;">
             <span class="font-medium">
                 {{ trans('bills.payment_made') }} :
             </span>
 
             @if ($transactions->count())
                 @foreach ($transactions as $transaction)
-                    <div class="my-2">
+                    <div class="my-4">
                         <span>
                             <x-date :date="$transaction->paid_at" />
                              - {!! trans('documents.transaction', [
@@ -45,7 +45,7 @@
                         </br>
 
                         @if (! empty($transaction->contact) && $transaction->contact->email)
-                            <x-button id="button-email-send" class="text-purple mt-1" override="class" @click="onEmail('{{ route($transactionEmailRoute, $transaction->id) }}')">
+                            <x-button id="button-email-send" class="text-purple mt-1" override="class" @click="onEmailViaTemplate('{{ route($transactionEmailRoute, $transaction->id) }}', '{{ $transactionEmailTemplate }}')">
                                 <x-button.hover color="to-purple">
                                     {{ trans('general.title.send', ['type' => trans_choice('general.receipts', 1)]) }}
                                 </x-button.hover>

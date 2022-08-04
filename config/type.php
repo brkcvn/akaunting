@@ -41,6 +41,7 @@ return [
     // Contacts
     'contact' => [
         Contact::CUSTOMER_TYPE => [
+            'alias'                 => '', // core empty but module write own alias
             'group'                 => 'sales',
             'route' => [
                 'prefix'            => 'customers', // core use with group + prefix, module ex. estimates
@@ -69,6 +70,7 @@ return [
         ],
 
         Contact::VENDOR_TYPE => [
+            'alias'                 => '', // core empty but module write own alias
             'group'                 => 'purchases',
             'route' => [
                 'prefix'            => 'vendors', // core use with group + prefix, module ex. estimates
@@ -126,6 +128,9 @@ return [
             'category_type'         => 'income',
             'transaction_type'      => 'income',
             'contact_type'          => 'customer', // use contact type
+            'transaction'           => [
+                'email_template'    => 'invoice_payment_customer', // use email template
+            ],
             'hide'                  => [], // for document items
             'class'                 => [],
             'notification' => [
@@ -219,6 +224,9 @@ return [
             'category_type'         => 'expense',
             'transaction_type'      => 'expense',
             'contact_type'          => 'vendor',
+            'transaction'           => [
+                'email_template'    => 'invoice_payment_customer', // use email template
+            ],
             'hide'                  => [],
             'notification' => [
                 'class'             => 'App\Notifications\Purchase\Bill',
@@ -312,6 +320,32 @@ return [
             ],
         ],
 
+        Transaction::INCOME_TRANSFER_TYPE => [
+            'group'                 => 'banking',
+            'route' => [
+                'prefix'            => 'transactions', // core use with group + prefix, module ex. estimates
+                'parameter'         => 'transaction', // banking/transactions/{parameter}/edit
+                //'create'          => 'transactions.create', // if you change route, you can write full path
+            ],
+            'permission' => [
+                'prefix'            => 'transactions',
+                //'create'          => 'create-banking-transactions',
+            ],
+            'translation' => [
+                'prefix'                    => 'transactions', // this translation file name.
+                'related_document_amount'   => 'invoices.invoice_amount',
+                'transactions'              => 'general.incomes',
+            ],
+            'contact_type'          => 'customer',
+            'document_type'         => 'invoice',
+            'split_type'            => Transaction::INCOME_SPLIT_TYPE,
+            'email_template'        => 'payment_received_customer',
+            'script' => [
+                'folder'            => 'banking',
+                'file'              => 'transactions',
+            ],
+        ],
+
         Transaction::INCOME_RECURRING_TYPE => [
             'group'                 => 'banking',
             'route' => [
@@ -341,6 +375,31 @@ return [
         ],
 
         Transaction::EXPENSE_TYPE => [
+            'group'                 => 'banking',
+            'route' => [
+                'prefix'            => 'transactions', // core use with group + prefix, module ex. estimates
+                'parameter'         => 'transaction', // banking/transactions/{parameter}/edit
+                //'create'          => 'transactions.create', // if you change route, you can write full path
+            ],
+            'permission' => [
+                'prefix'            => 'transactions',
+                //'create'          => 'create-banking-transactions',
+            ],
+            'translation' => [
+                'prefix'                    => 'transactions', // this translation file name.
+                'related_document_amount'   => 'bills.bill_amount',
+            ],
+            'contact_type'          => 'vendor',
+            'document_type'         => 'bill',
+            'split_type'            => Transaction::EXPENSE_SPLIT_TYPE,
+            'email_template'        => 'payment_made_vendor',
+            'script' => [
+                'folder'            => 'banking',
+                'file'              => 'transactions',
+            ],
+        ],
+
+        Transaction::EXPENSE_TRANSFER_TYPE => [
             'group'                 => 'banking',
             'route' => [
                 'prefix'            => 'transactions', // core use with group + prefix, module ex. estimates

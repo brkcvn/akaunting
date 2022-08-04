@@ -45,6 +45,9 @@
                                     <a href="{{ route('apps.categories.show', $module_category->slug) }}" class="text-sm">
                                         {{ $module_category->name }}
                                     </a>
+                                    @if (! $loop->last)
+                                    ,
+                                    @endif
                                 @endforeach
                             </span>
                         </div>
@@ -94,21 +97,37 @@
                             </div>
                         </div>
 
-                        <div class="text-sm truncate line-clamp-1">
-                            {!! $module->description !!}
-                        </div>
-
-                        <div class="relative flex flex-col lg:flex-row space-x-4 justify-between">
-                            <x-layouts.modules.show.price :module="$module" />
-
-                            <div class="flex w-1/2 lg:justify-center">
-                                @if ($module->price != '0.0000')
-                                    <x-layouts.modules.show.toggle />
-                                @endif
+                        @if (! in_array('onprime', $module->where_to_use))
+                            <div class="text-sm truncate line-clamp-1">
+                                {!! ! empty($module->sort_desc) ? $module->sort_desc : strip_tags($module->description) !!}
                             </div>
-                        </div>
 
-                        <x-layouts.modules.show.information :module="$module" />
+                            @if (! empty($module->cloud_information))
+                                {!! $module->cloud_information !!}
+                            @else
+                                <div class="text-center text-sm mt-3 mb--2 bg-red-100 rounded-lg p-2 cursor-default">
+                                    <span class="text-sm text-red-700">
+                                        {!! trans('modules.only_works_cloud') !!}
+                                    </span>
+                                </div>
+                            @endif
+                        @else
+                            <div class="text-sm truncate line-clamp-1">
+                                {!! ! empty($module->sort_desc) ? $module->sort_desc : strip_tags($module->description) !!}
+                            </div>
+
+                            <div class="relative flex flex-col lg:flex-row space-x-4 justify-between">
+                                <x-layouts.modules.show.price :module="$module" />
+
+                                <div class="flex w-1/2 lg:justify-center">
+                                    @if ($module->price != '0.0000')
+                                        <x-layouts.modules.show.toggle />
+                                    @endif
+                                </div>
+                            </div>
+
+                            <x-layouts.modules.show.information :module="$module" />
+                        @endif
                     </div>
 
                     <div class="flex justify-around space-x-12 mt-5">
@@ -150,7 +169,7 @@
 
                         @stack('installation_nav_start')
 
-                        @if ($module->installation)
+                        @if ($module->install && $module->installation)
                             <x-tabs.nav
                                 id="installation"
                                 name="{{ trans('modules.tab.installation') }}"
@@ -160,7 +179,7 @@
 
                         @stack('documentation_nav_start')
 
-                        @if ($module->documentation)
+                        @if ($module->install && $module->documentation)
                             <x-tabs.nav
                                 id="documentation"
                                 name="{{ trans('modules.documentation') }}"
@@ -180,7 +199,7 @@
 
                         @stack('changelog_nav_start')
 
-                        @if ($module->changelog)
+                        @if ($module->install && $module->changelog)
                             <x-tabs.nav
                                 id="changelog"
                                 name="{{ trans('modules.tab.changelog') }}"
@@ -215,7 +234,7 @@
 
                             @stack('installation_tab_start')
 
-                            @if ($module->installation)
+                            @if ($module->install && $module->installation)
                                 <x-tabs.tab id="installation">
                                     <x-layouts.modules.show.installation :module="$module" />
                                 </x-tabs.tab>
@@ -223,7 +242,7 @@
 
                             @stack('documentation_tab_start')
 
-                            @if ($module->documentation)
+                            @if ($module->install && $module->documentation)
                                 <x-tabs.tab id="documentation">
                                     <x-layouts.modules.show.documentation :module="$module" />
                                 </x-tabs.tab>
@@ -239,7 +258,7 @@
 
                             @stack('changelog_tab_start')
 
-                            @if ($module->changelog)
+                            @if ($module->install && $module->changelog)
                                 <x-tabs.tab id="changelog">
                                     <x-layouts.modules.show.releases :module="$module" />
                                 </x-tabs.tab>
