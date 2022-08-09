@@ -77,7 +77,7 @@
             @endcan
 
             <x-tooltip id="tooltip-search" placement="right" message="{{ trans('general.search') }}">
-                <button x-on:click="$dispatch('open-spotlight-modal')" type="button" class="flex items-center menu-button justify-center w-8 h-8 mb-2.5 relative cursor-pointer">
+                <button x-on:click="$dispatch('open-spotlight-modal')" type="button" class="flex items-center justify-center w-8 h-8 mb-2.5 relative cursor-pointer">
                     <span id="menu-search-icon" name="search" class="material-icons-outlined text-purple text-2xl">search</span>
                 </button>
             </x-tooltip>
