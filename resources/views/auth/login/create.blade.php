@@ -25,12 +25,12 @@
         ></div>
 
         <x-form id="auth" route="login">
-            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5 lg:h-64">
+            <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5 lg:h-64">
                 <x-form.group.email
                     name="email"
                     label="{{ trans('general.email') }}"
                     placeholder="{{ trans('general.email') }}"
-                    form-group-class="sm:col-span-6"
+                    form-group-class="sm:col-span-12"
                     input-group-class="input-group-alternative"
                 />
 
@@ -38,11 +38,11 @@
                     name="password"
                     label="{{ trans('auth.password.pass') }}"
                     placeholder="{{ trans('auth.password.pass') }}"
-                    form-group-class="sm:col-span-6"
+                    form-group-class="sm:col-span-12"
                     input-group-class="input-group-alternative"
                 />
 
-                <div class="sm:col-span-6 flex flex-row justify-between items-center">
+                <div class="sm:col-span-12 flex flex-row justify-between items-center">
                     @stack('remember_input_start')
                     <div>
                         <x-form.input.checkbox
@@ -66,7 +66,7 @@
                 <x-button
                     type="submit"
                     ::disabled="form.loading"
-                    class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 sm:col-span-6"
+                    class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 sm:col-span-12"
                     override="class"
                 >
                     <x-button.loading>

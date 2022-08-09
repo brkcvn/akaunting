@@ -31,9 +31,9 @@
                     <x-form.section.head title="{!! $category['name'] !!}" description="{{ $category['description'] }}" />
                 </div>
 
-                <div class="grid sm:grid-cols-6 gap-12 my-3.5">
+                <div class="grid sm:grid-cols-12 gap-12 my-3.5">
                     @foreach($category['reports'] as $report)
-                        <div class="flex justify-between sm:col-span-3 p-1 group">
+                        <div class="flex justify-between sm:col-span-6 p-1 group">
                             <div class="lg:w-80">
                                 <x-link href="{{ route('reports.show', $report->id) }}" class="flex" override="class">
                                     <span class="material-icons-outlined text-5xl transform transition-all hover:scale-125 text-black-400">

@@ -1,4 +1,4 @@
-<div class="sm:col-span-6">
+<div class="sm:col-span-12">
     <div class="mb-4 p-0">
         <div class="overflow-y-hidden py-6">
             <table id="totals" class="float-right">

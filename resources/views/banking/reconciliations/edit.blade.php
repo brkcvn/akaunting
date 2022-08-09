@@ -188,7 +188,7 @@
                 @can('update-banking-reconciliations')
                 <div class="mt-6">
                     @if ($transactions->count())
-                        <div class="sm:col-span-6 flex items-center justify-end">
+                        <div class="sm:col-span-12 flex items-center justify-end">
                             <x-link
                                 href="{{ route('reconciliations.index') }}"
                                 class="flex items-center justify-center bg-transparent hover:bg-gray-200 py-1.5 text-base rounded-lg disabled:opacity-50 px-3 ltr:mr-2 rtl:ml-2"

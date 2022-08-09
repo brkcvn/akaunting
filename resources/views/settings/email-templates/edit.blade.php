@@ -41,10 +41,10 @@
                                 </h2>
                             </div>
 
-                            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
-                                <x-form.group.text name="subject" label="{{ trans('settings.email.templates.subject') }}" form-group-class="sm:col-span-6" />
+                            <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
+                                <x-form.group.text name="subject" label="{{ trans('settings.email.templates.subject') }}" form-group-class="sm:col-span-12" />
 
-                                <div class="sm:col-span-6 required" v-if='form.body != null'>
+                                <div class="sm:col-span-12 required" v-if='form.body != null'>
                                     <x-form.label for="body">
                                         {{ trans('settings.email.templates.body') }}
                                     </x-form.label>
@@ -56,11 +56,11 @@
                                     ></akaunting-html-editor>
                                 </div>
 
-                                <div class="sm:col-span-6 required" v-if='form.body == null'>
+                                <div class="sm:col-span-12 required" v-if='form.body == null'>
                                     <x-form.group.editor name="body" label="{{ trans('settings.email.templates.body') }}" value="{!! $template->body !!}" v-model='form.body' rows="5" />
                                 </div>
 
-                                <div class="sm:col-span-6">
+                                <div class="sm:col-span-12">
                                     <div class="bg-gray-200 rounded-md p-3">
                                         <small v-html='tags' v-if='tags != null'></small>
                                         <small v-if='tags == null'>

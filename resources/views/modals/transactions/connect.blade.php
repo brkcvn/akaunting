@@ -1,7 +1,7 @@
 <x-form id="form-transaction" :route="$route" :model="!empty($transaction) ? $transaction : false">
     <base-alert type="warning" v-if="typeof form.response !== 'undefined' && form.response.error" v-html="form.response.message"></base-alert>
 
-    <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
+    <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
         <x-form.group.date name="paid_at" label="{{ trans('general.date') }}" icon="calendar_today" value="{{ Date::now()->toDateString() }}" show-date-format="{{ company_date_format() }}" date-format="Y-m-d" autocomplete="off" />
 
         <x-form.group.money name="amount" label="{{ trans('general.amount') }}" value="{{ $document->grand_total }}" autofocus="autofocus" :currency="$currency" dynamicCurrency="currency" />

@@ -1,5 +1,5 @@
 <x-form id="item" route="items.store">
-    <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
+    <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
         <x-form.group.text name="name" label="{{ trans('general.name') }}" />
 
         <x-form.group.select multiple name="tax_ids" label="{{ trans_choice('general.taxes', 1) }}" :options="$taxes" :selected="(setting('default.tax')) ? [setting('default.tax')] : null" not-required />

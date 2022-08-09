@@ -1,7 +1,7 @@
 @stack($name . '_input_start')
 <div
     @class([
-        'grid grid-cols-6 gap-8',
+        'grid grid-cols-12 gap-8',
         $formGroupClass,
         'required' => $required,
         'readonly' => $readonly,
@@ -168,7 +168,7 @@
 
     @foreach ($options as $option)
         @if ($option->id == 'custom')
-            <div class="col-span-6 my-5" v-if="form.{{ $name }} == 'custom'">
+            <div class="col-span-12 my-5" v-if="form.{{ $name }} == 'custom'">
                 <x-form.group.text name="{{ $attributes['input-name'] }}" value="{{ $attributes['input-value'] }}" />
             </div>
         @endif

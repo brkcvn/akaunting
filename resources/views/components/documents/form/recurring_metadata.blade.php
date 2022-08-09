@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-7 sm:col-span-6 gap-x-8 gap-y-6 my-3.5">
+<div class="grid sm:grid-cols-7 sm:col-span-12 gap-x-8 gap-y-6 my-3.5">
     <div class="sm:col-span-2">
         <x-form.label for="contact" required>
             {{ trans_choice($textContact, 1) }}
@@ -25,7 +25,7 @@
         @stack('issue_start')
 
         @if (! $hideIssuedAt)
-        <div class="relative sm:col-span-3">
+        <div class="relative sm:col-span-6">
             <x-form.label>
                 {{ trans($textIssuedAt) }}
             </x-form.label>
@@ -61,7 +61,7 @@
         @stack('document_number_start')
 
         @if (! $hideDocumentNumber)
-        <div class="relative sm:col-span-3">
+        <div class="relative sm:col-span-6">
             <x-form.label>
                 {{ trans($textDocumentNumber) }}
             </x-form.label>

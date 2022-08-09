@@ -11,7 +11,7 @@
             <x-form.group.text name="name" label="{{ trans($textName) }}" form-group-class="{{ $classNameFromGroupClass }}" />
         @endif
 
-        <div class="sm:col-span-3 grid gap-x-8 gap-y-6">
+        <div class="sm:col-span-6 grid gap-x-8 gap-y-6">
             @if (! $hideEmail)
                 <x-form.group.text name="email" label="{{ trans($textEmail) }}" not-required />
             @endif
@@ -29,7 +29,7 @@
             @endif
         </div>
 
-        <div class="sm:col-span-3">
+        <div class="sm:col-span-6">
             @if (! $hideCanLogin)
                 <div class="mt-9">
                     @if (empty($contact))
@@ -38,7 +38,7 @@
                                 name="create_user"
                                 :options="['1' => trans('customers.can_login')]"
                                 @input="onCanLogin($event)"
-                                checkbox-class="sm:col-span-6"
+                                checkbox-class="sm:col-span-12"
                             />
                         </x-tooltip>
                     @else
@@ -46,7 +46,7 @@
                             <x-form.group.checkbox
                                 name="create_user"
                                 :options="['1' => trans('customers.user_created')]"
-                                checkbox-class="sm:col-span-6"
+                                checkbox-class="sm:col-span-12"
                                 checked
                             />
                         @else
@@ -54,7 +54,7 @@
                                 <x-form.group.checkbox
                                     name="create_user"
                                     :options="['1' => trans('customers.can_login')]"
-                                    checkbox-class="sm:col-span-6"
+                                    checkbox-class="sm:col-span-12"
                                     @input="onCanLogin($event)"
                                 />
                             </x-tooltip>

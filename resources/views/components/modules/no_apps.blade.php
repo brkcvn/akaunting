@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col lg:flex-row col-span-3 gap-y-8 gap-x-12 ltr:pl-8 rtl:pr-8 my-8">
+    <div class="flex flex-col lg:flex-row col-span-6 gap-y-8 gap-x-12 ltr:pl-8 rtl:pr-8 my-8">
         @foreach ($modules as $item)
             <div>
                 <div class="relative right-10 bottom-4">

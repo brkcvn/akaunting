@@ -28,7 +28,7 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="sm:col-span-2 rounded-lg cursor-pointer text-center py-2 px-2">
+                        <div class="sm:col-span-4 rounded-lg cursor-pointer text-center py-2 px-2">
                             <label class="cursor-pointer">
                                 <div @click="form.template='default'">
                                     <img src="{{ asset('public/img/invoice_templates/default.png') }}" class="h-60 my-3" alt="Default" />
@@ -38,7 +38,7 @@
                             </label>
                         </div>
 
-                        <div class="sm:col-span-2 rounded-lg cursor-pointer text-center py-2 px-2">
+                        <div class="sm:col-span-4 rounded-lg cursor-pointer text-center py-2 px-2">
                             <label class="cursor-pointer">
                                 <div @click="form.template='classic'">
                                     <img src="{{ asset('public/img/invoice_templates/classic.png') }}" class="h-60 my-3" alt="Classic" />
@@ -48,7 +48,7 @@
                             </label>
                         </div>
 
-                        <div class="sm:col-span-2 rounded-lg cursor-pointer text-center py-2 px-2">
+                        <div class="sm:col-span-4 rounded-lg cursor-pointer text-center py-2 px-2">
                             <label class="cursor-pointer">
                                 <div @click="form.template='modern'">
                                     <img src="{{ asset('public/img/invoice_templates/modern.png') }}" class="h-60 my-3" alt="Modern" />
@@ -72,9 +72,9 @@
 
                         <x-form.group.text name="subheading" label="{{ trans('settings.invoice.subheading') }}" value="{{ setting('invoice.subheading') }}" not-required />
 
-                        <x-form.group.textarea name="notes" label="{{ trans_choice('general.notes', 2) }}" :value="setting('invoice.notes')" form-group-class="sm:col-span-3" not-required />
+                        <x-form.group.textarea name="notes" label="{{ trans_choice('general.notes', 2) }}" :value="setting('invoice.notes')" form-group-class="sm:col-span-6" not-required />
 
-                        <x-form.group.textarea name="footer" label="{{ trans('general.footer') }}" :value="setting('invoice.footer')" form-group-class="sm:col-span-3" not-required />
+                        <x-form.group.textarea name="footer" label="{{ trans('general.footer') }}" :value="setting('invoice.footer')" form-group-class="sm:col-span-6" not-required />
                     </x-slot>
                 </x-form.section>
 
@@ -84,7 +84,7 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="grid col-span-6 grid-rows-3">
+                        <div class="grid col-span-12 grid-rows-3">
                             <x-form.group.invoice-text
                                 name="item_name"
                                 label="{{ trans('settings.invoice.item_name') }}"
@@ -93,7 +93,7 @@
                                 change="settingsInvoice"
                                 input-name="item_name_input"
                                 :input-value="setting('invoice.item_name_input')"
-                                form-group-class="sm:col-span-6 sm:gap-0"
+                                form-group-class="sm:col-span-12 sm:gap-0"
                             />
 
                             <x-form.group.invoice-text
@@ -104,7 +104,7 @@
                                 change="settingsInvoice"
                                 input-name="price_name_input"
                                 :input-value="setting('invoice.price_name_input')"
-                                form-group-class="sm:col-span-6 sm:gap-0"
+                                form-group-class="sm:col-span-12 sm:gap-0"
                             />
 
                             <x-form.group.invoice-text
@@ -115,13 +115,13 @@
                                 change="settingsInvoice"
                                 input-name="quantity_name_input"
                                 :input-value="setting('invoice.quantity_name_input')"
-                                form-group-class="sm:col-span-6 sm:gap-0"
+                                form-group-class="sm:col-span-12 sm:gap-0"
                             />
                         </div>
 
-                        <x-form.group.toggle name="hide_item_description" label="{{ trans('settings.invoice.hide.item_description') }}" :value="setting('invoice.hide_item_description')" not-required form-group-class="sm:col-span-6" />
+                        <x-form.group.toggle name="hide_item_description" label="{{ trans('settings.invoice.hide.item_description') }}" :value="setting('invoice.hide_item_description')" not-required form-group-class="sm:col-span-12" />
 
-                        <x-form.group.toggle name="hide_amount" label="{{ trans('settings.invoice.hide.amount') }}" :value="setting('invoice.hide_amount')" not-required form-group-class="sm:col-span-6" />
+                        <x-form.group.toggle name="hide_amount" label="{{ trans('settings.invoice.hide.amount') }}" :value="setting('invoice.hide_amount')" not-required form-group-class="sm:col-span-12" />
                     </x-slot>
                 </x-form.section>
 

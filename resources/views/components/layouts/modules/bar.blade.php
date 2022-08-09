@@ -83,8 +83,8 @@
                     class="absolute w-full left-0 right-0 bg-white rounded-xl shadow-md pl-4 pr-4 pt-4 top-20 z-10"
                     :class="live_search.data.length > 8 ? 'pb-0' : 'pb-4'"
                 >
-                    <ul class="grid sm:grid-cols-6 gap-8">
-                        <li v-for="(item, index) in live_search.data.slice(0,8)" :key="index" class="sm:col-span-3 p-3 rounded-lg hover:bg-gray-100">
+                    <ul class="grid sm:grid-cols-12 gap-8">
+                        <li v-for="(item, index) in live_search.data.slice(0,8)" :key="index" class="sm:col-span-6 p-3 rounded-lg hover:bg-gray-100">
                             <a :href="route_url + '/apps/' + item.slug" class="flex items-center space-x-4">
                                 <img v-for="(file, indis) in item.files"
                                     :src="file.path_string"

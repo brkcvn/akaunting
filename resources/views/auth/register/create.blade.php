@@ -25,14 +25,14 @@
         ></div>
 
         <x-form id="auth" route="register.store">
-            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5 lg:h-64">
+            <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5 lg:h-64">
                 <x-form.input.hidden name="token" value="{{ $token }}" />
 
                 <x-form.group.password
                     name="password"
                     label="{{ trans('auth.password.pass') }}"
                     placeholder="{{ trans('auth.password.pass') }}"
-                    form-group-class="sm:col-span-6"
+                    form-group-class="sm:col-span-12"
                     input-group-class="input-group-alternative"
                 />
 
@@ -40,14 +40,14 @@
                     name="password_confirmation"
                     label="{{ trans('auth.password.pass_confirm') }}"
                     placeholder="{{ trans('auth.password.pass') }}"
-                    form-group-class="sm:col-span-6"
+                    form-group-class="sm:col-span-12"
                     input-group-class="input-group-alternative"
                 />
 
                 <x-button
                     type="submit"
                     ::disabled="form.loading"
-                    class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 sm:col-span-6"
+                    class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 sm:col-span-12"
                     override="class"
                     data-loading-text="{{ trans('general.loading') }}"
                 >

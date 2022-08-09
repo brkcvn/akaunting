@@ -1,7 +1,7 @@
 <div class="py-1 px-5 bg-body">
     <x-form id="template" method="PATCH" route="modals.transfer-templates.update">
-        <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
-            <div class="sm:col-span-2 bg-gray-100 rounded-lg cursor-pointer text-center py-2 px-2">
+        <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
+            <div class="sm:col-span-4 bg-gray-100 rounded-lg cursor-pointer text-center py-2 px-2">
                 <div @click="transfer_form.template='default'">
                     <img src="{{ asset('public/img/transfer_templates/default.png') }}" class="h-72 m-auto" alt="Default"/>
                     </br>
@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="sm:col-span-2 bg-gray-100 rounded-lg cursor-pointer text-center py-2 px-2">
+            <div class="sm:col-span-4 bg-gray-100 rounded-lg cursor-pointer text-center py-2 px-2">
                 <div @click="transfer_form.template='second'">
                     <img src="{{ asset('public/img/transfer_templates/second.png') }}" class="h-72 m-auto" alt="Second"/>
                     </br>
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="sm:col-span-2 bg-gray-100 rounded-lg cursor-pointer text-center py-2 px-2">
+            <div class="sm:col-span-4 bg-gray-100 rounded-lg cursor-pointer text-center py-2 px-2">
                 <div @click="transfer_form.template='third'">
                     <img src="{{ asset('public/img/transfer_templates/third.png') }}" class="h-72 m-auto" alt="Third"/>
                     </br>

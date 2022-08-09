@@ -29,9 +29,9 @@
                             @input="onType($event)"
                         />
 
-                        <x-form.group.text name="name" label="{{ trans('general.name') }}" form-group-class="sm:col-span-6" />
+                        <x-form.group.text name="name" label="{{ trans('general.name') }}" form-group-class="sm:col-span-12" />
 
-                        <x-form.group.text name="number" label="{{ trans('accounts.number') }}" form-group-class="sm:col-span-6" />
+                        <x-form.group.text name="number" label="{{ trans('accounts.number') }}" form-group-class="sm:col-span-12" />
 
                         <x-form.group.currency />
 

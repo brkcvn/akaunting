@@ -34,7 +34,7 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="sm:col-span-6">
+                        <div class="sm:col-span-12">
                             <x-form.label for="cron_command">
                                 {{ trans('settings.scheduling.command') }}
                             </x-form.label>

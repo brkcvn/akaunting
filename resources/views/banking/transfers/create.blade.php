@@ -22,13 +22,13 @@
 
                         <x-form.group.select name="to_account_id" label="{{ trans('transfers.to_account') }}" :options="$accounts" change="onChangeToAccount" />
 
-                        <div v-if="show_rate" class="sm:col-span-3">
+                        <div v-if="show_rate" class="sm:col-span-6">
                             <x-form.input.hidden name="from_currency_code" v-model="form.from_currency_code" />
 
                             <x-form.group.text name="from_account_rate" label="{{ trans('transfers.from_account_rate') }}" v-disabled="form.from_currency_code == '{{ setting('default.currency') }}'" />
                         </div>
 
-                        <div v-if="show_rate" class="sm:col-span-3">
+                        <div v-if="show_rate" class="sm:col-span-6">
                             <x-form.input.hidden name="to_currency_code" v-model="form.to_currency_code" />
 
                             <x-form.group.text name="to_account_rate" label="{{ trans('transfers.to_account_rate') }}" v-disabled="form.to_currency_code == '{{ setting('default.currency') }}'" />

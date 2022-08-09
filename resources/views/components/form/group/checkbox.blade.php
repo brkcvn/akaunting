@@ -30,7 +30,7 @@
         @endif
 
         <div @class([
-                'flex items-center justify-center grid sm:grid-cols-6',
+                'flex items-center justify-center grid sm:grid-cols-12',
                 $inputGroupClass,
             ])
         >
@@ -43,7 +43,7 @@
                     $attributes[':id'] = str_replace(':item_id', $option->$optionKey, $option_id);
                 }
                 @endphp
-                <div class="{{ ! empty($attributes['checkbox-class']) ? $attributes['checkbox-class'] : 'sm:col-span-3' }}">
+                <div class="{{ ! empty($attributes['checkbox-class']) ? $attributes['checkbox-class'] : 'sm:col-span-6' }}">
                     <div class="custom-control custom-checkbox">
                         <x-form.input.checkbox
                             name="{{ $name }}"

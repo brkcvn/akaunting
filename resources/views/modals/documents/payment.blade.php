@@ -6,8 +6,8 @@
     <div x-data="{ active: 'general' }">
         <div>
             <div>
-                <ul class="grid grid-cols-6">
-                    <li class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link col-span-3"
+                <ul class="grid grid-cols-12">
+                    <li class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link col-span-6"
                         id="tab-general"
                         data-id="tab-general"
                         data-tabs="general"
@@ -21,7 +21,7 @@
                         </span>
                     </li>
 
-                    <li class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link col-span-3"
+                    <li class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link col-span-6"
                         id="tab-other"
                         data-id="tab-other"
                         data-tabs="other"
@@ -39,24 +39,24 @@
         </div>
 
         <div id="tab-general" data-tabs-content="general" x-show="active === 'general'">
-            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
-                <x-form.group.date name="paid_at" label="{{ trans('general.date') }}" icon="calendar_today" value="{{ $document->paid_at }}" show-date-format="{{ company_date_format() }}" date-format="Y-m-d" autocomplete="off" form-group-class="col-span-6" />
+            <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
+                <x-form.group.date name="paid_at" label="{{ trans('general.date') }}" icon="calendar_today" value="{{ $document->paid_at }}" show-date-format="{{ company_date_format() }}" date-format="Y-m-d" autocomplete="off" form-group-class="col-span-12" />
 
-                <x-form.group.money name="amount" label="{{ trans('general.amount') }}" value="{{ $document->grand_total }}" autofocus="autofocus" :currency="$currency" dynamicCurrency="currency" form-group-class="col-span-6" />
+                <x-form.group.money name="amount" label="{{ trans('general.amount') }}" value="{{ $document->grand_total }}" autofocus="autofocus" :currency="$currency" dynamicCurrency="currency" form-group-class="col-span-12" />
 
-                <x-form.group.payment-method form-group-class="col-span-6"/>
+                <x-form.group.payment-method form-group-class="col-span-12"/>
 
-                <x-form.group.account change="onChangePaymentAccount" form-group-class="col-span-6" without-add-new />
+                <x-form.group.account change="onChangePaymentAccount" form-group-class="col-span-12" without-add-new />
             </div>
         </div>
 
         <div id="tab-other" data-tabs-content="other" x-show="active === 'other'">
-            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
-                <x-form.group.textarea name="description" label="{{ trans('general.description') }}" rows="2" not-required form-group-class="col-span-6" />
+            <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
+                <x-form.group.textarea name="description" label="{{ trans('general.description') }}" rows="2" not-required form-group-class="col-span-12" />
 
-                <x-form.group.text name="number" label="{{ trans_choice('general.numbers', 1) }}" value="{{ $number }}" form-group-class="col-span-6" />
+                <x-form.group.text name="number" label="{{ trans_choice('general.numbers', 1) }}" value="{{ $number }}" form-group-class="col-span-12" />
 
-                <x-form.group.text name="reference" label="{{ trans('general.reference') }}" not-required form-group-class="col-span-6" />
+                <x-form.group.text name="reference" label="{{ trans('general.reference') }}" not-required form-group-class="col-span-12" />
 
                 <x-form.input.hidden name="document_id" :value="$document->id" />
                 <x-form.input.hidden name="category_id" :value="$document->category->id" />

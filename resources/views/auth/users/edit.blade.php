@@ -10,23 +10,23 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="sm:col-span-3 grid gap-x-8 gap-y-6 {{ user()->id == $user->id ? 'grid-rows-3' : 'grid-rows-2' }}">
+                        <div class="sm:col-span-6 grid gap-x-8 gap-y-6 {{ user()->id == $user->id ? 'grid-rows-3' : 'grid-rows-2' }}">
                             <x-form.group.text name="name" label="{{ trans('general.name') }}" />
 
                             <x-form.group.email name="email" label="{{ trans('general.email') }}" ::disabled="{{ $user->hasPendingInvitation() ? 'true' : 'false' }}" />
 
                             @if (user()->id == $user->id)
-                            <x-form.group.checkbox name="change_password" :options="['1' => trans('auth.change_password')]" form-group-class="sm:col-span-3" @input="onChangePassword($event)" />
+                            <x-form.group.checkbox name="change_password" :options="['1' => trans('auth.change_password')]" form-group-class="sm:col-span-6" @input="onChangePassword($event)" />
 
                             <x-form.group.password name="password" :label="trans('auth.password.new')" v-show="show_password" />
                             @endif
                         </div>
 
-                        <div class="sm:col-span-3 grid gap-x-8 gap-y-6 {{ user()->id == $user->id ? 'grid-rows-3' : 'grid-rows-2' }}">
+                        <div class="sm:col-span-6 grid gap-x-8 gap-y-6 {{ user()->id == $user->id ? 'grid-rows-3' : 'grid-rows-2' }}">
                             @if (setting('default.use_gravatar', '0') == '1')
-                                <x-form.group.text name="fake_picture" label="{{ trans_choice('general.pictures', 1) }}" disabled placeholder="{{ trans('settings.default.use_gravatar') }}" form-group-class="sm:col-span-3 sm:row-span-2" />
+                                <x-form.group.text name="fake_picture" label="{{ trans_choice('general.pictures', 1) }}" disabled placeholder="{{ trans('settings.default.use_gravatar') }}" form-group-class="sm:col-span-6 sm:row-span-2" />
                             @else
-                                <x-form.group.file name="picture" label="{{ trans_choice('general.pictures', 1) }}" not-required form-group-class="sm:col-span-3 sm:row-span-2" />
+                                <x-form.group.file name="picture" label="{{ trans_choice('general.pictures', 1) }}" not-required form-group-class="sm:col-span-6 sm:row-span-2" />
                             @endif
 
                             @if (user()->id == $user->id)
@@ -45,7 +45,7 @@
 
                     <x-slot name="body">
                         @can('read-common-companies')
-                            <x-form.group.select multiple remote name="companies" label="{{ trans_choice('general.companies', 2) }}" :options="$companies" selected-key="company_ids" :remote_action="route('companies.index')" form-group-class="sm:col-span-6" />
+                            <x-form.group.select multiple remote name="companies" label="{{ trans_choice('general.companies', 2) }}" :options="$companies" selected-key="company_ids" :remote_action="route('companies.index')" form-group-class="sm:col-span-12" />
                         @endcan
 
                         @role('admin|manager')

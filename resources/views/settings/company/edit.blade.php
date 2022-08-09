@@ -10,7 +10,7 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="sm:col-span-3 grid gap-x-8 gap-y-6 grid-rows-4">
+                        <div class="sm:col-span-6 grid gap-x-8 gap-y-6 grid-rows-4">
                             <x-form.group.text name="name" label="{{ trans('settings.company.name') }}" value="{{ setting('company.name') }}" />
 
                             <x-form.group.text name="email" label="{{ trans('settings.company.email') }}" value="{{ setting('company.email') }}" />
@@ -20,7 +20,7 @@
                             <x-form.group.text name="tax_number" label="{{ trans('general.tax_number') }}" value="{{ setting('company.tax_number') }}" not-required />
                         </div>
 
-                        <div class="sm:col-span-3">
+                        <div class="sm:col-span-6">
                             <x-form.group.file name="logo" label="{{ trans('settings.company.logo') }}" :value="setting('company.logo')" not-required />
                         </div>
                     </x-slot>

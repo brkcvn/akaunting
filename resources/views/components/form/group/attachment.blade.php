@@ -6,5 +6,5 @@
     dropzone-class="w-full"
     multiple="multiple"
     :options="['acceptedFiles' => $file_types]"
-    form-group-class="sm:col-span-6"
+    form-group-class="sm:col-span-12"
 />

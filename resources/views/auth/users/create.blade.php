@@ -16,13 +16,13 @@
                     </x-slot>
 
                     <x-slot name="body">
-                        <div class="sm:col-span-3 grid gap-x-8 gap-y-6 grid-rows-2">
+                        <div class="sm:col-span-6 grid gap-x-8 gap-y-6 grid-rows-2">
                             <x-form.group.text name="name" label="{{ trans('general.name') }}" />
 
                             <x-form.group.email name="email" label="{{ trans('general.email') }}" />
                         </div>
 
-                        <div class="sm:col-span-3">
+                        <div class="sm:col-span-6">
                             @if (setting('default.use_gravatar', '0') == '1')
                                 <x-form.group.text name="fake_picture" label="{{ trans_choice('general.pictures', 1) }}" disabled placeholder="{{ trans('settings.default.use_gravatar') }}" />
                             @else
@@ -39,7 +39,7 @@
 
                     <x-slot name="body">
                         @can('read-common-companies')
-                            <x-form.group.select multiple remote name="companies" label="{{ trans_choice('general.companies', 2) }}" :options="$companies" remote_action="{{ route('companies.index') }}" form-group-class="sm:col-span-6" />
+                            <x-form.group.select multiple remote name="companies" label="{{ trans_choice('general.companies', 2) }}" :options="$companies" remote_action="{{ route('companies.index') }}" form-group-class="sm:col-span-12" />
                         @endcan
 
                         @role('admin|manager')

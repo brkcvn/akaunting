@@ -1,4 +1,4 @@
-<div class="grid sm:grid-cols-7 sm:col-span-6 gap-x-8 gap-y-6 my-3.5">
+<div class="grid sm:grid-cols-7 sm:col-span-12 gap-x-8 gap-y-6 my-3.5">
     <div class="sm:col-span-2">
         <x-form.label for="contact" required>
             {{ trans_choice($textContact, 1) }}

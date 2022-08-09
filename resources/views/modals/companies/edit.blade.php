@@ -1,5 +1,5 @@
 <x-form id="setting" method="PATCH" route="settings.company.update">
-    <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5d">
+    <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5d">
         <x-form.group.text name="name" label="{{ trans('settings.company.name') }}" value="{{ setting('company.name') }}" />
 
         <x-form.group.text name="email" label="{{ trans('settings.company.email') }}" value="{{ setting('company.email') }}" />

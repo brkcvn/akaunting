@@ -1,4 +1,4 @@
-<div class="sm:col-span-6 mb-8">
+<div class="sm:col-span-12 mb-8">
     <x-form.group.textarea
         name="notes"
         label="{{ trans_choice('general.notes', 2) }}"
