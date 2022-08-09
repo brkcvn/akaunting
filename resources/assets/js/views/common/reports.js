@@ -53,7 +53,7 @@ const app = new Vue({
 
                 this.report_fields = Vue.component('add-new-component', (resolve, reject) => {
                     resolve({
-                        template : '<div id="report-fields" class="grid sm:grid-cols-6 sm:col-span-6  gap-x-8 gap-y-6 my-3.5">' + html + '</div>',
+                        template : '<div id="report-fields" class="grid sm:grid-cols-12 sm:col-span-12 gap-x-8 gap-y-6 my-3.5">' + html + '</div>',
                         mixins: [
                             Global
                         ],
