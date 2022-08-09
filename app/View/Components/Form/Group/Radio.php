@@ -9,7 +9,7 @@ class Radio extends Form
     public $type = 'radio';
 
     /** @var string */
-    public $formGroupClass = 'sm:col-span-6';
+    public $formGroupClass = 'sm:col-span-12';
 
     /** @var string */
     public $inputGroupClass = 'grid grid-cols-2 gap-3 sm:grid-cols-4';

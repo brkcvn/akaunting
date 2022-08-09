@@ -9,7 +9,7 @@ class Checkbox extends Form
     public $type = 'checkbox';
 
     /** @var string */
-    public $formGroupClass = 'sm:col-span-6';
+    public $formGroupClass = 'sm:col-span-12';
 
     public $except = [
         

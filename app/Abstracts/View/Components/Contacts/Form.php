@@ -297,7 +297,7 @@ abstract class Form extends Component
             return $class;
         }
 
-        return 'sm:col-span-6';
+        return 'sm:col-span-12';
     }
 
     protected function getTextEmail($type, $textEmail)

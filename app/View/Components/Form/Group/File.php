@@ -8,7 +8,7 @@ class File extends Form
 {
     public $type = 'file';
 
-    public $formGroupClass = 'sm:col-span-3';
+    public $formGroupClass = 'sm:col-span-6';
 
     public $custom_attributes = [
         'dropzone-class' => 'form-file dropzone-column w-1/2 h-32.5',

@@ -88,7 +88,7 @@ abstract class Form extends Component
     public $notRequired;
 
     /** @var string */
-    public $formGroupClass = 'sm:col-span-3';
+    public $formGroupClass = 'sm:col-span-6';
 
     /** @var string */
     public $inputGroupClass = '';

@@ -8,7 +8,7 @@ class Textarea extends Form
 {
     public $type = 'textarea';
 
-    public $formGroupClass = 'sm:col-span-6';
+    public $formGroupClass = 'sm:col-span-12';
 
     /**
      * Get the view / contents that represent the component.

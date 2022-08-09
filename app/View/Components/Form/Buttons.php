@@ -6,7 +6,7 @@ use App\Abstracts\View\Component;
 
 class Buttons extends Component
 {
-    public $groupClass = 'sm:col-span-6';
+    public $groupClass = 'sm:col-span-12';
 
     public $withoutCancel;
 
