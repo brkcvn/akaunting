@@ -46883,6 +46883,10 @@ input[type="date"]::-webkit-inner-spin-button,
      background-color: transparent;
  }
 
+ .el-select-dropdown__item.hover span{
+     background-color: #F5F7FA !important;
+ }
+
 .el-select__footer {
     background-color: transparent !important;
     border-top: 1px solid #D9D9D9;
