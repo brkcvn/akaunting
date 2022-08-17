@@ -46915,6 +46915,10 @@ input[type="date"]::-webkit-inner-spin-button,
      background-color: #F5F7FA !important;
  }
 
+ .el-select__footer.hover span,  .el-select__footer:hover span {
+    background-color: transparent !important;
+ }
+
 .el-select__footer {
     background-color: transparent !important;
     border-top: 1px solid #D9D9D9;
