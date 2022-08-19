@@ -2,7 +2,7 @@
     <div class="item-columns-edit group">
         <button 
             type="button"
-            class="w-6 h-7 flex items-center rounded-lg p-0 group-hover:bg-gray-100"
+            class="w-6 h-7 flex items-center rounded-lg p-0 outline-purple group-hover:bg-gray-100"
             style="color: rgb(136, 152, 170);"
             @click="onEditItemColumns"
         >
