@@ -102,4 +102,7 @@
     width: 45px;
 }
 
-
+.form-file [data-dz-remove] {
+  bottom: 7px;
+  z-index: 99;
+}
