@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import { createVuePlugin } from 'vite-plugin-vue2';
 
 export default defineConfig({
     plugins: [
@@ -10,14 +10,7 @@ export default defineConfig({
             'resources/assets/sass/app.css',
             'resources/assets/js/views/auth/common.js'
         ]),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
+        createVuePlugin(),
     ],
     resolve: {
         alias: {
