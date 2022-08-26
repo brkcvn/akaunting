@@ -1,5 +1,5 @@
 <template>
-    <div class="sm:col-span-6 space-y-8 sm:space-y-2">
+    <div class="sm:col-span-12 space-y-8 sm:space-y-2">
         <div class="flex items-center" :class="{ 'justify-between sm:justify-start': frequency == 'custom' }">
             <div class="w-60 px-2 text-sm">
                 {{ frequencyText }}
