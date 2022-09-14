@@ -4,9 +4,16 @@
     @endif
 
     @if (! empty($body) && $body->isNotEmpty())
-    <div class="grid sm:grid-cols-12 gap-x-8 gap-y-6 my-3.5">
-        {!! $body !!}
-    </div>
+        <div
+            @class([
+                'grid my-3.5',
+                $spacingVertical,
+                $spacingHorizontal,
+                $columnNumber,
+            ])
+        >
+            {!! $body !!}
+        </div>
     @endif
 
     @if (! empty($foot) && $foot->isNotEmpty())

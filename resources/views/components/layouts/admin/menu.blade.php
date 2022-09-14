@@ -19,7 +19,7 @@
             </x-dropdown.link>
 
             <x-dropdown.link href="{{ route('transactions.create', ['type' => 'expense']) }}" kind="primary">
-                    {{ trans('general.title.new', ['type' => trans_choice('general.expenses', 1)]) }}
+                {{ trans('general.title.new', ['type' => trans_choice('general.expenses', 1)]) }}
             </x-dropdown.link>
         </x-dropdown>
     @endcan
@@ -36,7 +36,7 @@
             data-menu="profile-menu"
         >
             <span id="menu-profile-icon-cancel" name="account_circle" class="material-icons-outlined w-8 h-8 flex items-center justify-center text-purple text-2xl hidden">
-                 account_circle
+                account_circle
             </span>
 
             @if (setting('default.use_gravatar', '0') == '1')
@@ -95,9 +95,9 @@
             </x-tooltip>
 
             <x-tooltip id="tooltip-support" placement="right" message="{{ trans('general.help') }}">
-                <a href="{{ url(trans('header.support_link')) }}" target="_blank" class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles">
+                <x-link href="{{ url(trans('header.support_link')) }}" target="_blank" class="flex items-center justify-center w-8 h-8 mb-2.5 cursor-pointer js-menu-toggles" override="class">
                     <span id="menu-support-icon" class="material-icons-outlined text-purple text-2xl">support</span>
-                </a>
+                </x-link>
             </x-tooltip>
         </div>
 
@@ -131,23 +131,23 @@
             @can('read-common-companies')
                 <div id="dropdown-menu-company" class="absolute right-0 mt-3 pt-2 bg-white rounded-md shadow-xl z-20 hidden" style="left: auto; min-width: 10rem;">
                     @foreach($companies as $com)
-                        <a href="{{ route('companies.switch', $com->id) }}" id="$com->id" class="h-9 leading-9 flex items-center text-sm px-2" role="menuitem" tabindex="-1">
+                        <x-link href="{{ route('companies.switch', $com->id) }}" id="menu-company-{{ $com->id }}" class="h-9 leading-9 flex items-center text-sm px-2" override="class" role="menuitem" tabindex="-1">
                             <div class="w-full h-full flex items-center rounded-md px-2 hover:bg-lilac-100">
                                 <span class="material-icons-outlined text-purple text-xl">business</span>
                                 <span class="ltr:pl-2 rtl:pr-2 text-purple text-xs truncate">{{ Str::limit($com->name, 18) }}</span>
                             </div>
-                        </a>
+                        </x-link>
                     @endforeach
 
                     @can('update-common-companies')
-                        <a href="{{ route('companies.index') }}" class="h-9 leading-9 flex items-center text-sm px-2 mt-2 border-t rounded-bl rounded-br group hover:bg-purple">
+                        <x-link href="{{ route('companies.index') }}" class="h-9 leading-9 flex items-center text-sm px-2 mt-2 border-t rounded-bl rounded-br group hover:bg-purple" override="class">
                             <div class="w-full h-full flex items-center rounded-md px-2">
                                 <span class="material-icons-outlined text-purple text-xl group-hover:text-white">settings</span>
                                 <span class="ltr:pl-2 rtl:pr-2 text-purple text-xs truncate group-hover:text-white">
                                     {{ trans('general.title.manage', ['type' => trans_choice('general.companies', 2)]) }}
                                 </span>
                             </div>
-                        </a>
+                        </x-link>
                     @endcan
                 </div>
             @endcan
