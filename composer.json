@@ -28,6 +28,7 @@
         "ext-xml": "*",
         "ext-zip": "*",
         "akaunting/laravel-apexcharts": "^2.0",
+        "akaunting/laravel-debugbar-collector": "^2.0",
         "akaunting/laravel-firewall": "^2.0",
         "akaunting/laravel-language": "^1.0",
         "akaunting/laravel-menu": "^2.0",
