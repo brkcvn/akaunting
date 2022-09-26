@@ -48724,13 +48724,12 @@ body{
     margin-top: 0.5rem;
   }
 
-<<<<<<< HEAD
-  .lg\:-ml-9{
-    margin-left: -2.25rem;
-=======
   .lg\:mt-4{
     margin-top: 1rem;
->>>>>>> 98c49461ea80372a4fc20a92ccdb7fe31a06cd5e
+  }
+
+  .lg\:-ml-9{
+    margin-left: -2.25rem;
   }
 
   .lg\:mt-60{
