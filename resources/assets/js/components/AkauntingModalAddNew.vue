@@ -236,6 +236,7 @@ export default {
                                 '#efef32'
                             ],
                             min_date: false,
+                            selected_card: null
                         }
                     },
 
@@ -296,7 +297,13 @@ export default {
                             .catch(error => {
                             });
                         },
-                    }
+                    },
+
+                    watch: {
+                        'selected_card': function (newVal, oldVal) {
+                            this.form.card_id = newVal;
+                        },
+                    },
                 })
             });
         }
