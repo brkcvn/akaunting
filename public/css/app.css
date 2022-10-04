@@ -48198,6 +48198,10 @@ body{
   right: 9.25rem;
 }
 
+[dir="ltr"] .ltr\:right-38{
+  right: 37rem;
+}
+
 [dir="ltr"] .ltr\:right-40{
   right: 10rem;
 }
@@ -48404,6 +48408,10 @@ body{
 
 [dir="ltr"] .ltr\:left-37{
   left: 9.25rem;
+}
+
+[dir="ltr"] .ltr\:left-38{
+  left: 37rem;
 }
 
 [dir="ltr"] .ltr\:left-40{
@@ -48632,6 +48640,10 @@ body{
 
 [dir="ltr"] .ltr\:m-37{
   margin: 9.25rem;
+}
+
+[dir="ltr"] .ltr\:m-38{
+  margin: 37rem;
 }
 
 [dir="ltr"] .ltr\:m-40{
@@ -48888,6 +48900,10 @@ body{
   padding: 9.25rem;
 }
 
+[dir="ltr"] .ltr\:p-38{
+  padding: 37rem;
+}
+
 [dir="ltr"] .ltr\:p-40{
   padding: 10rem;
 }
@@ -49117,6 +49133,10 @@ body{
   right: 9.25rem;
 }
 
+[dir="rtl"] .rtl\:right-38{
+  right: 37rem;
+}
+
 [dir="rtl"] .rtl\:right-40{
   right: 10rem;
 }
@@ -49323,6 +49343,10 @@ body{
 
 [dir="rtl"] .rtl\:left-37{
   left: 9.25rem;
+}
+
+[dir="rtl"] .rtl\:left-38{
+  left: 37rem;
 }
 
 [dir="rtl"] .rtl\:left-40{
@@ -49555,6 +49579,10 @@ body{
 
 [dir="rtl"] .rtl\:m-37{
   margin: 9.25rem;
+}
+
+[dir="rtl"] .rtl\:m-38{
+  margin: 37rem;
 }
 
 [dir="rtl"] .rtl\:m-40{
@@ -49813,6 +49841,10 @@ body{
 
 [dir="rtl"] .rtl\:p-37{
   padding: 9.25rem;
+}
+
+[dir="rtl"] .rtl\:p-38{
+  padding: 37rem;
 }
 
 [dir="rtl"] .rtl\:p-40{
