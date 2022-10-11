@@ -28,7 +28,7 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
 
     public function handle(): DocumentItem
     {
-        $item_id = !empty($this->request['item_id']) ? $this->request['item_id'] : 0;
+        $item_id = ! empty($this->request['item_id']) ? $this->request['item_id'] : 0;
         $precision = config('money.' . $this->document->currency_code . '.precision');
 
         $item_amount = (double) $this->request['price'] * (double) $this->request['quantity'];
@@ -36,7 +36,7 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
         $item_discounted_amount = $item_amount;
 
         // Apply line discount to amount
-        if (!empty($this->request['discount'])) {
+        if (! empty($this->request['discount'])) {
             if ($this->request['discount_type'] === 'percentage') {
                 $item_discounted_amount -= ($item_amount * ($this->request['discount'] / 100));
             } else {
@@ -45,7 +45,7 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
         }
 
         // Apply total discount to amount
-        if (!empty($this->request['global_discount'])) {
+        if (! empty($this->request['global_discount'])) {
             if ($this->request['global_discount_type'] === 'percentage') {
                 $item_discounted_amount -= $item_discounted_amount * ($this->request['global_discount'] / 100);
             } else {
@@ -152,12 +152,12 @@ class CreateDocumentItem extends Job implements HasOwner, HasSource, ShouldCreat
         $this->request['document_id'] = $this->document->id;
         $this->request['item_id'] = $item_id;
         $this->request['name'] = Str::limit($this->request['name'], 180, '');
-        $this->request['description'] = !empty($this->request['description']) ? $this->request['description'] : '';
+        $this->request['description'] = ! empty($this->request['description']) ? $this->request['description'] : '';
         $this->request['quantity'] = (double) $this->request['quantity'];
         $this->request['price'] = round($this->request['price'], $precision);
         $this->request['tax'] = round($item_tax_total, $precision);
-        $this->request['discount_type'] = !empty($this->request['discount_type']) ? $this->request['discount_type'] : 'percentage';
-        $this->request['discount_rate'] = !empty($this->request['discount']) ? $this->request['discount'] : 0;
+        $this->request['discount_type'] = ! empty($this->request['discount_type']) ? $this->request['discount_type'] : 'percent';
+        $this->request['discount_rate'] = ! empty($this->request['discount']) ? $this->request['discount'] : 0;
         $this->request['total'] = round($actual_price_item, $precision);
         $this->request['created_from'] = $this->request['created_from'];
         $this->request['created_by'] = $this->request['created_by'];

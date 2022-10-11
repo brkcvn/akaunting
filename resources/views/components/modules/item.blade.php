@@ -1,20 +1,20 @@
 <div>
     <div class="overflow-hidden rounded-md">
         @foreach ($module->files as $file)
-            <a href="{{ route('apps.app.show', $module->slug) }}">
+            <x-link href="{{ route('apps.app.show', $module->slug) }}" override="class">
                 @if (($file->media_type == 'image') && ($file->pivot->zone == 'thumbnail'))
                     <img src="{{ $file->path_string }}" alt="{{ $module->name }}" class="rounded-md transform transition-all hover:scale-125" />
                 @endif
-            </a>
+            </x-link>
         @endforeach
     </div>
 
     <div class="flex flex-col py-2 justify-between align-bottom">
         <div class="flex items-baseline justify-between">
             <h4 class="w-32 truncate">
-                <a href="{{ route('apps.app.show', $module->slug) }}">
+                <x-link href="{{ route('apps.app.show', $module->slug) }}" override="class">
                     {!! $module->name !!}
-                </a>
+                </x-link>
             </h4>
 
             @if (! empty($module->subscription_type))
@@ -63,7 +63,7 @@
                         {{ trans('modules.free') }}
                     </span>
                 @else
-                    @if (!empty($module->is_discount))
+                    @if (! empty($module->is_discount))
                         {!! trans('modules.monthly_price', ['price' => '<del class="text-danger">' . $module->yearly_per_monthly_price . '</del> ' . $module->yearly_per_monthly_special_price]) !!}
                     @else
                         {!! trans('modules.monthly_price', ['price' => $module->yearly_per_monthly_price]) !!}
