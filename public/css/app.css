@@ -50214,6 +50214,10 @@ body{
     right: 6rem;
   }
 
+  .lg\:top-2{
+    top: 0.5rem;
+  }
+
   .lg\:col-span-5{
     grid-column: span 5 / span 5;
   }
@@ -50294,8 +50298,21 @@ body{
     height: 1rem;
   }
 
+<<<<<<< HEAD
   .lg\:w-38{
     width: 37rem;
+=======
+  .lg\:h-12{
+    height: 3rem;
+  }
+
+  .lg\:h-auto{
+    height: auto;
+  }
+
+  .lg\:w-9{
+    width: 2.25rem;
+>>>>>>> e8693a3c924c3442b8be7a2ad7bdf8525ed982d4
   }
 
   .lg\:w-1\/2{
@@ -50376,6 +50393,10 @@ body{
 
   .lg\:w-96{
     width: 24rem;
+  }
+
+  .lg\:w-auto{
+    width: auto;
   }
 
   .lg\:w-2\/4{
