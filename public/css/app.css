@@ -50357,13 +50357,12 @@ body{
     width: 2.25rem;
   }
 
-<<<<<<< HEAD
-  .lg\:w-38{
-    width: 37rem;
-=======
   .lg\:w-96{
     width: 24rem;
->>>>>>> d1b81891f887f0ababe1c40221defa5b69162795
+  }
+
+  .lg\:w-38{
+    width: 37rem;
   }
 
   .lg\:w-1\/2{
@@ -50551,11 +50550,6 @@ body{
     border-right-width: 1px;
   }
 
-<<<<<<< HEAD
-  .lg\:px-7{
-    padding-left: 1.75rem;
-    padding-right: 1.75rem;
-=======
   .lg\:px-3{
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -50571,10 +50565,14 @@ body{
     padding-right: 1.5rem;
   }
 
+  .lg\:px-7{
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
   .lg\:px-12{
     padding-left: 3rem;
     padding-right: 3rem;
->>>>>>> d1b81891f887f0ababe1c40221defa5b69162795
   }
 
   .lg\:px-24{
