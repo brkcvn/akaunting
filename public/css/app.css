@@ -50397,15 +50397,11 @@ body{
     margin-top: 2.75rem;
   }
 
-<<<<<<< HEAD
-  .lg\:-ml-9{
+    .lg\:-ml-9{
     margin-left: -2.25rem;
   }
 
-  .lg\:mt-60{
-=======
     .lg\:mt-60{
->>>>>>> a4ea448ef90c7eafacea3700bc7c83bdbb963165
     margin-top: 15rem;
   }
 
@@ -50475,15 +50471,11 @@ body{
     width: 24rem;
   }
 
-<<<<<<< HEAD
-  .lg\:w-38{
+    .lg\:w-38{
     width: 37rem;
   }
 
-  .lg\:w-1\/2{
-=======
     .lg\:w-1\/2{
->>>>>>> a4ea448ef90c7eafacea3700bc7c83bdbb963165
     width: 50%;
   }
 
@@ -50579,15 +50571,11 @@ body{
     max-width: 72rem;
   }
 
-<<<<<<< HEAD
-  .lg\:grid-cols-2{
+    .lg\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .lg\:flex-row{
-=======
     .lg\:flex-row{
->>>>>>> a4ea448ef90c7eafacea3700bc7c83bdbb963165
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -50687,16 +50675,12 @@ body{
     padding-right: 1.5rem;
   }
 
-<<<<<<< HEAD
-  .lg\:px-7{
+    .lg\:px-7{
     padding-left: 1.75rem;
     padding-right: 1.75rem;
   }
 
-  .lg\:px-12{
-=======
     .lg\:px-12{
->>>>>>> a4ea448ef90c7eafacea3700bc7c83bdbb963165
     padding-left: 3rem;
     padding-right: 3rem;
   }
@@ -50735,15 +50719,11 @@ body{
     padding-right: 0px;
   }
 
-<<<<<<< HEAD
-  .lg\:text-right{
+    .lg\:text-right{
     text-align: right;
   }
 
-  .lg\:text-8xl{
-=======
     .lg\:text-8xl{
->>>>>>> a4ea448ef90c7eafacea3700bc7c83bdbb963165
     font-size: 3rem;
     line-height: 3.25rem;
   }
