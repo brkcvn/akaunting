@@ -1,37 +1,39 @@
 <template>
     <div
         :id="'search-field-' + _uid"
-        class="h-12 my-5 searh-field flex border-b transition-all js-search"
+        class="lg:h-12 my-5 searh-field flex flex-col lg:flex-row border-b transition-all js-search"
         :class="input_focus ? 'border-gray-500' : 'border-gray-300'"
     >
-        <div class="tags-group group items-center" style="display:contents;" v-for="(filter, index) in filtered" :index="index">
-            <span v-if="filter.option" class="flex items-center bg-purple-lighter text-black border-0 mt-3 px-3 py-4 text-sm cursor-pointer el-tag el-tag--small el-tag-option">
-                {{ filter.option }}
+        <div class="w-full lg:w-auto flex overflow-x-scroll large-overflow-unset" :class="filtered.length ? 'h-12 lg:h-auto' : ''">
+            <div class="tags-group group items-center" style="display:contents;" v-for="(filter, index) in filtered" :index="index">
+                <span v-if="filter.option" class="flex items-center bg-purple-lighter text-black border-0 mt-3 px-3 py-4 text-sm cursor-pointer el-tag el-tag--small el-tag-option">
+                    {{ filter.option }}
 
-                <i v-if="!filter.operator && !filter.value" class="mt-1 ltr:-right-2 rtl:left-0 rtl:right-0 el-tag__close el-icon-close" style="font-size: 16px;" @click="onFilterDelete(index)"></i>
-            </span>
+                    <i v-if="!filter.operator && !filter.value" class="mt-1 ltr:-right-2 rtl:left-0 rtl:right-0 el-tag__close el-icon-close" style="font-size: 16px;" @click="onFilterDelete(index)"></i>
+                </span>
 
-            <span v-if="filter.operator" class="flex items-center bg-purple-lighter text-black border-2 border-body border-l border-r border-t-0 border-b-0 mt-3 px-3 py-4 text-sm cursor-pointer el-tag el-tag--small el-tag-operator" style="margin-left:0; margin-right:0;">
-                <span v-if="filter.operator == '='" class="material-icons text-2xl">drag_handle</span>
-                <span v-else-if="filter.operator == '><'" class="material-icons text-2xl transform rotate-90">height</span>
+                <span v-if="filter.operator" class="flex items-center bg-purple-lighter text-black border-2 border-body border-l border-r border-t-0 border-b-0 mt-3 px-3 py-4 text-sm cursor-pointer el-tag el-tag--small el-tag-operator" style="margin-left:0; margin-right:0;">
+                    <span v-if="filter.operator == '='" class="material-icons text-2xl">drag_handle</span>
+                    <span v-else-if="filter.operator == '><'" class="material-icons text-2xl transform rotate-90">height</span>
 
-                <img v-else :src="not_equal_image" class="w-5 h-5 object-cover block" />
+                    <img v-else :src="not_equal_image" class="w-5 h-5 object-cover block" />
 
-                <i v-if="!filter.value" class="mt-1 ltr:-right-2 rtl:left-0 rtl:right-0 el-tag__close el-icon-close " style="font-size: 16px;" @click="onFilterDelete(index)"></i>
-            </span>
+                    <i v-if="!filter.value" class="mt-1 ltr:-right-2 rtl:left-0 rtl:right-0 el-tag__close el-icon-close " style="font-size: 16px;" @click="onFilterDelete(index)"></i>
+                </span>
 
-            <span v-if="filter.value" class="flex items-center bg-purple-lighter text-black border-0 mt-3 px-3 py-4 text-sm cursor-pointer el-tag el-tag--small  el-tag-value">
-                {{ filter.value }}
+                <span v-if="filter.value" class="flex items-center bg-purple-lighter text-black border-0 mt-3 px-3 py-4 text-sm cursor-pointer el-tag el-tag--small  el-tag-value">
+                    {{ filter.value }}
 
-                <i class="mt-1 ltr:-right-2 rtl:left-0 rtl:right-0 el-tag__close el-icon-close " style="font-size: 16px;" @click="onFilterDelete(index)"></i>
-            </span>
+                    <i class="mt-1 ltr:-right-2 rtl:left-0 rtl:right-0 el-tag__close el-icon-close " style="font-size: 16px;" @click="onFilterDelete(index)"></i>
+                </span>
+            </div>
         </div>
 
         <div class="relative w-full h-full flex">
             <input
             v-if="!show_date"
             type="text"
-            class="w-full bg-transparent text-black text-sm border-0 pb-0 focus:outline-none focus:ring-transparent focus:border-purple-100"
+            class="w-full h-12 lg:h-auto bg-transparent text-black text-sm border-0 pb-0 focus:outline-none focus:ring-transparent focus:border-purple-100"
             :class="!show_icon ? 'px-4' : 'px-10'"
             :placeholder="dynamicPlaceholder"
             :ref="'input-search-field-' + _uid"
@@ -47,7 +49,7 @@
                 @on-open="onInputFocus"
                 @blur="onBlur"
                 :config="dateConfig"
-                class="w-full bg-transparent text-black text-sm border-0 pb-0 focus:outline-none focus:ring-transparent focus:border-purple-100 datepicker"
+                class="w-full h-12 lg:h-auto bg-transparent text-black text-sm border-0 pb-0 focus:outline-none focus:ring-transparent focus:border-purple-100 datepicker"
                 :class="!show_icon ? 'px-4' : 'px-10'"
                 :placeholder="dynamicPlaceholder"
                 :ref="'input-search-date-field-' + _uid"
@@ -65,7 +67,7 @@
                     search
                 </span>
 
-            <button type="button" class="absolute ltr:right-0 rtl:left-0 top-2 clear" v-if="show_close_icon" @click="onSearchAndFilterClear">
+            <button type="button" class="absolute ltr:right-0 rtl:left-0 top-4 lg:top-2 clear" v-if="show_close_icon" @click="onSearchAndFilterClear">
                 <span class="material-icons text-sm">close</span>
             </button>
 
@@ -82,30 +84,33 @@
             <div :id="'search-field-operator-' + _uid" class="absolute top-12 ltr:left-8 rtl:right-8 py-2 bg-white rounded-md border border-gray-200 shadow-xl z-20 list-none dropdown-menu operator" :class="[{'show': visible.operator}]">
                 <li v-if="equal" ref="" class="w-full flex items-center px-2 h-9 leading-9 whitespace-nowrap">
                     <button type="button" class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100" @click="onOperatorSelected('=')">
-                        <span class="material-icons text-2xl transform">drag_handle</span>
-                        <span class="text-gray hidden">{{ operatorIsText }}
+                        <span class="material-icons text-2xl transform pointer-events-none">drag_handle</span>
+                        <span class="text-gray hidden pointer-events-none">{{ operatorIsText }}
                         </span>
                     </button>
                 </li>
 
                 <li v-if="not_equal" ref="" class="w-full flex items-center px-2 h-9 leading-9 whitespace-nowrap">
                     <button type="button" class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100" @click="onOperatorSelected('!=')">
-                        <img :src="not_equal_image" class="w-6 h-6 block m-auto" />
-                        <span class="text-gray hidden">{{ operatorIsNotText }}</span>
+                        <img :src="not_equal_image" class="w-6 h-6 block m-auto pointer-events-none" />
+                        <span class="text-gray hidden pointer-events-none">{{ operatorIsNotText }}</span>
                     </button>
                 </li>
 
                 <li v-if="range" ref="" class="w-full flex items-center px-2 h-9 leading-9 whitespace-nowrap">
                     <button type="button" class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100" @click="onOperatorSelected('><')">
-                        <span class="material-icons text-2xl transform rotate-90">height</span>
-                        <span class="text-gray hidden">{{ operatorIsNotText }}</span>
+                        <span class="material-icons text-2xl transform rotate-90 pointer-events-none">height</span>
+                        <span class="text-gray hidden pointer-events-none">{{ operatorIsNotText }}</span>
                     </button>
                 </li>
             </div>
 
             <div :id="'search-field-value-' + _uid" class="absolute top-12 ltr:left-8 rtl:right-8 py-2 bg-white rounded-md border border-gray-200 shadow-xl z-20 list-none dropdown-menu" :class="[{'show': visible.values}]">
                 <li ref="" class="w-full flex items-center px-2 h-9 leading-9 whitespace-nowrap" v-for="(value) in filteredValues" :data-value="value.key">
-                    <button type="button" class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100" @click="onValueSelected(value.key)">{{ value.value }}</button>
+                    <button type="button" class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100" @click="onValueSelected(value.key)">
+                        <i v-if="value.level != null" class="material-icons align-middle text-lg ltr:mr-2 rtl:ml-2 pointer-events-none">subdirectory_arrow_right</i>
+                        {{ value.value }}
+                    </button>
                 </li>
 
                 <li ref="" class="w-full flex items-center px-2 h-9 leading-9 whitespace-nowrap" v-if="!filteredValues.length">
@@ -298,8 +303,8 @@ export default {
 
         onInput(evt) {
             this.search = evt.target.value;
-
-            let option_url = this.selected_options[this.filter_index].url;
+            
+            let option_url = this.selected_options.length > 0 ? this.selected_options[this.filter_index].url : '';
 
             if (this.search) {
                 if (option_url.indexOf('?') === -1) {
@@ -462,7 +467,8 @@ export default {
                     data.forEach(function (item) {
                         this.values.push({
                             key: (item.code) ? item.code : item.id,
-                            value: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name
+                            value: (item.title) ? item.title : (item.display_name) ? item.display_name : item.name,
+                            level: (item.level) ? item.level : null,
                         });
                     }, this);
 
@@ -575,7 +581,7 @@ export default {
 
         onFilterDelete(index) {
             this.show_icon = true;
-            this.show_close_icon = false;
+
             this.filter_list.push(this.selected_options[index]);
 
             if (this.filter_last_step == 'options') {
@@ -592,8 +598,10 @@ export default {
             
             if (this.filter_index == 0) {
                 this.onChangeSearchAndFilterText(this.defaultPlaceholder, true);
+                this.show_close_icon = false;
             } else {
                 this.show_icon = false;
+                this.show_close_icon = true;
             }
 
             this.filter_last_step = 'options';
@@ -784,6 +792,10 @@ export default {
         if (this.filter_index > 0) {
             this.onChangeSearchAndFilterText(this.enterPlaceholder, false);
         }
+
+        if (this.selected_values.length > 0) {
+            this.show_close_icon = true;
+        }
     },
 
     computed: {
@@ -813,7 +825,6 @@ export default {
             this.values.sort(function (a, b) {
                 var nameA = a.value.toUpperCase(); // ignore upper and lowercase
                 var nameB = b.value.toUpperCase(); // ignore upper and lowercase
-
                 if (nameA < nameB) {
                     return -1;
                 }
@@ -821,7 +832,6 @@ export default {
                 if (nameA > nameB) {
                     return 1;
                 }
-
                 // names must be equal
                 return 0;
             });

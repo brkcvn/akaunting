@@ -199,8 +199,10 @@ export default {
             let el = this.$refs.dropdownMenu;
             let target = event.target;
 
-            if (el !== target && ! el.contains(target)) {
-                this.isOpen = false;
+            if (typeof el != "undefined") {
+                if (el !== target && ! el.contains(target)) {
+                    this.isOpen = false;
+                }
             }
         },
     },

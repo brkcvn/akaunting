@@ -30,9 +30,13 @@ class UpdateUser extends Job implements ShouldUpdate
 
             // Upload picture
             if ($this->request->file('picture')) {
+                $this->deleteMediaModel($this->model, 'picture', $this->request);
+
                 $media = $this->getMedia($this->request->file('picture'), 'users');
 
                 $this->model->attachMedia($media, 'picture');
+            } elseif (! $this->request->file('picture') && $this->model->picture) {
+                $this->deleteMediaModel($this->model, 'picture', $this->request);
             }
 
             if ($this->request->has('roles')) {
@@ -86,6 +90,32 @@ class UpdateUser extends Job implements ShouldUpdate
             $message = trans('auth.error.self_disable');
 
             throw new \Exception($message);
+        }
+
+        // Can't unassigned company, The company must be assigned at least one user.
+        if ($this->request->has('companies')) {
+            $companies = (array) $this->request->get('companies', []);
+            $user_companies = $this->model->companies()->pluck('id')->toArray();
+
+            $company_diff = array_diff($user_companies, $companies);
+
+            if ($company_diff) {
+                $errors = [];
+
+                foreach ($company_diff as $company_id) {
+                    $company = Company::withCount('users')->find($company_id);
+
+                    if ($company->users_count < 2) {
+                        $errors[] = trans('auth.error.unassigned', ['company' => $company->name]);
+                    }
+                }
+
+                if ($errors) {
+                    $message = implode('\n', $errors);
+
+                    throw new \Exception($message);
+                }
+            }
         }
     }
 }

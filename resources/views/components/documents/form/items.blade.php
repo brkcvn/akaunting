@@ -1,14 +1,14 @@
-<div class="relative sm:col-span-6">
+<div class="relative sm:col-span-6 overflow-x-scroll large-overflow-unset">
     <div style="table-layout: fixed;">
         <div class="overflow-x-visible overflow-y-hidden">
             <table class="small-table-width" id="items">
                 <colgroup>
                     <col class="small-col" style="width: 24px;">
-                    <col class="small-col" style="width: 20%;">
-                    <col class="small-col" style="width: 30%;">
+                    <col class="small-col name-col" style="width: 20%;">
+                    <col class="small-col description-col" style="width: 30%;">
                     <col class="small-col" style="width: 12%;">
                     <col class="small-col" style="width: 15%;">
-                    <col class="small-col" style="width: 20%;">
+                    <col class="small-col amount-col" style="width: 20%;">
                     <col class="small-col" style="width: 24px;">
                 </colgroup>
 

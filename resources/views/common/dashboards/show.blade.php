@@ -6,7 +6,7 @@
     <x-slot name="title">
         @if ($user_dashboards->count() > 1)
             <div class="flex items-center relative cursor-pointer">
-                <x-dropdown id="dashboard-list">
+                <x-dropdown id="show-dashboard-list">
                     <x-slot name="trigger" class="flex items-center" override="class">
                         <span class="text-2xl xl:text-5xl text-black font-light truncate">
                             <x-button.hover color="to-black-700">
@@ -20,7 +20,7 @@
                     </x-slot>
 
                     @foreach ($user_dashboards as $user_dashboard)
-                        <x-dropdown.link href="{{ route('dashboards.switch', $user_dashboard->id) }}">
+                        <x-dropdown.link href="{{ route('dashboards.switch', $user_dashboard->id) }}" id="show-dashboard-switch-{{ $user_dashboard->id }}">
                             {{ $user_dashboard->name }}
                         </x-dropdown.link>
                     @endforeach
@@ -100,38 +100,38 @@
     @section('dashboard_action')
         @canany(['create-common-widgets', 'read-common-dashboards'])
             <div class="dashboard-action">
-                <x-dropdown id="dropdown-dashboard-company">
+                <x-dropdown id="show-more-actions-dashboard">
                     <x-slot name="trigger" class="flex" override="class">
-                        <span id="dashboard-more-actions" class="w-8 h-8 flex items-center justify-center px-2 py-2 ltr:ml-2 rtl:mr-2 hover:bg-gray-100 rounded-xl text-purple text-sm font-medium leading-6">
-                            <span class="material-icons">more_vert</span>
+                        <span class="w-8 h-8 flex items-center justify-center px-2 py-2 ltr:ml-2 rtl:mr-2 hover:bg-gray-100 rounded-xl text-purple text-sm font-medium leading-6">
+                            <span class="material-icons pointer-events-none">more_vert</span>
                         </span>
                     </x-slot>
 
                     @can('create-common-widgets')
-                        <x-button
-                            type="button"
-                            id="dashboard-add-widget"
-                            class="w-full flex items-center text-purple px-2 h-9 leading-9 whitespace-nowrap"
-                            override="class"
-                            title="{{ trans('general.title.add', ['type' => trans_choice('general.widgets', 1)]) }}"
-                            @click="onCreateWidget()"
-                        >
-                            <span class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100">
+                        <div class="w-full flex items-center text-purple px-2 h-9 leading-9 whitespace-nowrap">
+                            <x-button
+                                type="button"
+                                id="show-more-actions-add-widget"
+                                class="w-full h-full flex items-center rounded-md px-2 text-sm hover:bg-lilac-100"
+                                override="class"
+                                title="{{ trans('general.title.add', ['type' => trans_choice('general.widgets', 1)]) }}"
+                                @click="onCreateWidget()"
+                            >
                                 {{ trans('general.title.add', ['type' => trans_choice('general.widgets', 1)]) }}
-                            </span>
-                        </x-button>
-
+                            </x-button>
+                        </div>
+                        
                         <x-dropdown.divider />
                     @endcan
 
                     @can('update-common-dashboards')
                         @can('create-common-dashboards')
-                        <x-dropdown.link href="{{ route('dashboards.create') }}">
+                        <x-dropdown.link href="{{ route('dashboards.create') }}" id="show-more-actions-new-dashboard">
                             {{ trans('general.title.create', ['type' => trans_choice('general.dashboards', 1)]) }}
                         </x-dropdown.link>
                         @endcan
 
-                        <x-dropdown.link href="{{ route('dashboards.index') }}">
+                        <x-dropdown.link href="{{ route('dashboards.index') }}" id="show-more-actions-manage-dashboards">
                             {{ trans('general.title.manage', ['type' => trans_choice('general.dashboards', 2)]) }}
                         </x-dropdown.link>
                     @endcan
@@ -179,7 +179,7 @@
     @endsection
 
     <x-slot name="content">
-        <div class="dashboard flex flex-wrap -mx-12">
+        <div class="dashboard flex flex-wrap lg:-mx-12">
             @foreach($widgets as $widget)
                 @widget($widget)
             @endforeach

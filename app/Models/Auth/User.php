@@ -134,7 +134,7 @@ class User extends Authenticatable implements HasLocalePreference
 
         if (!empty($value)) {
             return $value;
-        } elseif (!$this->hasMedia('picture')) {
+        } elseif (! $this->hasMedia('picture')) {
             return false;
         }
 
@@ -176,7 +176,7 @@ class User extends Authenticatable implements HasLocalePreference
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new Reset($token));
+        $this->notify(new Reset($token, $this->email));
     }
 
     /**
@@ -326,6 +326,9 @@ class User extends Authenticatable implements HasLocalePreference
             'icon' => 'edit',
             'url' => route('users.edit', $this->id),
             'permission' => 'update-auth-users',
+            'attributes' => [
+                'id' => 'index-line-actions-show-user-' . $this->id,
+            ],
         ];
 
         if ($this->hasPendingInvitation()) {
@@ -334,6 +337,9 @@ class User extends Authenticatable implements HasLocalePreference
                 'icon' => 'replay',
                 'url' => route('users.invite', $this->id),
                 'permission' => 'update-auth-users',
+                'attributes' => [
+                    'id' => 'index-line-actions-resend-user-' . $this->id,
+                ],
             ];
         }
 
@@ -342,6 +348,9 @@ class User extends Authenticatable implements HasLocalePreference
             'icon' => 'delete',
             'route' => 'users.destroy',
             'permission' => 'delete-auth-users',
+            'attributes' => [
+                'id' => 'index-line-actions-delete-user-' . $this->id,
+            ],
             'model' => $this,
         ];
 

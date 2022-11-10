@@ -66,7 +66,7 @@
         <x-show.content.left>
             @stack('customer_address_start')
             @if (! $hideAddress)
-            <div class="flex flex-col text-sm mb-5">
+            <div class="flex flex-col text-sm sm:mb-5">
                 <div class="font-medium">{{ trans('general.address') }}</div>
                 <span>{{ $contact->address }}<br>{{ $contact->location }}</span>
             </div>
@@ -76,7 +76,7 @@
             @stack('customer_tax_number_start')
             @if (! $hideTaxNumber)
             @if ($contact->tax_number)
-                <div class="flex flex-col text-sm mb-5">
+                <div class="flex flex-col text-sm sm:mb-5">
                     <div class="font-medium">{{ trans('general.tax_number') }}</div>
                     <span>{{ $contact->tax_number }}</span>
                 </div>
@@ -87,7 +87,7 @@
             @stack('customer_website_start')
             @if (! $hideWebsite)
             @if ($contact->website)
-                <div class="flex flex-col text-sm mb-5">
+                <div class="flex flex-col text-sm sm:mb-5">
                     <div class="font-medium">{{ trans('general.website') }}</div>
                     <span>{{ $contact->website }}</span>
                 </div>
@@ -98,7 +98,7 @@
             @stack('customer_reference_start')
             @if (! $hideReference)
             @if ($contact->reference)
-                <div class="flex flex-col text-sm mb-5">
+                <div class="flex flex-col text-sm sm:mb-5">
                     <div class="font-medium">{{ trans('general.reference') }}</div>
                     <span>{{ $contact->reference }}</span>
                 </div>
@@ -108,32 +108,22 @@
 
             @stack('customer_client_portal_start')
                 @if (! $hideUser)
-                    <div class="flex flex-col text-sm mb-5">
+                    <div class="flex flex-col text-sm sm:mb-5">
                         <div class="flex items-center font-medium">
                             <div class="flex items-center cursor-default">
-                                <div data-tooltip-target="tooltip-client-describe" data-tooltip-placement="bottom">
+                                <x-tooltip id="tooltip-client-describe" placement="bottom" size="w-2/12" message="{{ trans('customers.client_portal_description') }}">
                                     {{ trans('general.client_portal') }}
-                                </div>
+                                </x-tooltip>
 
                                 @if ($contact->user)
-                                    <span data-tooltip-target="tooltip-client-permission" data-tooltip-placement="bottom" class="material-icons text-green text-base ltr:ml-1 rtl:mr-1">check</span>
+                                    <x-tooltip id="tooltip-client-permission" placement="bottom" message="{{ trans('customers.client_portal_text.can') }}">
+                                        <span class="material-icons text-green text-base ltr:ml-1 rtl:mr-1">check</span>
+                                    </x-tooltip>
                                 @else
-                                    <span data-tooltip-target="tooltip-client-permission" data-tooltip-placement="bottom" class="material-icons-round text-red text-sm ltr:ml-1 rtl:mr-1">hide_source</span>
+                                    <x-tooltip id="tooltip-client-permission" placement="bottom" message="{{ trans('customers.client_portal_text.cant') }}">
+                                        <span class="material-icons-round text-red text-sm ltr:ml-1 rtl:mr-1">hide_source</span>
+                                    </x-tooltip>
                                 @endif
-
-                                <div id="tooltip-client-describe" role="tooltip" class="w-2/12 inline-block absolute invisible z-20 py-1 px-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 whitespace-normal tooltip-content">
-                                    {{ trans('customers.client_portal_description') }}
-                                    <div class="absolute w-2 h-2 -top-1 -left-1 before:content-[' '] before:absolute before:w-2 before:h-2 before:bg-white before:border-gray-200 before:transform before:rotate-45 before:border before:border-b-0 before:border-r-0" data-popper-arrow></div>
-                                </div>
-
-                                <div id="tooltip-client-permission" role="tooltip" class="inline-block absolute invisible z-20 py-1 px-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 whitespace-nowrap tooltip-content">
-                                    @if ($contact->user)
-                                        {{ trans('customers.client_portal_text.can') }}
-                                    @else
-                                        {{ trans('customers.client_portal_text.cant') }}
-                                    @endif
-                                    <div class="absolute w-2 h-2 -top-1 -left-1 before:content-[' '] before:absolute before:w-2 before:h-2 before:bg-white before:border-gray-200 before:transform before:rotate-45 before:border before:border-b-0 before:border-r-0" data-popper-arrow></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,7 +142,6 @@
                         id="documents"
                         name="{{ trans_choice($textDocument, 2) }}"
                         active
-                        class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link"
                     />
 
                     @stack('transactions_nav_start')
@@ -160,7 +149,6 @@
                     <x-tabs.nav
                         id="transactions"
                         name="{{ trans_choice('general.transactions', 2) }}"
-                        class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link"
                     />
 
                     @stack('transactions_nav_end')
@@ -173,7 +161,7 @@
                         @if ($documents->count())
                             <x-table>
                                 <x-table.thead>
-                                    <x-table.tr class="flex items-center px-1">
+                                    <x-table.tr>
                                         <x-table.th class="w-4/12 lg:w-3/12">
                                             <x-slot name="first">
                                                 <x-sortablelink column="due_at" title="{{ trans('invoices.due_date') }}" />
@@ -184,7 +172,7 @@
                                             </x-slot>
                                         </x-table.th>
 
-                                        <x-table.th class="w-3/12 hidden sm:table-cell">
+                                        <x-table.th class="w-3/12" hidden-mobile>
                                             <x-sortablelink column="status" title="{{ trans_choice('general.statuses', 1) }}" />
                                         </x-table.th>
 
@@ -218,7 +206,7 @@
                                                 </x-slot>
                                             </x-table.td>
 
-                                            <x-table.td class="w-3/12 hidden sm:table-cell">
+                                            <x-table.td class="w-3/12" hidden-mobile>
                                                 <x-show.status status="{{ $item->status }}" background-color="bg-{{ $item->status_label }}" text-color="text-text-{{ $item->status_label }}" />
                                             </x-table.td>
 
@@ -262,7 +250,7 @@
                         @if ($transactions->count())
                             <x-table>
                                 <x-table.thead>
-                                    <x-table.tr class="flex items-center px-1">
+                                    <x-table.tr>
                                         <x-table.th class="w-4/12 lg:w-3/12">
                                             <x-slot name="first">
                                                 <x-sortablelink column="paid_at" title="{{ trans('general.date') }}" />
@@ -272,7 +260,7 @@
                                             </x-slot>
                                         </x-table.th>
 
-                                        <x-table.th class="w-3/12 hidden sm:table-cell">
+                                        <x-table.th class="w-3/12" hidden-mobile>
                                             <x-slot name="first">
                                                 <x-sortablelink column="type" title="{{ trans_choice('general.types', 1) }}" />
                                             </x-slot>
@@ -308,7 +296,7 @@
                                                 </x-slot>
                                             </x-table.td>
 
-                                            <x-table.td class="w-3/12 hidden sm:table-cell">
+                                            <x-table.td class="w-3/12" hidden-mobile>
                                                 <x-slot name="first">
                                                     {{ $item->type_title }}
                                                 </x-slot>
@@ -321,11 +309,15 @@
                                                 <x-slot name="first">
                                                     {{ $item->account->name }}
                                                 </x-slot>
-                                                <x-slot name="second">
+                                                <x-slot name="second" class="w-20 font-normal group" data-tooltip-target="tooltip-information-transaction-{{ $item->id }}" data-tooltip-placement="left" override="class,data-tooltip-target,data-tooltip-placement">
                                                     @if ($item->document)
-                                                        <a href="{{ route($item->route_name, $item->route_id) }}" class="font-normal truncate border-b border-black border-dashed">
+                                                        <x-link href="{{ route($item->route_name, $item->route_id) }}" class="font-normal truncate border-b border-black border-dashed" override="class">
                                                             {{ $item->document->document_number }}
-                                                        </a>
+                                                        </x-link>
+
+                                                        <div class="w-28 absolute h-10 -left-10 -mt-6"></div>
+
+                                                        <x-documents.index.information id="tooltip-information-transaction-{{ $item->id }}" :document="$item->document" />
                                                     @else
                                                         <x-empty-data />
                                                     @endif

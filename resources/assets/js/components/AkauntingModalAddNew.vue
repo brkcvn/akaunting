@@ -7,7 +7,7 @@
             tabindex="-1"
             role="dialog"
             :aria-hidden="!show">
-            <div data-form-group-modal class="w-full my-10 m-auto flex flex-col" :class="modalDialogClass ? modalDialogClass : 'max-w-screen-sm'">
+            <div data-form-group-modal class="w-full my-10 m-auto flex flex-col px-2 sm:px-0" :class="modalDialogClass ? modalDialogClass : 'max-w-md'">
                 <slot name="modal-content">
                     <div class="modal-content">
                         <div class="p-5 bg-body rounded-tl-lg rounded-tr-lg">
@@ -236,6 +236,7 @@ export default {
                                 '#efef32'
                             ],
                             min_date: false,
+                            selected_card: null
                         }
                     },
 
@@ -296,7 +297,13 @@ export default {
                             .catch(error => {
                             });
                         },
-                    }
+                    },
+
+                    watch: {
+                        'selected_card': function (newVal, oldVal) {
+                            this.form.card_id = newVal;
+                        },
+                    },
                 })
             });
         }

@@ -16,7 +16,7 @@
 
                         <x-form.group.select name="code" label="{{ trans('currencies.code') }}" :options="$codes" searchable change="onChangeCode" />
 
-                        <x-form.group.text name="rate" label="{{ trans('currencies.rate') }}" @input="onChangeRate" />
+                        <x-form.group.text name="rate" label="{{ trans('currencies.rate') }}" @input="onChangeRate" ::disabled="form.default_currency == 1" />
 
                         <x-form.group.select name="precision" label="{{ trans('currencies.precision') }}" :options="$precisions" model="form.precision" />
 
@@ -28,7 +28,7 @@
 
                         <x-form.group.text name="thousands_separator" label="{{ trans('currencies.thousands_separator') }}" not-required />
 
-                        <x-form.group.toggle name="default_currency" label="{{ trans('currencies.default') }}" :value="$currency->default_currency" :disabled="(setting('default.currency') == $currency->code)" />
+                        <x-form.group.toggle name="default_currency" label="{{ trans('currencies.default') }}" :value="$currency->default_currency" :disabled="(default_currency() == $currency->code)" />
                     </x-slot>
                 </x-form.section>
 

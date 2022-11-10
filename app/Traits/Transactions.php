@@ -56,6 +56,30 @@ trait Transactions
         return ! $this->isTransferTransaction();
     }
 
+    public function isSplitTransaction(): bool
+    {
+        $type = $this->type ?? $this->transaction->type ?? $this->model->type ?? Transaction::INCOME_TYPE;
+
+        return Str::endsWith($type, '-split');
+    }
+
+    public function isNotSplitTransaction(): bool
+    {
+        return ! $this->isSplitTransaction();
+    }
+
+    public function isDocumentTransaction(): bool
+    {
+        $document_id = $this->document_id ?? $this->transaction->document_id ?? $this->model->document_id ?? null;
+
+        return ! empty($document_id);
+    }
+
+    public function isNotDocumentTransaction(): bool
+    {
+        return ! $this->isDocumentTransaction();
+    }
+
     public function getIncomeTypes(string $return = 'array'): string|array
     {
         return $this->getTransactionTypes(Transaction::INCOME_TYPE, $return);
@@ -180,6 +204,15 @@ trait Transactions
         ];
     }
 
+    public function getRealTypeTransaction(string $type): string
+    {
+        $type = $this->getRealTypeOfRecurringTransaction($type);
+        $type = $this->getRealTypeOfTransferTransaction($type);
+        $type = $this->getRealTypeOfSplitTransaction($type);
+
+        return $type;
+    }
+
     public function getRealTypeOfRecurringTransaction(string $recurring_type): string
     {
         return Str::replace('-recurring', '', $recurring_type);
@@ -188,6 +221,11 @@ trait Transactions
     public function getRealTypeOfTransferTransaction(string $transfer_type): string
     {
         return Str::replace('-transfer', '', $transfer_type);
+    }
+
+    public function getRealTypeOfSplitTransaction(string $transfer_type): string
+    {
+        return Str::replace('-split', '', $transfer_type);
     }
 
     public function getNextTransactionNumber($suffix = ''): string

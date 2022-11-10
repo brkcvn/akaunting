@@ -478,7 +478,14 @@ export default class Form {
         if (response.data.redirect) {
             this.loading = true;
 
+            // Empty hash because /sale/customer/1#transaction redirect to sale/invoice/create.
+            window.location.hash = '';
+
             window.location.href = response.data.redirect;
+
+            if (typeof window.location.hash != "undefined" && window.location.hash.length) {
+                location.reload();
+            }
         }
 
         this.response = response.data;
@@ -486,7 +493,9 @@ export default class Form {
 
     // Form fields check validation issue
     onFail(error) {
-        this.errors.record(error.response.data.errors);
+        if (typeof this.errors != "undefined") {
+            this.errors.record(error.response.data.errors);
+        }
 
         this.loading = false;
     }

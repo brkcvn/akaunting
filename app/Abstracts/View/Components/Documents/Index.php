@@ -369,8 +369,8 @@ abstract class Index extends Component
             $buttons[] = [
                 'permission'    => $this->permissionCreate,
                 'url'           => route($this->importRoute, $this->importRouteParameters),
-                'text'          => trans('import.title', ['type' => trans_choice($this->textPage ?? 'general.' . $prefix, 1)]),
-                'description'   => trans('general.empty.actions.import', ['type' => strtolower(trans_choice($this->textPage ?? 'general.' . $prefix, 1))]),
+                'text'          => trans('import.title', ['type' => trans_choice($this->textPage ?? 'general.' . $prefix, 2)]),
+                'description'   => trans('general.empty.actions.import', ['type' => strtolower(trans_choice($this->textPage ?? 'general.' . $prefix, 2))]),
             ];
         }
 
@@ -392,12 +392,12 @@ abstract class Index extends Component
         foreach ($totals as $key => $total) {
             $title = ($key == 'overdue') ? trans('general.overdue') : trans('documents.statuses.' . $key);
             $href = route($route, ['search' => 'status:' . $key]);
-            $amount = money($total, setting('default.currency'), true)->formatForHumans();
-            $tooltip = money($total, setting('default.currency'), true)->format();
+            $amount = money($total, default_currency(), true)->formatForHumans();
+            $tooltip = money($total, default_currency(), true)->format();
 
             $items[] = [
                 'title'     => $title,
-                'href'      => $href,
+                //'href'      => $href,
                 'amount'    => $amount,
                 'tooltip'   => $tooltip,
             ];

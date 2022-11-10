@@ -56,9 +56,9 @@ class Transactions extends Controller
 
         $totals['profit'] = $totals['income'] - $totals['expense'];
 
-        $incoming_amount = money($totals['income'], setting('default.currency'), true);
-        $expense_amount = money($totals['expense'], setting('default.currency'), true);
-        $profit_amount = money($totals['profit'], setting('default.currency'), true);
+        $incoming_amount = money($totals['income'], default_currency(), true);
+        $expense_amount = money($totals['expense'], default_currency(), true);
+        $profit_amount = money($totals['profit'], default_currency(), true);
 
         $summary_amounts = [
             'incoming_exact'        => $incoming_amount->format(),
@@ -86,8 +86,9 @@ class Transactions extends Controller
     public function show(Transaction $transaction)
     {
         $title = $transaction->isIncome() ? trans_choice('general.receipts', 1) : trans('transactions.payment_made');
+        $real_type = $this->getRealTypeTransaction($transaction->type);
 
-        return view('banking.transactions.show', compact('transaction', 'title'));
+        return view('banking.transactions.show', compact('transaction', 'title', 'real_type'));
     }
 
     /**
@@ -98,6 +99,7 @@ class Transactions extends Controller
     public function create()
     {
         $type = request()->get('type', 'income');
+        $real_type = $this->getRealTypeTransaction($type);
 
         $number = $this->getNextTransactionNumber();
 
@@ -109,6 +111,7 @@ class Transactions extends Controller
 
         return view('banking.transactions.create', compact(
             'type',
+            'real_type',
             'number',
             'contact_type',
             'account_currency_code',

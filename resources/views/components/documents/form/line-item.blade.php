@@ -8,10 +8,10 @@
             <colgroup>
                 <col class="small-col" style="width: 24px;">
                 <col class="small-col" style="width: 20%;">
-                <col class="small-col" style="width: 30%;">
+                <col class="small-col description-col" style="width: 30%;">
                 <col class="small-col" style="width: 12%;">
                 <col class="small-col" style="width: 15%;">
-                <col class="small-col" style="width: 20%;">
+                <col class="small-col amount-col" style="width: 20%;">
                 <col class="small-col" style="width: 24px;">
             </colgroup>
 
@@ -30,7 +30,9 @@
 
                         <td class="px-3 py-3 ltr:pl-2 rtl:pr-2 ltr:text-left rtl:text-right align-middle border-b-0 name">
                             @if (! $hideItemName)
-                                <span class="flex items-center text-sm" tabindex="0" v-html="row.name" v-if="row.item_id"></span>
+                                <span class="flex items-center text-sm" tabindex="0" v-if="row.item_id">
+                                    <div v-html="row.name"></div>
+                                </span>
 
                                 <div v-else>
                                     @stack('name_input_start')
@@ -159,8 +161,8 @@
                                     v-model="row.total"
                                     :currency="$currency"
                                     dynamicCurrency="currency"
-                                    money-class="text-right mt-0 disabled-money px-0"
-                                    form-group-class="text-right disabled-money"
+                                    money-class="ltr:text-right rtl:text-left mt-0 disabled-money px-0"
+                                    form-group-class="ltr:text-right rtl:text-left disabled-money"
                                 />
                             </div>
                         @endif
@@ -186,7 +188,7 @@
 
                     <td colspan="4" class="px-0 pb-3">
                         <div class="relative">
-                            <div class="absolute -top-6 left-3 flex items-center">
+                            <div class="absolute -top-6 ltr:left-3 rtl:right-3 flex items-center">
                                 @if (! $hideDiscount && in_array(setting('localisation.discount_location'), ['item', 'both']))
                                     <div class="text-left border-0 p-0 mr-16" v-if="!row.add_discount">
                                         <x-button type="button" class="text-xs text-purple" @click="onAddLineDiscount(index)" override="class">
@@ -252,7 +254,7 @@
 
                             @stack('discount_input_end')
 
-                            <div class="flex items-center lg:absolute right-0">
+                            <div class="flex items-center lg:absolute ltr:right-0 rtl:left-0">
                                 <div class="text-right">
                                     <x-form.input.money
                                         name="discount_amount"
@@ -263,8 +265,8 @@
                                         v-model="row.discount_amount"
                                         :currency="$currency"
                                         dynamicCurrency="currency"
-                                        money-class="text-right disabled-money px-0"
-                                        form-group-class="text-right disabled-money"
+                                        money-class="ltr:text-right rtl:text-left disabled-money px-0"
+                                        form-group-class="ltr:text-right rtl:text-left disabled-money"
                                     />
                                 </div>
 
@@ -327,7 +329,7 @@
                                 @stack('taxes_input_end')
                             </div>
 
-                            <div class="flex items-center lg:absolute right-0">
+                            <div class="flex items-center lg:absolute ltr:right-0 rtl:left-0">
                                 <div class="text-right">
                                     <x-form.input.money
                                         name="tax"
@@ -401,10 +403,10 @@
                                 @stack('taxes_input_end')
                             </div>
 
-                            <div class="flex items-center lg:absolute right-0">
+                            <div class="flex items-center lg:absolute ltr:right-0 rtl:left-0">
                                 <div class="text-right">
                                     <div class="required disabled text-right input-price disabled-money">
-                                        <input type="tel" class="v-money form-control text-right" name="discount_amount" disabled="disabled" value="__">
+                                        <input type="tel" class="v-money form-control ltr:text-right rtl:text-left" name="discount_amount" disabled="disabled" value="__">
                                     </div>
                                 </div>
 

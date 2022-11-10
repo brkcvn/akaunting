@@ -11,7 +11,7 @@
 
     <x-slot name="buttons">
         @can('create-settings-currencies')
-            <x-link href="{{ route('currencies.create') }}" kind="primary">
+            <x-link href="{{ route('currencies.create') }}" kind="primary" id="index-more-actions-new-currency">
                 {{ trans('general.title.new', ['type' => trans_choice('general.currencies', 1)]) }}
             </x-link>
         @endcan
@@ -26,8 +26,8 @@
 
             <x-table>
                 <x-table.thead>
-                    <x-table.tr class="flex items-center px-1">
-                        <x-table.th class="ltr:pr-6 rtl:pl-6 hidden sm:table-cell" override="class">
+                    <x-table.tr>
+                        <x-table.th kind="bulkaction">
                             <x-index.bulkaction.all />
                         </x-table.th>
 
@@ -39,7 +39,7 @@
                             <x-sortablelink column="code" title="{{ trans('currencies.code') }}" />
                         </x-table.th>
 
-                        <x-table.th class="w-3/12 hidden sm:table-cell">
+                        <x-table.th class="w-3/12" hidden-mobile>
                             {{ trans('currencies.symbol.symbol') }}
                         </x-table.th>
 
@@ -52,12 +52,12 @@
                 <x-table.tbody>
                     @foreach($currencies as $item)
                         <x-table.tr href="{{ route('currencies.edit', $item->id) }}">
-                            <x-table.td class="ltr:pr-6 rtl:pl-6 hidden sm:table-cell" override="class">
+                            <x-table.td kind="bulkaction">
                                 <x-index.bulkaction.single id="{{ $item->id }}" name="{{ $item->name }}" />
                             </x-table.td>
 
                             <x-table.td class="w-6/12 sm:w-4/12">
-                                <x-slot name="first" class="flex" override="class">
+                                <x-slot name="first" class="flex font-bold" override="class">
                                     <div class="font-bold truncate">
                                         {{ $item->name }}
                                     </div>
@@ -66,21 +66,21 @@
                                         <x-index.disable text="{{ trans_choice('general.currencies', 1) }}" />
                                     @endif
 
-                                    @if ($item->code == setting("default.currency"))
+                                    @if ($item->code == default_currency())
                                         <x-index.default text="{{ trans('currencies.default') }}" />
                                     @endif
                                 </x-slot>
                             </x-table.td>
 
-                            <x-table.td class="w-6/12 sm:w-3/12 truncate">
+                            <x-table.td class="w-6/12 sm:w-3/12">
                                 {{ $item->code }}
                             </x-table.td>
 
-                            <x-table.td class="w-3/12 hidden sm:table-cell">
+                            <x-table.td class="w-3/12" hidden-mobile>
                                 {{ $item->symbol }}
                             </x-table.td>
 
-                            <x-table.td class="w-2/12 relative truncate">
+                            <x-table.td class="w-2/12">
                                 {{ $item->rate }}
                             </x-table.td>
 

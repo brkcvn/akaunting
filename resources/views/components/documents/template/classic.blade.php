@@ -2,9 +2,11 @@
     <div class="row">
         <div class="col-100">
             <div class="text text-dark">
+                @stack('title_input_start')
                 <h3>
                     {{ $textDocumentTitle }}
                 </h3>
+                @stack('title_input_end')
             </div>
         </div>
     </div>
@@ -12,7 +14,7 @@
     <div class="row">
         <div class="col-58">
             <div class="text">
-                @stack('company_logo_start')
+                @stack('company_logo_input_start')
                 @if (! $hideCompanyLogo)
                     @if (!empty($document->contact->logo) && !empty($document->contact->logo->id))
                         <img  class="c-logo w-image" src="{{ $logo }}" alt="{{ $document->contact_name }}"/>
@@ -20,7 +22,7 @@
                         <img  class="c-logo w-image" src="{{ $logo }}" alt="{{ setting('company.name') }}" />
                     @endif
                 @endif
-                @stack('company_logo_end')
+                @stack('company_logo_input_end')
             </div>
         </div>
 
@@ -28,9 +30,11 @@
             <div class="text right-column">
                 @stack('company_details_start')
                 @if ($textDocumentSubheading)
+                    @stack('subheading_input_start')
                     <p class="text-normal font-semibold">
                         {{ $textDocumentSubheading }}
                     </p>
+                    @stack('subheading_input_end')
                 @endif
 
                 @if (! $hideCompanyDetails)
@@ -84,7 +88,7 @@
         <div class="col-33">
             <div class="invoice-classic-frame ml-1 mt-1" style="border: 1px solid {{ $backgroundColor }}">
                 <div class="invoice-classic-inline-frame text-center" style="border: 1px solid {{ $backgroundColor }}">
-                    @stack('invoice_number_input_start')
+                    @stack('document_number_input_start')
                     @if (! $hideDocumentNumber)
                         <div class="text small-text font-semibold mt-classic">
                             <span>
@@ -96,7 +100,7 @@
                             {{ $document->document_number }}
                         </div>
                     @endif
-                    @stack('invoice_number_input_end')
+                    @stack('document_number_input_end')
                 </div>
             </div>
         </div>
@@ -157,7 +161,7 @@
                     @endif
                 @stack('phone_input_end')
 
-                @stack('email_start')
+                @stack('email_input_start')
                     @if (! $hideContactEmail)
                         <p class="small-text">
                             {{ $document->contact_email }}
@@ -221,7 +225,7 @@
                             </span>
 
                             <span class="float-right spacing">
-                                @money($total->amount - $document->paid, $document->currency_code, true)
+                                <x-money :amount="$total->amount - $document->paid" :currency="$document->currency_code" convert />
                             </span>
                         </p>
                     @endif
@@ -239,43 +243,43 @@
                             <tr>
                                 @stack('name_th_start')
                                     @if (! $hideItems || (! $hideName && ! $hideDescription))
-                                        <th class="item text font-semibold text-alignment-left text-left">
+                                        <td class="item text font-semibold text-alignment-left text-left">
                                             {{ (trans_choice($textItems, 2) != $textItems) ? trans_choice($textItems, 2) : trans($textItems) }}
-                                        </th>
+                                        </td>
                                     @endif
                                 @stack('name_th_end')
 
                                 @stack('quantity_th_start')
                                     @if (! $hideQuantity)
-                                        <th class="quantity text font-semibold text-alignment-right text-right">
+                                        <td class="quantity text font-semibold text-alignment-right text-right">
                                             {{ trans($textQuantity) }}
-                                        </th>
+                                        </td>
                                     @endif
                                 @stack('quantity_th_end')
 
                                 @stack('price_th_start')
                                     @if (! $hidePrice)
-                                        <th class="price text font-semibold text-alignment-right text-right">
+                                        <td class="price text font-semibold text-alignment-right text-right">
                                             {{ trans($textPrice) }}
-                                        </th>
+                                        </td>
                                     @endif
                                 @stack('price_th_end')
 
                                 @if (! $hideDiscount)
                                     @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
                                         @stack('discount_td_start')
-                                            <th class="discount text font-semibold text-alignment-right text-right">
+                                            <td class="discount text font-semibold text-alignment-right text-right">
                                                 {{ trans('invoices.discount') }}
-                                            </th>
+                                            </td>
                                         @stack('discount_td_end')
                                     @endif
                                 @endif
 
                                 @stack('total_th_start')
                                     @if (! $hideAmount)
-                                        <th class="total text font-semibold text-alignment-right text-right">
+                                        <td class="total text font-semibold text-alignment-right text-right">
                                             {{ trans($textAmount) }}
-                                        </th>
+                                        </td>
                                     @endif
                                 @stack('total_th_end')
                             </tr>
@@ -338,7 +342,7 @@
                         </strong>
 
                         <span>
-                            @money($total->amount, $document->currency_code, true)
+                            <x-money :amount="$total->amount" :currency="$document->currency_code" convert />
                         </span>
                     </div>
                     @stack($total->code . '_total_tr_end')
@@ -351,7 +355,7 @@
                             </span>
 
                             <span>
-                                - @money($document->paid, $document->currency_code, true)
+                                - <x-money :amount="$document->paid" :currency="$document->currency_code" convert />
                             </span>
                         </div>
                         @stack('paid_total_tr_end')
@@ -364,7 +368,7 @@
                         </span>
 
                         <span>
-                            @money($document->amount_due, $document->currency_code, true)
+                            <x-money :amount="$document->amount_due" :currency="$document->currency_code" convert />
                         </span>
                     </div>
                     @stack('grand_total_tr_end')
@@ -375,6 +379,7 @@
 
     @if (! $hideFooter)
         @if ($document->footer)
+        @stack('footer_input_start')
             <div class="row mt-1">
                 <div class="col-100">
                     <div class="text company">
@@ -384,6 +389,7 @@
                     </div>
                 </div>
             </div>
+        @stack('footer_input_start')
         @endif
     @endif
 </div>

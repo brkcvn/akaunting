@@ -56,6 +56,10 @@ abstract class Report
 
     public $loaded = false;
 
+    public $bar_formatter_type = 'money';
+
+    public $donut_formatter_type = 'percent';
+
     public $chart = [
         'bar' => [
             'colors' => [
@@ -158,27 +162,6 @@ abstract class Report
         return $this->icon;
     }
 
-    public function getGrandTotal()
-    {
-        if (!$this->loaded) {
-            $this->load();
-        }
-
-        if (!empty($this->footer_totals)) {
-            $sum = 0;
-
-            foreach ($this->footer_totals as $total) {
-                $sum += is_array($total) ? array_sum($total) : $total;
-            }
-
-            $total = $this->has_money ? money($sum, setting('default.currency'), true)->format() : $sum;
-        } else {
-            $total = trans('general.na');
-        }
-
-        return $total;
-    }
-
     public function getCharts($table_key)
     {
         return [
@@ -199,6 +182,8 @@ abstract class Report
 
         $chart->setType('bar')
             ->setOptions($options)
+            ->setDefaultLocale($this->getDefaultLocaleOfChart())
+            ->setLocales($this->getLocaleTranslationOfChart())
             ->setLabels(array_values($this->dates))
             ->setDataset($this->tables[$table_key], 'column', array_values($this->footer_totals[$table_key]));
 
@@ -246,6 +231,8 @@ abstract class Report
 
         $chart->setType('donut')
             ->setOptions($options)
+            ->setDefaultLocale($this->getDefaultLocaleOfChart())
+            ->setLocales($this->getLocaleTranslationOfChart())
             ->setLabels(array_values($labels))
             ->setColors(array_values($colors))
             ->setDataset($this->tables[$table_key], 'donut', array_values($values));
@@ -300,8 +287,19 @@ abstract class Report
 
     public function setChartLabelFormatter()
     {
-        $this->chart['bar']['yaxis']['labels']['formatter'] = $this->getFormatLabel();
-        $this->chart['donut']['yaxis']['labels']['formatter'] = $this->getFormatLabel('percent');
+        if (count($this->tables) > 1) {
+            foreach ($this->tables as $table_key => $table) {
+                if (empty($this->chart[$table_key])) {
+                    continue;
+                }
+
+                $this->chart[$table_key]['bar']['yaxis']['labels']['formatter'] = $this->getChartLabelFormatter($this->bar_formatter_type);
+                $this->chart[$table_key]['donut']['yaxis']['labels']['formatter'] = $this->getChartLabelFormatter($this->donut_formatter_type);
+            }
+        } else {
+            $this->chart['bar']['yaxis']['labels']['formatter'] = $this->getChartLabelFormatter($this->bar_formatter_type);
+            $this->chart['donut']['yaxis']['labels']['formatter'] = $this->getChartLabelFormatter($this->donut_formatter_type);
+        }
     }
 
     public function setYear()

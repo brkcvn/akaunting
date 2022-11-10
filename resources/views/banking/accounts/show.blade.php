@@ -24,8 +24,8 @@
     <x-slot name="buttons">
         @stack('create_button_start')
 
-        <x-dropdown id="dropdown-new-actions">
-            <x-slot name="trigger" class="flex items-center px-3 py-1.5 mb-3 sm:mb-0 bg-green hover:bg-green-700 rounded-xl text-white text-sm font-bold leading-6" override="class">
+        <x-dropdown id="show-new-actions-account">
+            <x-slot name="trigger" class="w-full flex items-center justify-between sm:justify-start px-3 py-1.5 mb-3 sm:mb-0 bg-green hover:bg-green-700 rounded-xl text-white text-sm font-bold leading-6" override="class">
                 {{ trans('general.new_more') }}
                 <span class="material-icons ltr:ml-2 rtl:mr-2">expand_more</span>
             </x-slot>
@@ -33,7 +33,7 @@
             @stack('income_button_start')
 
             @can('create-banking-transactions')
-            <x-dropdown.link href="{{ route('accounts.create-income', $account->id) }}">
+            <x-dropdown.link href="{{ route('accounts.create-income', $account->id) }}" id="show-more-actions-new-income-account">
                 {{ trans_choice('general.incomes', 1) }}
             </x-dropdown.link>
             @endcan
@@ -41,7 +41,7 @@
             @stack('expense_button_start')
 
             @can('create-banking-transactions')
-            <x-dropdown.link href="{{ route('accounts.create-expense', $account->id) }}">
+            <x-dropdown.link href="{{ route('accounts.create-expense', $account->id) }}" id="show-more-actions-new-expense-account">
                 {{ trans_choice('general.expenses', 1) }}
             </x-dropdown.link>
             @endcan
@@ -49,7 +49,7 @@
             @stack('transfer_button_start')
 
             @can('create-banking-transfers')
-            <x-dropdown.link href="{{ route('accounts.create-transfer', $account->id) }}">
+            <x-dropdown.link href="{{ route('accounts.create-transfer', $account->id) }}" id="show-more-actions-new-transfer-account">
                 {{ trans_choice('general.transfers', 1) }}
             </x-dropdown.link>
             @endcan
@@ -60,7 +60,7 @@
         @stack('edit_button_start')
 
         @can('update-banking-accounts')
-        <x-link href="{{ route('accounts.edit', $account->id) }}">
+        <x-link href="{{ route('accounts.edit', $account->id) }}" id="show-more-actions-edit-account">
             {{ trans('general.edit') }}
         </x-link>
         @endcan
@@ -71,15 +71,15 @@
     <x-slot name="moreButtons">
         @stack('more_button_start')
 
-        <x-dropdown id="dropdown-more-actions">
+        <x-dropdown id="show-more-actions-account">
             <x-slot name="trigger">
-                <span class="material-icons">more_horiz</span>
+                <span class="material-icons pointer-events-none">more_horiz</span>
             </x-slot>
 
             @stack('see_performance_button_start')
 
             @can('read-banking-accounts')
-            <x-dropdown.link href="{{ route('accounts.see-performance', $account->id) }}">
+            <x-dropdown.link href="{{ route('accounts.see-performance', $account->id) }}" id="show-more-actions-performance-account">
                 {{ trans('accounts.see_performance') }}
             </x-dropdown.link>
             @endcan
@@ -89,7 +89,7 @@
             @stack('duplicate_button_start')
 
             @can('create-banking-accounts')
-            <x-dropdown.link href="{{ route('accounts.duplicate', $account->id) }}">
+            <x-dropdown.link href="{{ route('accounts.duplicate', $account->id) }}" id="show-more-actions-duplicate-account">
                 {{ trans('general.duplicate') }}
             </x-dropdown.link>
             @endcan
@@ -215,7 +215,6 @@
                                 id="transactions"
                                 name="{{ trans_choice('general.transactions', 2) }}"
                                 active
-                                class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link"
                             />
 
                             @stack('transfers_nav_start')
@@ -223,7 +222,6 @@
                             <x-tabs.nav
                                 id="transfers"
                                 name="{{ trans_choice('general.transfers', 2) }}"
-                                class="relative px-8 text-sm text-black text-center pb-2 cursor-pointer transition-all border-b tabs-link"
                             />
 
                             @stack('transfers_nav_end')
@@ -236,7 +234,7 @@
                                 @if ($transactions->count())
                                     <x-table>
                                         <x-table.thead>
-                                            <x-table.tr class="flex items-center px-1">
+                                            <x-table.tr>
                                                 <x-table.th class="w-6/12 lg:w-3/12">
                                                     <x-slot name="first">
                                                         <x-sortablelink column="paid_at" title="{{ trans('general.date') }}" />
@@ -246,7 +244,7 @@
                                                     </x-slot>
                                                 </x-table.th>
 
-                                                <x-table.th class="w-3/12 hidden sm:table-cell">
+                                                <x-table.th class="w-3/12" hidden-mobile>
                                                     <x-slot name="first">
                                                         <x-sortablelink column="type" title="{{ trans_choice('general.types', 1) }}" />
                                                     </x-slot>
@@ -255,7 +253,7 @@
                                                     </x-slot>
                                                 </x-table.th>
 
-                                                <x-table.th class="w-3/12 hidden sm:table-cell">
+                                                <x-table.th class="w-3/12" hidden-mobile>
                                                     <x-slot name="first">
                                                         <x-sortablelink column="contact.name" title="{{ trans_choice('general.contacts', 1) }}" />
                                                     </x-slot>
@@ -282,7 +280,7 @@
                                                         </x-slot>
                                                     </x-table.td>
 
-                                                    <x-table.td class="w-3/12 hidden sm:table-cell">
+                                                    <x-table.td class="w-3/12" hidden-mobile>
                                                         <x-slot name="first">
                                                             {{ $item->type_title }}
                                                         </x-slot>
@@ -291,16 +289,16 @@
                                                         </x-slot>
                                                     </x-table.td>
 
-                                                    <x-table.td class="w-3/12 hidden sm:table-cell">
+                                                    <x-table.td class="w-3/12" hidden-mobile>
                                                         <x-slot name="first">
                                                             {{ $item->contact->name }}
                                                         </x-slot>
                                                         <x-slot name="second" class="w-20 font-normal group">
                                                             @if ($item->document)
                                                             <div data-tooltip-target="tooltip-information-{{ $item->document_id }}" data-tooltip-placement="left" override="class">
-                                                                <a href="{{ route($item->route_name, $item->route_id) }}" class="font-normal truncate border-b border-black border-dashed">
+                                                                <x-link href="{{ route($item->route_name, $item->route_id) }}" class="font-normal truncate border-b border-black border-dashed" override="class">
                                                                     {{ $item->document->document_number }}
-                                                                </a>
+                                                                </x-link>
 
                                                                 <div class="w-28 absolute h-10 -ml-12 -mt-6"></div>
 
@@ -336,8 +334,8 @@
                                 @if ($transfers->count())
                                     <x-table>
                                         <x-table.thead>
-                                            <x-table.tr class="flex items-center px-1">
-                                                <x-table.th class="w-3/12 hidden sm:table-cell">
+                                            <x-table.tr>
+                                                <x-table.th class="w-3/12" hidden-mobile>
                                                     <x-slot name="first">
                                                         <x-sortablelink column="expense_transaction.paid_at" title="{{ trans('general.created_date') }}" />
                                                     </x-slot>
@@ -346,7 +344,7 @@
                                                     </x-slot>
                                                 </x-table.th>
 
-                                                <x-table.th class="w-3/12">
+                                                <x-table.th class="w-6/12 sm:w-3/12">
                                                     <x-slot name="first">
                                                         <x-sortablelink column="expense_transaction.name" title="{{ trans('transfers.from_account') }}" />
                                                     </x-slot>
@@ -355,7 +353,7 @@
                                                     </x-slot>
                                                 </x-table.th>
 
-                                                <x-table.th class="w-3/12">
+                                                <x-table.th class="w-4/12 sm:w-3/12" hidden-mobile>
                                                     <x-slot name="first">
                                                         <x-sortablelink column="expense_transaction.rate" title="{{ trans('transfers.from_rate') }}" />
                                                     </x-slot>
@@ -364,7 +362,7 @@
                                                     </x-slot>
                                                 </x-table.th>
 
-                                                <x-table.th class="w-3/12" kind="amount">
+                                                <x-table.th class="w-6/12 sm:w-3/12" kind="amount">
                                                     <x-slot name="first">
                                                         <x-sortablelink column="expense_transaction.amount" title="{{ trans('transfers.from_amount') }}" />
                                                     </x-slot>
@@ -386,7 +384,7 @@
                                                 @endphp
 
                                                 <x-table.tr href="{{ route('transfers.show', $item->id) }}">
-                                                    <x-table.td class="w-3/12 truncate hidden sm:table-cell">
+                                                    <x-table.td class="w-3/12" hidden-mobile>
                                                         <x-slot name="first" class="flex items-center font-bold" override="class">
                                                             <x-date date="{{ $item->expense_transaction->paid_at }}" />
                                                         </x-slot>
@@ -399,7 +397,7 @@
                                                         </x-slot>
                                                     </x-table.td>
 
-                                                    <x-table.td class="w-3/12 truncate">
+                                                    <x-table.td class="w-6/12 sm:w-3/12 truncate">
                                                         <x-slot name="first">
                                                             {{ $item->expense_transaction->account->name }}
                                                         </x-slot>
@@ -408,7 +406,7 @@
                                                         </x-slot>
                                                     </x-table.td>
 
-                                                    <x-table.td class="w-3/12 truncate">
+                                                    <x-table.td class="w-4/12 sm:w-3/12 truncate" hidden-mobile>
                                                         <x-slot name="first">
                                                             {{ $item->expense_transaction->currency_rate }}
                                                         </x-slot>
@@ -417,7 +415,7 @@
                                                         </x-slot>
                                                     </x-table.td>
 
-                                                    <x-table.td class="w-3/12" kind="amount">
+                                                    <x-table.td class="w-6/12 sm:w-3/12" kind="amount">
                                                         <x-slot name="first">
                                                             <x-money :amount="$item->expense_transaction->amount" :currency="$item->expense_transaction->currency_code" convert />
                                                         </x-slot>
