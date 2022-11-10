@@ -24,9 +24,9 @@
             </span>
 
             @if (setting('default.use_gravatar', '0') == '1')
-                <img src="{{ user()->picture }}" alt="{{ user()->name }}" class="w-8 h-8 m-auto rounded-full" alt="{{ user()->name }}" title="{{ user()->name }}">
+                <img src="{{ user()->picture }}" alt="{{ user()->name }}" class="w-8 h-8 m-auto rounded-full text-transparent" alt="{{ user()->name }}" title="{{ user()->name }}">
             @elseif (is_object(user()->picture))
-                <img src="{{ Storage::url(user()->picture->id) }}" class="w-8 h-8 m-auto rounded-full" alt="{{ user()->name }}" title="{{ user()->name }}">
+                <img src="{{ Storage::url(user()->picture->id) }}" class="w-8 h-8 m-auto rounded-full text-transparent" alt="{{ user()->name }}" title="{{ user()->name }}">
             @else
                 <span name="account_circle" class="material-icons-outlined text-purple w-8 h-8 flex items-center justify-center text-center text-2xl pointer-events-none" alt="{{ user()->name }}" title="{{ user()->name }}">
                     account_circle
@@ -34,7 +34,7 @@
             @endif
         </div>
 
-        <div id="tooltip-profile" class="inline-block absolute z-20 py-1 px-2 text-sm font-medium rounded-lg bg-white text-gray-900 w-auto border border-gray-200 shadow-sm whitespace-nowrap tooltip-content opacity-0 invisible">
+        <div id="tooltip-profile" class="inline-block absolute z-20 py-1 px-2 text-sm font-medium rounded-lg bg-white text-gray-900 w-auto border border-gray-200 shadow-sm whitespace-nowrap opacity-0 invisible">
             {{ trans('auth.profile') }}
             <div class="absolute w-2 h-2 before:absolute before:w-2 before:h-2 before:bg-white before:border-gray-200 before:transform before:rotate-45 before:border -left-1 before:border-t-0 before:border-r-0 border-gray-200" data-popper-arrow></div>
         </div>
@@ -169,7 +169,7 @@
         <span class="material-icons text-lg text-purple transform ltr:rotate-90 rtl:-rotate-90 pointer-events-none">expand_circle_down</span>
     </button>
 
-    <span data-menu-close class="material-icons absolute ltr:-right-2 rtl:right-12 transition-all top-8 text-lg text-purple cursor-pointer z-10 hidden pointer-events-none">cancel</span>
+    <span data-menu-close class="material-icons absolute ltr:-right-2 rtl:right-12 transition-all top-8 text-lg text-purple cursor-pointer z-10 hidden">cancel</span>
 
     <div class="fixed w-full h-full invisible lg:hidden js-menu-background" style="background-color: rgba(0, 0, 0, 0.5); z-index: -1;"></div>
 </div>

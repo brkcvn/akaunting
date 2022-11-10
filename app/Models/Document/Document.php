@@ -488,6 +488,20 @@ class Document extends Model
             return $actions;
         }
 
+        if (app('mobile-detect')->isMobile()) {
+            try {
+                $actions[] = [
+                    'title' => trans('general.show'),
+                    'icon' => 'visibility',
+                    'url' => route($prefix . '.show', $this->id),
+                    'permission' => 'read-' . $group . '-' . $permission_prefix,
+                    'attributes' => [
+                        'id' => 'index-more-actions-show-' . $this->id,
+                    ],
+                ];
+            } catch (\Exception $e) {}
+        }
+
         try {
             if (! $this->reconciled) {
                 $actions[] = [
@@ -524,39 +538,24 @@ class Document extends Model
                     'permission' => 'read-' . $group . '-' . $permission_prefix,
                     'attributes' => [
                         'id' => 'index-line-actions-payment-' . $this->type . '-' . $this->id,
-                        '@click' => 'onPayment("' . $this->id . '")',
-                    ],
-                ];
-            } catch (\Exception $e) {}
-        } else {
-            try {
-                $actions[] = [
-                    'title' => trans('general.print'),
-                    'icon' => 'print',
-                    'url' => route($prefix . '.print', $this->id),
-                    'permission' => 'read-' . $group . '-' . $permission_prefix,
-                    'attributes' => [
-                        'id' => 'index-line-actions-print-' . $this->type . '-'  . $this->id,
-                        'target' => '_blank',
+                        '@click' => 'onAddPayment("' . route('modals.documents.document.transactions.create', $this->id) . '")',
                     ],
                 ];
             } catch (\Exception $e) {}
         }
 
-        if (($actions[1]['icon'] != 'print') && ($actions[2]['icon'] != 'print')) {
-            try {
-                $actions[] = [
-                    'title' => trans('general.print'),
-                    'icon' => 'print',
-                    'url' => route($prefix . '.print', $this->id),
-                    'permission' => 'read-' . $group . '-' . $permission_prefix,
-                    'attributes' => [
-                        'id' => 'index-line-actions-print-' . $this->type . '-'  . $this->id,
-                        'target' => '_blank',
-                    ],
-                ];
-            } catch (\Exception $e) {}
-        }
+        try {
+            $actions[] = [
+                'title' => trans('general.print'),
+                'icon' => 'print',
+                'url' => route($prefix . '.print', $this->id),
+                'permission' => 'read-' . $group . '-' . $permission_prefix,
+                'attributes' => [
+                    'id' => 'index-line-actions-print-' . $this->type . '-'  . $this->id,
+                    'target' => '_blank',
+                ],
+            ];
+        } catch (\Exception $e) {}
 
         try {
             $actions[] = [
@@ -601,7 +600,7 @@ class Document extends Model
                             'permission' => 'read-' . $group . '-' . $permission_prefix,
                             'attributes' => [
                                 'id' => 'index-line-actions-send-email-' . $this->type . '-'  . $this->id,
-                                '@click' => 'onEmail("' . route('modals.'. $prefix . '.emails.create', $this->id) . '")',
+                                '@click' => 'onSendEmail("' . route('modals.'. $prefix . '.emails.create', $this->id) . '")',
                             ],
                         ];
                     }
