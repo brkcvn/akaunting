@@ -56801,10 +56801,6 @@ body{
 
 @media (min-width: 640px){
 
-<<<<<<< HEAD
-  .sm\:col-span-12{
-    grid-column: span 12 / span 12;
-=======
   .sm\:inset-y-1\/2{
     top: 50%;
     bottom: 50%;
@@ -56812,7 +56808,10 @@ body{
 
   .sm\:-right-1{
     right: -0.25rem;
->>>>>>> a8960150178cfeeae9704250f1cb24972025534a
+  }
+
+  .sm\:col-span-12{
+    grid-column: span 12 / span 12;
   }
 
   .sm\:col-span-6{
