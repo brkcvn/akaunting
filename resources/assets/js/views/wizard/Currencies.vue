@@ -221,12 +221,12 @@
                             </span>
                         </div>
 
-                        <button v-if="! currencies.length && ! new_datas" type="button" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg disabled:bg-green-100 mt-3" @click="onAddItem()">
+                        <button v-if="! currencies.length && ! new_datas" type="button" class="relative flex items-center justify-center bg-green hover:bg-green-700 text-white px-6 py-1.5 text-base rounded-lg outline-purple disabled:bg-green-100 mt-3" @click="onAddItem()">
                             {{ translations.currencies.new_currency }}
                         </button>
 
                         <div v-if="currencies.length && ! new_datas" class="w-full border-b hover:bg-gray-100" style="height:53px;">
-                            <button type="button" class="w-full h-full flex items-center justify-center text-purple font-medium disabled:bg-gray-200" @click="onAddItem()">
+                            <button type="button" class="w-full h-full flex items-center justify-center text-purple font-medium outline-purple disabled:bg-gray-200" @click="onAddItem()">
                                 <span class="material-icons-outlined text-base font-bold ltr:mr-1 rtl:ml-1 pointer-events-none">add</span>
                                 <span class="bg-no-repeat bg-0-2 bg-0-full hover:bg-full-2 bg-gradient-to-b from-transparent to-purple transition-backgroundSize">{{ translations.currencies.new_currency }}</span>
                             </button>

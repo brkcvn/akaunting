@@ -1,6 +1,6 @@
 <template>
     <div :id="'select-item-button-' + _uid" class="w-full border-b">
-        <button type="button" class="w-full h-10 flex items-center justify-center text-purple font-medium disabled:bg-gray-200 hover:bg-gray-100" @click="showItems">
+        <button type="button" class="w-full h-10 flex items-center justify-center text-purple font-medium disabled:bg-gray-200 outline-purple hover:bg-gray-100" @click="showItems">
             <span class="material-icons-outlined text-base font-bold ltr:mr-1 rtl:ml-1">
                 add
             </span>

@@ -12,64 +12,62 @@
     <x-slot name="content">
         <div class="relative mt-4">
             <x-form id="form-create-reconciliation" method="get" route="reconciliations.create">
-                <div data-form-group class="mb-14">
-                    <x-form.section column-number="sm:grid-cols-10">
-                        <x-slot name="body">
-                            <x-form.group.date
-                                name="started_at"
-                                label="{{ trans('reconciliations.start_date') }}"
-                                icon="calendar_today"
-                                value="{{ request('started_at', Date::now()->firstOfMonth()->toDateString()) }}"
-                                show-date-format="{{ company_date_format() }}"
-                                date-format="Y-m-d"
-                                autocomplete="off"
-                                change="setDueMinDate"
-                                form-group-class="col-span-10 lg:col-span-5 xl:col-span-2"
-                            />
+                <x-form.section column-number="sm:grid-cols-10">
+                    <x-slot name="body">
+                        <x-form.group.date
+                            name="started_at"
+                            label="{{ trans('reconciliations.start_date') }}"
+                            icon="calendar_today"
+                            value="{{ request('started_at', Date::now()->firstOfMonth()->toDateString()) }}"
+                            show-date-format="{{ company_date_format() }}"
+                            date-format="Y-m-d"
+                            autocomplete="off"
+                            change="setDueMinDate"
+                            form-group-class="col-span-10 lg:col-span-5 xl:col-span-2"
+                        />
 
-                            <x-form.group.date
-                                name="ended_at"
-                                label="{{ trans('reconciliations.end_date') }}"
-                                icon="calendar_today"
-                                value="{{ request('ended_at', Date::now()->endOfMonth()->toDateString()) }}"
-                                show-date-format="{{ company_date_format() }}"
-                                date-format="Y-m-d"
-                                autocomplete="off"
-                                min-date="form.started_at"
-                                min-date-dynamic="min_due_date"
-                                data-value-min
-                                period="30"
-                                form-group-class="col-span-10 lg:col-span-5 xl:col-span-2"
-                            />
+                        <x-form.group.date
+                            name="ended_at"
+                            label="{{ trans('reconciliations.end_date') }}"
+                            icon="calendar_today"
+                            value="{{ request('ended_at', Date::now()->endOfMonth()->toDateString()) }}"
+                            show-date-format="{{ company_date_format() }}"
+                            date-format="Y-m-d"
+                            autocomplete="off"
+                            min-date="form.started_at"
+                            min-date-dynamic="min_due_date"
+                            data-value-min
+                            period="30"
+                            form-group-class="col-span-10 lg:col-span-5 xl:col-span-2"
+                        />
 
-                            <x-form.group.money
-                                name="closing_balance"
-                                label="{{ trans('reconciliations.closing_balance') }}"
-                                value="{{ request('closing_balance', 0.00) }}"
-                                input="onCalculate"
-                                dynamicCurrency="currency"
-                                form-group-class="col-span-10 lg:col-span-5 xl:col-span-2"
-                                :currency="$currency"
-                            />
+                        <x-form.group.money
+                            name="closing_balance"
+                            label="{{ trans('reconciliations.closing_balance') }}"
+                            value="{{ request('closing_balance', 0.00) }}"
+                            input="onCalculate"
+                            dynamicCurrency="currency"
+                            form-group-class="col-span-10 lg:col-span-5 xl:col-span-2"
+                            :currency="$currency"
+                        />
 
-                            <x-form.group.account 
-                                form-group-class="col-span-10 lg:col-span-5 xl:col-span-2 account-input" 
-                                selected="{{ request('account_id', setting('default.account')) }}"
-                            />
+                        <x-form.group.account 
+                            form-group-class="col-span-10 lg:col-span-5 xl:col-span-2 account-input" 
+                            selected="{{ request('account_id', setting('default.account')) }}"
+                        />
 
-                            <div class="flex items-end lg:justify-end xl:justify-start col-span-10 xl:col-span-2">
-                                <x-button
-                                    type="button"
-                                    class="w-full px-3 py-2 bg-transparent hover:bg-purple text-black hover:text-white rounded-lg border border-purple"
-                                    override="class"
-                                    @click="onReconcilition"
-                                >
-                                    {{ trans('reconciliations.transactions') }}
-                                </x-button>
-                            </div>
-                        </x-slot>
-                    </x-form.section>
-                </div>
+                        <div class="flex items-end lg:justify-end xl:justify-start col-span-10 xl:col-span-2">
+                            <x-button
+                                type="button"
+                                class="w-full px-3 py-2 bg-transparent hover:bg-purple text-black hover:text-white rounded-lg border border-purple"
+                                override="class"
+                                @click="onReconcilition"
+                            >
+                                {{ trans('reconciliations.transactions') }}
+                            </x-button>
+                        </div>
+                    </x-slot>
+                </x-form.section>
             </x-form>
 
             <div id="reconciliations-table">

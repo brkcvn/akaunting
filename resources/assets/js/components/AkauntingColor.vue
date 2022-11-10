@@ -24,14 +24,24 @@
                     <div class="rounded-md bg-white shadow-xs p-2">
                         <div class="flex">
                             <div class="w-full flex flex-wrap justify-between">
-                                <div v-for="color in colors" :key="color">
-                                    <div v-for="variant in variants"
+                                <div v-for="color in colors" :key="color" class="flex flex-col">
+                                    <input v-for="variant in variants"
+                                        name="notSent"
                                         :key="variant"
                                         :colorId="`${color}-${variant}`"
                                         class="rounded-full m-1 color cursor-pointer"
                                         :class="[`bg-${color}-${variant}`, small ? 'w-6 h-6 lg:w-4 lg:h-4' : 'w-8 h-8 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8']"
                                         @click="setColor($event)"
-                                    ></div>
+                                        @keyup.enter="setColor($event)"
+                                    >
+
+                                    <!-- <div v-for="variant in variants"
+                                        :key="variant"
+                                        :colorId="`${color}-${variant}`"
+                                        class="rounded-full m-1 color cursor-pointer"
+                                        :class="[`bg-${color}-${variant}`, small ? 'w-6 h-6 lg:w-4 lg:h-4' : 'w-8 h-8 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8']"
+                                        @click="setColor($event)"
+                                    ></div> -->
                                 </div>
                             </div>
                         </div>
@@ -167,9 +177,21 @@ export default {
             if (e.which == 9) {
                 if (this.$refs.inputColor === document.activeElement) {
                     this.isOpen = true;
-                } else {
-                    this.isOpen = false;
+
+                    // document.addEventListener('keydown', ((e) => {
+                    //     if (e.which == 40) {
+                    //         for (let color of this.$refs.palette.children) {
+                    //             for (let item of color.children) {
+                    //                 item.classList.add('border', 'border-green')
+                    //             }
+                    //         }
+                    //     }
+                    // }));
                 }
+            }
+
+            if (e.key === 'Escape') { 
+                this.isOpen = false;
             }
         }));
     },

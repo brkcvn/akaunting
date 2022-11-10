@@ -49,9 +49,6 @@ class Kbd extends Component
             case 'small':
                 $default = 'px-1 py-0.5';
                 break;
-            case 'small':
-                $default = 'px-2 py-1.5';
-                break;
             case 'large':
                 $default = 'px-3 py-2';
                 break;

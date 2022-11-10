@@ -1,6 +1,6 @@
 <input type="checkbox"
     name="{{ $name }}"
-    class="rounded-sm text-purple border-gray-300 cursor-pointer disabled:bg-gray-200 focus:outline-none focus:ring-transparent"
+    class="rounded-sm text-purple border-gray-300 cursor-pointer disabled:bg-gray-200 focus:outline-none focus:border-purple"
     id="{{ ! empty($attributes[':id']) ? $attributes[':id'] : $id }}"
     @if ($value)
     value="{!! $value !!}"
