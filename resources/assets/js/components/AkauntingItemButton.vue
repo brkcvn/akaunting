@@ -16,8 +16,8 @@
                        autocapitalize="default" 
                        autocorrect="ON" 
                        :placeholder="placeholder"
-                       v-model="search"
-                       @input="onInput"
+                       :value="search"
+                        @input="onInput($event)"
                        :ref="'input-item-field-' + _uid"
                        @keydown.enter="inputEnterEvent"
                    />
@@ -40,7 +40,7 @@
                                 v-bind="money"
                                 masked
                                 disabled
-                                class="text-right disabled-money text-gray"
+                                class="ltr:text-right rtl:text-left disabled-money text-gray"
                             ></money>
                         </div>
                     </div>
@@ -282,7 +282,9 @@ export default {
             }.bind(this), 100);
         },
 
-        onInput() {
+        onInput(event) {
+            this.search = event.target.value;
+
             this.isItemMatched = false;
             //to optimize performance we kept the condition that checks for if search exists or not
             if (!this.search) {

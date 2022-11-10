@@ -6,7 +6,7 @@
     <div class="w-full lg:h-48 px-6 bg-dark-blue rounded-lg flex flex-col lg:flex-row justify-between items-center my-8">
         <div class="w-full lg:w-1/2 flex flex-col self-end py-6">
             <div
-                class="h-28"
+                class="lg:h-28"
                 x-data="{
                     text: '',
                     textArray : ['{{ trans('modules.premium_banner') }}'],
@@ -23,9 +23,9 @@
                 <h1 class="text-lg lg:text-7xl font-semibold text-white" x-text="text"></h1>
             </div>
 
-            <a href="https://akaunting.com/plans" class="text-white transition-all hover:underline">
+            <x-link href="https://akaunting.com/plans" class="text-white transition-all hover:underline" override="class">
                 {{ trans('modules.learn_more') }}
-            </a>
+            </x-link>
         </div>
 
         <div class="hidden lg:block">

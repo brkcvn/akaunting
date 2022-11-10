@@ -50,7 +50,7 @@ const app = new Vue({
             },
             item_name_input: false,
             price_name_input: false,
-            quantity_name_input: false
+            quantity_name_input: false,
         }
     },
 
@@ -141,24 +141,77 @@ const app = new Vue({
             });
         },
 
+        onSmallWidthColumn(item) {
+            this.$refs[item].$el.classList.remove('sm:col-span-6');
+            this.$refs[item].$el.classList.add('sm:col-span-3');
+        },
+
+        onFullWidthColumn(item) {
+            this.$refs[item].$el.classList.add('sm:col-span-6');
+            this.$refs[item].$el.classList.remove('sm:col-span-3');
+        },
+
         settingsInvoice() {
             if (this.form.item_name == 'custom') {
                 this.item_name_input = true;
+                this.onSmallWidthColumn("item_name");
             } else {
                 this.item_name_input = false;
+                this.onFullWidthColumn("item_name");
             }
 
             if (this.form.price_name == 'custom') {
                 this.price_name_input = true;
+                this.onSmallWidthColumn("price_name");
             } else {
                 this.price_name_input = false;
+                this.onFullWidthColumn("price_name");
             }
 
             if (this.form.quantity_name == 'custom') {
                 this.quantity_name_input = true;
+                this.onSmallWidthColumn("quantity_name");
             } else {
                 this.quantity_name_input = false;
+                this.onFullWidthColumn("quantity_name");
             }
-        }
+            
+        },
+
+        // Change currency get money
+        onChangeCurrency(currency_code) {
+            if (! currency_code) {
+                return;
+            }
+
+            if (! this.all_currencies.length) {
+                let currency_promise = Promise.resolve(window.axios.get((url + '/settings/currencies')));
+
+                currency_promise.then(response => {
+                    if (response.data.success) {
+                        this.all_currencies = response.data.data;
+                    }
+
+                    this.all_currencies.forEach(function (currency, index) {
+                        if (currency_code == currency.code) {
+                            this.currency = currency;
+
+                            this.form.currency = currency.code;
+                        }
+                    }, this);
+                })
+                .catch(error => {
+                    this.onChangeCurrency(currency_code);
+                });
+            } else {
+                this.all_currencies.forEach(function (currency, index) {
+                    if (currency_code == currency.code) {
+                        this.currency = currency;
+
+                        this.form.currency = currency.code;
+                    }
+                }, this);
+            }
+        },
     }
 });

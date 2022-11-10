@@ -17,7 +17,7 @@ class CashFlow extends Widget
     public $default_name = 'widgets.cash_flow';
 
     public $default_settings = [
-        'width' => 'w-full my-8 px-12',
+        'width' => 'w-full my-8 lg:px-12',
     ];
 
     public $description = 'widgets.description.cash_flow';
@@ -34,47 +34,36 @@ class CashFlow extends Widget
     {
         $this->setFilter();
 
-        $labels = $this->getLabels();
-
         $income = array_values($this->calculateTotals('income'));
         $expense = array_values($this->calculateTotals('expense'));
         $profit = array_values($this->calculateProfit($income, $expense));
 
-        $colors = $this->getColors();
-
-        $options = [
-            'chart' => [
-                'stacked'           => true,
-            ],
-            'plotOptions' => [
-                'bar' => [
-                    'columnWidth'   => '40%',
-                ],
-            ],
-            'legend' => [
-                'position'          => 'top',
-            ],
-            'yaxis' => [
-                'labels' => [
-                    'formatter'     => $this->getFormatLabel(),
-                ],
-            ],
-        ];
-
         $chart = new Chart();
 
         $chart->setType('line')
-            ->setOptions($options)
-            ->setLabels(array_values($labels))
-            ->setColors($colors)
+            ->setDefaultLocale($this->getDefaultLocaleOfChart())
+            ->setLocales($this->getLocaleTranslationOfChart())
+            ->setStacked(true)
+            ->setBar(['columnWidth' => '40%'])
+            ->setLegendPosition('top')
+            ->setYaxisLabels(['formatter' => $this->getChartLabelFormatter()])
+            ->setLabels(array_values($this->getLabels()))
+            ->setColors($this->getColors())
             ->setDataset(trans('general.incoming'), 'column', $income)
             ->setDataset(trans('general.outgoing'), 'column', $expense)
             ->setDataset(trans_choice('general.profits', 1), 'line', $profit);
 
+        $incoming_amount = money(array_sum($income), default_currency(), true);
+        $outgoing_amount = money(abs(array_sum($expense)), default_currency(), true);
+        $profit_amount = money(array_sum($profit), default_currency(), true);
+
         $totals = [
-            'incoming'  => money(array_sum($income), setting('default.currency'), true),
-            'outgoing'  => money(abs(array_sum($expense)), setting('default.currency'), true),
-            'profit'    => money(array_sum($profit), setting('default.currency'), true),
+            'incoming_exact'        => $incoming_amount->format(),
+            'incoming_for_humans'   => $incoming_amount->formatForHumans(),
+            'outgoing_exact'        => $outgoing_amount->format(),
+            'outgoing_for_humans'   => $outgoing_amount->formatForHumans(),
+            'profit_exact'          => $profit_amount->format(),
+            'profit_for_humans'     => $profit_amount->formatForHumans(),
         ];
 
         return $this->view('widgets.cash_flow', [
@@ -202,7 +191,7 @@ class CashFlow extends Widget
             $totals[$i] += $item->getAmountConvertedToDefault();
         }
 
-        $precision = config('money.' . setting('default.currency') . '.precision');
+        $precision = config('money.' . default_currency() . '.precision');
 
         foreach ($totals as $key => $value) {
             if ($type == 'expense') {
@@ -217,7 +206,7 @@ class CashFlow extends Widget
     {
         $profit = [];
 
-        $precision = config('money.' . setting('default.currency') . '.precision');
+        $precision = config('money.' . default_currency() . '.precision');
 
         foreach ($incomes as $key => $income) {
             $value = $income - abs($expenses[$key]);

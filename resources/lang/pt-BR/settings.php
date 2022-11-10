@@ -13,7 +13,7 @@ return [
         'logo'                          => 'Logo',
 
         'form_description' => [
-            'general'                   => 'Esta informação está visível nos registros que você criar.',
+            'general'                   => 'Essa informação está visível nos registros que criar.',
             'address'                   => 'O endereço será usado nas faturas, contas e outros registros que solicitar.',
         ],
     ],
@@ -159,7 +159,7 @@ return [
             'invoice_view_admin'        => 'Modelo de fatura visualizada (enviado para administrador)',
             'invoice_payment_customer'  => 'Modelo de Pagamento Recebido (enviado ao cliente)',
             'invoice_payment_admin'     => 'Modelo de Pagamento Recebido (enviado ao administrador)',
-            'bill_remind_admin'         => 'Modelo de Lembrete de Fatura (enviado ao administrador)',
+            'bill_remind_admin'         => 'Modelo de Lembrete de Conta (enviado ao administrador)',
             'bill_recur_admin'          => 'Modelo de cobrança recorrente (enviado ao administrador)',
             'payment_received_customer' => 'Modelo de recibo de pagamento (enviado para cliente)',
             'payment_made_vendor'       => 'Modelo de pagamento feito (enviado para fornecedor)',

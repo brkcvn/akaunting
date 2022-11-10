@@ -2,9 +2,11 @@
     <div class="row">
         <div class="col-100">
             <div class="text text-dark">
+                @stack('title_input_start')
                 <h3>
                     {{ $textDocumentTitle }}
                 </h3>
+                @stack('title_input_end')
             </div>
         </div>
     </div>
@@ -12,7 +14,7 @@
     <div class="row border-bottom-1">
         <div class="col-58">
             <div class="text">
-                @stack('company_logo_start')
+                @stack('company_logo_input_start')
                 @if (! $hideCompanyLogo)
                     @if (! empty($document->contact->logo) && ! empty($document->contact->logo->id))
                         <img class="d-logo w-image" src="{{ $logo }}" alt="{{ $document->contact_name }}"/>
@@ -20,7 +22,7 @@
                         <img class="d-logo w-image" src="{{ $logo }}" alt="{{ setting('company.name') }}"/>
                     @endif
                 @endif
-                @stack('company_logo_end')
+                @stack('company_logo_input_end')
             </div>
         </div>
 
@@ -195,48 +197,58 @@
         <div class="row">
             <div class="col-100">
                 <div class="text extra-spacing">
-                    <table class="lines">
+                    <table class="lines lines-radius-border">
                         <thead style="background-color:{{ $backgroundColor }} !important; -webkit-print-color-adjust: exact;">
                             <tr>
                                 @stack('name_th_start')
                                     @if (! $hideItems || (! $hideName && ! $hideDescription))
-                                        <th class="item text font-semibold text-alignment-left text-left text-white border-radius-first">
-                                            {{ (trans_choice($textItems, 2) != $textItems) ? trans_choice($textItems, 2) : trans($textItems) }}
-                                        </th>
+                                        <td class="item text font-semibold text-alignment-left text-left text-white">
+                                            <span>
+                                                {{ (trans_choice($textItems, 2) != $textItems) ? trans_choice($textItems, 2) : trans($textItems) }}
+                                            </span>
+                                        </td>
                                     @endif
                                 @stack('name_th_end')
 
                                 @stack('quantity_th_start')
                                     @if (! $hideQuantity)
-                                        <th class="quantity text font-semibold text-alignment-right text-right text-white">
-                                            {{ trans($textQuantity) }}
-                                        </th>
+                                        <td class="quantity text font-semibold text-alignment-right text-right text-white">
+                                            <span>
+                                                {{ trans($textQuantity) }}
+                                            </span>
+                                        </td>
                                     @endif
                                 @stack('quantity_th_end')
 
                                 @stack('price_th_start')
                                     @if (! $hidePrice)
-                                        <th class="price text font-semibold text-alignment-right text-right text-white">
-                                            {{ trans($textPrice) }}
-                                        </th>
+                                        <td class="price text font-semibold text-alignment-right text-right text-white">
+                                            <span>
+                                                {{ trans($textPrice) }}
+                                            </span>
+                                        </td>
                                     @endif
                                 @stack('price_th_end')
 
                                 @if (! $hideDiscount)
                                     @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
                                         @stack('discount_td_start')
-                                            <th class="discount text font-semibold text-alignment-right text-right text-white">
-                                                {{ trans('invoices.discount') }}
-                                            </th>
+                                            <td class="discount text font-semibold text-alignment-right text-right text-white">
+                                                <span>
+                                                    {{ trans('invoices.discount') }}
+                                                </span>
+                                            </td>
                                         @stack('discount_td_end')
                                     @endif
                                 @endif
 
                                 @stack('total_th_start')
                                     @if (! $hideAmount)
-                                        <th class="total text font-semibold text-white text-alignment-right text-right border-radius-last">
-                                            {{ trans($textAmount) }}
-                                        </th>
+                                        <td class="total text font-semibold text-white text-alignment-right text-right">
+                                            <span>
+                                                {{ trans($textAmount) }}
+                                            </span>
+                                        </td>
                                     @endif
                                 @stack('total_th_end')
                             </tr>
@@ -297,7 +309,7 @@
                         </span>
 
                         <span>
-                            @money($total->amount, $document->currency_code, true)
+                            <x-money :amount="$total->amount" :currency="$document->currency_code" convert />
                         </span>
                     </div>
                     @stack($total->code . '_total_tr_end')
@@ -310,7 +322,7 @@
                             </span>
 
                             <span>
-                                - @money($document->paid, $document->currency_code, true)
+                                - <x-money :amount="$document->paid" :currency="$document->currency_code" convert />
                             </span>
                         </div>
                         @stack('paid_total_tr_end')
@@ -323,7 +335,7 @@
                         </span>
 
                         <span>
-                            @money($document->amount_due, $document->currency_code, true)
+                            <x-money :amount="$document->amount_due" :currency="$document->currency_code" convert />
                         </span>
                     </div>
                     @stack('grand_total_tr_end')
@@ -334,15 +346,17 @@
 
     @if (! $hideFooter)
         @if ($document->footer)
+        @stack('footer_input_start')
             <div class="row mt-4">
                 <div class="col-100 text-left">
                     <div class="text">
-                        <strong>
+                        <span class="font-bold">
                             {!! nl2br($document->footer) !!}
-                        </strong>
+                        </span>
                     </div>
                 </div>
             </div>
+        @stack('footer_input_end')
         @endif
     @endif
 </div>

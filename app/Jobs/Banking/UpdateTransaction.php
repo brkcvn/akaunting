@@ -3,6 +3,8 @@
 namespace App\Jobs\Banking;
 
 use App\Abstracts\Job;
+use App\Events\Banking\TransactionUpdated;
+use App\Events\Banking\TransactionUpdating;
 use App\Interfaces\Job\ShouldUpdate;
 use App\Models\Banking\Transaction;
 
@@ -11,6 +13,8 @@ class UpdateTransaction extends Job implements ShouldUpdate
     public function handle(): Transaction
     {
         $this->authorize();
+
+        event(new TransactionUpdating($this->model, $this->request));
 
         \DB::transaction(function () {
             $this->model->update($this->request->all());
@@ -24,13 +28,15 @@ class UpdateTransaction extends Job implements ShouldUpdate
 
                     $this->model->attachMedia($media, 'attachment');
                 }
-            } elseif (!$this->request->file('attachment') && $this->model->attachment) {
+            } elseif (! $this->request->file('attachment') && $this->model->attachment) {
                 $this->deleteMediaModel($this->model, 'attachment', $this->request);
             }
 
             // Recurring
             $this->model->updateRecurring($this->request->all());
         });
+
+        event(new TransactionUpdated($this->model, $this->request));
 
         return $this->model;
     }

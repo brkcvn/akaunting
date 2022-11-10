@@ -25,6 +25,10 @@ return [
     'throttles' => [
         'api' => env('APP_THROTTLES_API', '60'),
         'import' => env('APP_THROTTLES_IMPORT', '1'),
+        'email' => [
+            'minute' => env('APP_THROTTLES_EMAIL_MINUTE', '3'),
+            'month' => env('APP_THROTTLES_EMAIL_MONTH', '500'),
+        ],
     ],
 
     /*
@@ -176,6 +180,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*

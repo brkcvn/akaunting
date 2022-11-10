@@ -104,7 +104,7 @@
 
         <span slot="infoBlock" class="absolute right-8 top-3 bg-green text-white px-2 py-1 rounded-md text-xs" v-if="new_options[selected]">{{ addNew.new_text }}</span>
 
-        <select :name="name"  :id="name" v-model="selected" class="d-none">
+        <select :name="name"  :id="name" class="hidden">
             <option v-for="option in sortedOptions" :key="option.key" :value="option.key">{{ option.value }}</option>
         </select>
 
@@ -842,7 +842,8 @@ export default {
                             if (!check) {
                                 this.sorted_options.push({
                                     key: option.id.toString(),
-                                    value: (option.title) ? option.title : (option.display_name) ? option.display_name : option.name
+                                    value: (option.title) ? option.title : (option.display_name) ? option.display_name : option.name,
+                                    level: (option.parent_id) ? 1 : 0 // 0: parent, 1: child. Level data get 0 via backend. This control will refactor.
                                 });
                             }
 
@@ -1089,6 +1090,33 @@ export default {
         },
     },
 
+    dynamicOptionsValue(options) {
+        if (! this.forceDynamicOptionValue) {
+            if (this.multiple) {
+                this.selected = [];
+            } else {
+                this.selected = '';
+            }
+
+            return;
+        }
+
+        if (this.multiple) {
+            let selected = this.selected;
+            this.selected = [];
+
+            selected.forEach(function (select, index) {
+                if (this.sorted_options.find((option) => option.key == select)) {
+                    this.selected.push(select);
+                }
+            }, this);
+        } else {
+            if (! options.find((option) => option == this.selected)) {
+                this.selected = '';
+            }
+        }
+    },
+
     watch: {
         selected: function (selected) {
             if (!this.multiple) {
@@ -1237,6 +1265,8 @@ export default {
                         }
                     }, this);
                 }
+
+                this.dynamicOptionsValue(options);
             }
         },
     },

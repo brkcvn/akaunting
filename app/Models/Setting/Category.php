@@ -94,6 +94,7 @@ class Category extends Model
     {
         return $this->resolveRouteBindingQuery($this, $value, $field)
             ->withoutGlobalScope(Scope::class)
+            ->getWithoutChildren()
             ->first();
     }
 
@@ -240,6 +241,9 @@ class Category extends Model
             'icon' => 'create',
             'url' => route('categories.edit', $this->id),
             'permission' => 'update-settings-categories',
+            'attributes' => [
+                'id' => 'index-line-actions-edit-category-' . $this->id,
+            ],
         ];
 
         if ($this->isTransferCategory()) {
@@ -251,6 +255,9 @@ class Category extends Model
             'icon' => 'delete',
             'route' => 'categories.destroy',
             'permission' => 'delete-settings-categories',
+            'attributes' => [
+                'id' => 'index-line-actions-delete-category-' . $this->id,
+            ],
             'model' => $this,
         ];
 

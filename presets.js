@@ -20,7 +20,41 @@ module.exports = {
 
     safelist: [
       {
-        pattern: /.*/,
+        pattern: /^[^/&]*$/,
+      },
+      {
+        pattern: /^p-/,
+        variants: ['ltr', 'rtl'],
+      },
+      {
+        pattern: /^m-/,
+        variants: ['ltr', 'rtl'],
+      },
+      {
+        pattern: /^left-/,
+        variants: ['ltr', 'rtl'],
+      },
+      {
+        pattern: /^right-/,
+        variants: ['ltr', 'rtl'],
+      },
+      {
+        pattern: /^w/,
+      },
+      {
+        pattern: /^h/,
+      },
+      {
+        pattern: /^inset/,
+      },
+      {
+        pattern: /^top/,
+      },
+      {
+        pattern: /^bottom/,
+      },
+      {
+        pattern: /^translate/,
       },
     ],
    
@@ -141,6 +175,58 @@ module.exports = {
                   '800': '#9f1239',
                   '900': '#881337'
                 },
+                'silver': {
+                  DEFAULT: '#7F8997',
+                  '50': '#F0F1F3', 
+                  '100': '#D4D7DC', 
+                  '200': '#B8BDC5', 
+                  '300': '#9CA3AE', 
+                  '400': '#7F8997', 
+                  '500': '#636F80', 
+                  '600': '#475569', 
+                  '700': '#424F61', 
+                  '800': '#3A4555', 
+                  '900': '#323B49'
+                },
+                'pastel_green': {
+                  DEFAULT: '#E0F1E3',
+                  '50': '#E0F1E3', 
+                  '100': '#CCE0D0', 
+                  '200': '#B8D0BD', 
+                  '300': '#A3BFAB', 
+                  '400': '#8FAE98', 
+                  '500': '#7B9E85', 
+                  '600': '#678D72', 
+                  '700': '#5E8268', 
+                  '800': '#56765F', 
+                  '900': '#4D6A55'
+                },
+                'peach_orange': {
+                  DEFAULT: '#FCF2D9',
+                  '50': '#FCF2D9', 
+                  '100': '#F0E0BE', 
+                  '200': '#E5CFA4', 
+                  '300': '#DABE89', 
+                  '400': '#CEAC6E', 
+                  '500': '#C39B54', 
+                  '600': '#B78939', 
+                  '700': '#AC8035', 
+                  '800': '#9C7430', 
+                  '900': '#8C692B'
+                },
+                'wisteria': {
+                  DEFAULT: '#E5E4FA',
+                  '50': '#E5E4FA', 
+                  '100': '#D0CEE8', 
+                  '200': '#BAB9D5', 
+                  '300': '#A5A4C3', 
+                  '400': '#908EB1', 
+                  '500': '#7A799E', 
+                  '600': '#65638C', 
+                  '700': '#5F5D83', 
+                  '800': '#565577', 
+                  '900': '#4D4C6B'
+                },
                 'status': {
                   'success': '#F1F6EE',
                   'danger':  '#fae6e6',
@@ -168,20 +254,26 @@ module.exports = {
                 'dark-blue': '#15284B',
                 'lighter-gray': '#F2F2F5',
                 'purple-lighter': '#F2F4FC',
-                'modal-background': 'rgba(0, 0, 0, 0.3)'
+                'modal-background': 'rgba(0, 0, 0, 0.3)',
+                'black-medium': '#424242',
+                'red-light': '#FF6B6B',
+                'default': '#6ea152',
           },
 
           spacing: {
               'modal': '610px',
+              '500':   '500px',
               '5.5':   '1.30rem', 
               '9.5':   '2.45rem',
               '12.5':  '3.2rem',
+              '18':    '4.5rem',
               '31':    '30.938rem',
               '32.5':  '8.5rem',
               '33':    '8.5rem',
               '37':    '9.25rem',
               '38':    '37rem',
               '46':    '46.875rem',
+              '98':    '27.8rem',
           },
 
           margin: {
@@ -212,6 +304,18 @@ module.exports = {
                 '0%': { boxShadow: '0 28px 0 -28px #ffffff' },
                 '100%': { boxShadow: '0 28px 0 #ffffff' },
               },
+              submit_second: {
+                '0%': { boxShadow: '0 28px 0 -28px #55588b' },
+                '100%': { boxShadow: '0 28px 0 #55588b' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              },
+              marquee_long: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-350%)' },
+              }
           },
 
           animation: {
@@ -219,7 +323,10 @@ module.exports = {
               pulsate_transparent: 'pulsate_transparent 1500ms ease infinite;',
               pulsate: 'pulsate 1500ms ease infinite;',
               spin: 'spin 1000ms infinite',
-              submit: 'submit 0.7s ease alternate infinite'
+              submit: 'submit 0.7s ease alternate infinite',
+              submit_second: 'submit_second 0.7s ease alternate infinite',
+              marquee: 'marquee 9s linear infinite',
+              marquee_long: 'marquee_long 14s linear infinite'
           },
 
           transitionProperty: {
@@ -236,6 +343,10 @@ module.exports = {
   
           backgroundPosition: {
             '0-full': ' 0 100%'
+          },
+
+          minHeight: {
+            '500': '500px',
           }
         },
 

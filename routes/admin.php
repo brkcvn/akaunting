@@ -54,6 +54,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('logout', 'Auth\Login@destroy')->name('logout');
 
     Route::get('users/autocomplete', 'Auth\Users@autocomplete')->name('users.autocomplete');
+    Route::get('users/landingpages', 'Auth\Users@landingPages')->name('users.landingpages');
     Route::get('users/{user}/read-bills', 'Auth\Users@readUpcomingBills')->name('users.read.bills');
     Route::get('users/{user}/read-invoices', 'Auth\Users@readOverdueInvoices')->name('users.read.invoices');
     Route::get('users/{user}/enable', 'Auth\Users@enable')->name('users.enable');
@@ -62,7 +63,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::resource('users', 'Auth\Users', ['middleware' => ['dropzone']]);
 
     Route::get('profile/{user}/edit', 'Auth\Users@edit')->name('profile.edit');
-    Route::patch('profile/{user}', 'Auth\Users@update')->name('profile.update');
+    Route::patch('profile/{user}', 'Auth\Users@update')->middleware('dropzone')->name('profile.update');
 });
 
 Route::group(['prefix' => 'sales'], function () {
@@ -147,11 +148,11 @@ Route::group(['prefix' => 'banking'], function () {
     Route::get('transfers/{transfer}/duplicate', 'Banking\Transfers@duplicate')->name('transfers.duplicate');
     Route::post('transfers/import', 'Banking\Transfers@import')->middleware('import')->name('transfers.import');
     Route::get('transfers/export', 'Banking\Transfers@export')->name('transfers.export');
-    Route::resource('transfers', 'Banking\Transfers', ['middleware' => ['date.format', 'money']]);
+    Route::resource('transfers', 'Banking\Transfers', ['middleware' => ['date.format', 'money', 'dropzone']]);
 
     Route::post('reconciliations/calculate', 'Banking\Reconciliations@calculate')->middleware(['money']);
     Route::patch('reconciliations/calculate', 'Banking\Reconciliations@calculate')->middleware(['money']);
-    Route::resource('reconciliations', 'Banking\Reconciliations', ['middleware' => ['date.format', 'money']]);
+    Route::resource('reconciliations', 'Banking\Reconciliations', ['middleware' => ['date.format', 'money', 'dropzone']]);
 });
 
 Route::group(['prefix' => 'settings'], function () {
@@ -259,9 +260,13 @@ Route::group(['as' => 'modals.', 'prefix' => 'modals'], function () {
         'middleware' => ['date.format', 'money', 'dropzone']
     ]);
 
-    Route::resource('transactions/{transaction}/emails', 'Modals\TransactionEmails', ['names' => 'transactions.emails']);
-    Route::resource('transactions/{transaction}/share', 'Modals\TransactionShare', ['names' => 'transactions.share']);
-    Route::resource('invoices/{invoice}/emails', 'Modals\InvoiceEmails', ['names' => 'invoices.emails']);
-    Route::resource('invoices/{invoice}/share', 'Modals\InvoiceShare', ['names' => 'invoices.share']);
+    Route::get('invoices/{invoice}/emails/create', 'Modals\InvoiceEmails@create')->name('invoices.emails.create');
+    Route::post('invoices/{invoice}/emails', 'Modals\InvoiceEmails@store')->name('invoices.emails.store');
+    Route::get('invoices/{invoice}/share/create', 'Modals\InvoiceShare@create')->name('invoices.share.create');
+
+    Route::get('transactions/{transaction}/emails/create', 'Modals\TransactionEmails@create')->name('transactions.emails.create');
+    Route::post('transactions/{transaction}/emails', 'Modals\TransactionEmails@store')->name('transactions.emails.store');
+    Route::get('transactions/{transaction}/share/create', 'Modals\TransactionShare@create')->name('transactions.share.create');
+
     Route::resource('taxes', 'Modals\Taxes');
 });
