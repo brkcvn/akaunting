@@ -54462,11 +54462,6 @@ body{
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-<<<<<<< HEAD
-.hover\:bg-purple:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(85 88 139 / var(--tw-bg-opacity));
-=======
 .hover\:border-silver-600:hover{
   --tw-border-opacity: 1;
   border-color: rgb(71 85 105 / var(--tw-border-opacity));
@@ -54510,7 +54505,11 @@ body{
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
->>>>>>> a8960150178cfeeae9704250f1cb24972025534a
+}
+
+.hover\:bg-purple:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(85 88 139 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-100:hover{
@@ -55572,10 +55571,6 @@ body{
   border-bottom-right-radius: 0.5rem;
 }
 
-[dir="ltr"] .ltr\:border-l-8{
-  border-left-width: 8px;
-}
-
 [dir="ltr"] .ltr\:p-0{
   padding: 0px;
 }
@@ -56579,10 +56574,6 @@ body{
 
 [dir="rtl"] .rtl\:rounded-bl-lg{
   border-bottom-left-radius: 0.5rem;
-}
-
-[dir="rtl"] .rtl\:border-r-8{
-  border-right-width: 8px;
 }
 
 [dir="rtl"] .rtl\:p-0{
