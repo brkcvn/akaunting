@@ -54550,16 +54550,12 @@ body{
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-<<<<<<< HEAD
 .hover\:bg-purple:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(85 88 139 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-100:hover{
-=======
 .hover\:bg-lilac-100:hover{
->>>>>>> 270dfb42bda65651ec3a674499cb47378aecf2c1
   --tw-bg-opacity: 1;
   background-color: rgb(245 247 250 / var(--tw-bg-opacity));
 }
