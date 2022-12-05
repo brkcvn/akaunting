@@ -14,7 +14,9 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="flex flex-col space-y-16 py-4">
+        <x-loading.content />
+        
+        <div class="flex flex-col space-y-16 py-4 cursor-default">
             <div class="flex flex-col lg:flex-row w-full lg:space-x-16 rtl:space-x-reverse space-y-0">
                 <div class="w-full lg:w-7/12 flex flex-col space-x-2 banner">
                     @foreach ($module->files as $file)
@@ -54,9 +56,9 @@
                     @endif
                 </div>
 
-                <div class="w-full lg:w-5/12" x-data="{ price_type : true }">
+                <div class="relative w-full lg:w-5/12" x-data="{ price_type : 'yearly' }">
                     <div class="flex flex-col space-y-6">
-                        <div class="flex flex-col">
+                        <div class="flex flex-col cursor-default">
                             <div class="flex flex-col space-y-4">
                                 @if ($module->vote)
                                     <div class="flex items-center space-x-4">
@@ -97,40 +99,24 @@
                             </div>
                         </div>
 
-                        @if (! in_array('onprime', $module->where_to_use))
-                            <div class="text-sm line-clamp-1">
-                                {!! ! empty($module->sort_desc) ? $module->sort_desc : strip_tags($module->description) !!}
+                        <div class="text-sm line-clamp-1 cursor-default">
+                            {!! ! empty($module->sort_desc) ? $module->sort_desc : strip_tags($module->description) !!}
+                        </div>
+
+                        <div class="flex items-center space-x-4 justify-between">
+                            <x-layouts.modules.show.price :module="$module" />
+
+                            <div class="flex lg:justify-center">
+                                @if ($module->price != '0.0000')
+                                    <x-layouts.modules.show.toggle />
+                                @endif
                             </div>
+                        </div>
 
-                            @if (! empty($module->cloud_information))
-                                {!! $module->cloud_information !!}
-                            @else
-                                <div class="text-center text-sm mt-3 mb--2 bg-red-100 rounded-lg p-2 cursor-default">
-                                    <span class="text-sm text-red-700">
-                                        {!! trans('modules.only_works_cloud') !!}
-                                    </span>
-                                </div>
-                            @endif
-                        @else
-                            <div class="text-sm line-clamp-1">
-                                {!! ! empty($module->sort_desc) ? $module->sort_desc : strip_tags($module->description) !!}
-                            </div>
-
-                            <div class="relative flex items-center space-x-4 justify-between">
-                                <x-layouts.modules.show.price :module="$module" />
-
-                                <div class="flex w-1/2 lg:justify-center">
-                                    @if ($module->price != '0.0000')
-                                        <x-layouts.modules.show.toggle />
-                                    @endif
-                                </div>
-                            </div>
-
-                            <x-layouts.modules.show.information :module="$module" />
-                        @endif
+                        <x-layouts.modules.show.information :module="$module" />
                     </div>
 
-                    <div class="flex justify-around space-x-12 mt-5">
+                    <div class="flex justify-around mt-5">
                         <x-layouts.modules.show.buttons :module="$module" :installed="$installed" :enable="$enable" />
                     </div>
                 </div>

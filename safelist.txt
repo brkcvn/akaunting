@@ -72,6 +72,7 @@ lg:pl-24
 xl:grid-cols-4
 xl:w-8/12
 xl:pt-6
+2xl:flex-row
 ltr:-right-10
 rtl:-left-10
 ltr:rounded-tl-md
