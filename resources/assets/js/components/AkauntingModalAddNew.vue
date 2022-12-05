@@ -10,8 +10,8 @@
             :aria-hidden="!show">
             <div class="w-full my-10 m-auto flex flex-col px-2 sm:px-0" :class="modalDialogClass ? modalDialogClass : 'max-w-md'">
                 <slot name="modal-content">
-                    <div class="modal-content">
-                        <div class="p-5 bg-body rounded-tl-lg rounded-tr-lg">
+                    <div class="bg-body rounded-lg modal-content">
+                        <div class="p-5">
                             <div class="flex items-center justify-between border-b pb-5">
                                 <slot name="card-header">
                                     <h4 class="text-base font-medium">
@@ -26,22 +26,22 @@
                         </div>
 
                         <slot name="modal-body">
-                            <div class="py-1 px-5 bg-body" v-if="!is_component" v-html="message"></div>
-                            <div class="py-1 px-5 bg-body" v-else>
+                            <div class="py-1 px-5" v-if="!is_component" v-html="message"></div>
+                            <div class="py-1 px-5" v-else>
                                 <form id="form-create" method="POST" action="#"/>
 
                                 <component v-bind:is="component"></component>
                             </div>
                         </slot>
 
-                        <div class="p-5 bg-body rounded-bl-lg rounded-br-lg border-gray-300">
+                        <div class="p-5 border-gray-300">
                             <slot name="card-footer">
-                                <div class="flex items-center justify-end">
-                                    <button type="button" class="px-6 py-1.5 mr-2 hover:bg-gray-200 rounded-lg" :class="buttons.cancel.class" @click="onCancel">
+                                <div class="flex items-center justify-end space-x-2 rtl:space-x-reverse">
+                                    <button type="button" class="px-6 py-1.5 hover:bg-gray-200 rounded-lg" :class="buttons.cancel.class" @click="onCancel">
                                         {{ buttons.cancel.text }}
                                     </button>
 
-                                    <a v-if="buttons.payment" :href="buttons.payment.url" class="px-3 py-1.5 mb-3 sm:mb-0 text-xs bg-transparent hover:bg-transparent font-medium leading-6 ltr:mr-2 rtl:ml-2" :class="buttons.payment.class">
+                                    <a v-if="buttons.payment" :href="buttons.payment.url" class="px-6 py-1.5 text-xs bg-transparent hover:bg-gray-200 font-medium rounded-lg leading-6" :class="buttons.payment.class">
                                         {{ buttons.payment.text }}
                                     </a>
 

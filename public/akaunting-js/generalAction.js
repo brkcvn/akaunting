@@ -54,15 +54,17 @@ document.querySelectorAll("[data-table-body]").forEach((table) => {
 
     if (document.body.clientWidth <= 768) {
         table.querySelectorAll('[data-table-list]').forEach((actions) => {
-            actions.querySelector('[data-mobile-actions]').addEventListener('click', function() {
-                this.closest('td').querySelector('[data-mobile-actions-modal]').classList.add('show');
-                this.closest('td').querySelector('[data-mobile-actions-modal]').classList.remove('opacity-0', 'invisible');
-      
-                this.closest('td').querySelector('[data-mobile-actions-modal]').addEventListener('click', function() {
-                    this.classList.add('opacity-0', 'invisible');
-                    this.classList.remove('show');
+            if (actions.querySelector('[data-mobile-actions]')) {
+                actions.querySelector('[data-mobile-actions]').addEventListener('click', function() {
+                    this.closest('td').querySelector('[data-mobile-actions-modal]').classList.add('show');
+                    this.closest('td').querySelector('[data-mobile-actions-modal]').classList.remove('opacity-0', 'invisible');
+          
+                    this.closest('td').querySelector('[data-mobile-actions-modal]').addEventListener('click', function() {
+                        this.classList.add('opacity-0', 'invisible');
+                        this.classList.remove('show');
+                    });
                 });
-            });
+            }
         });
     }
 });
@@ -244,10 +246,11 @@ function runTooltip(tooltipToggleEl) {
 
     function show() {
         // Make the tooltip visible
-                tooltipEl.classList.remove("opacity-0");
-                tooltipEl.classList.add("opacity-100");
-                tooltipEl.classList.remove("invisible");
-                tooltipEl.classList.add("visible"); 
+        if (tooltipEl.classList.contains("opacity-0", "invisible")) {
+            tooltipEl.classList.remove("opacity-0", "invisible");
+        } else {
+            tooltipEl.classList.add("opacity-100", "visible");
+        }
          // Enable the event listeners
 
         popperInstance.setOptions((options) => ({
@@ -266,10 +269,11 @@ function runTooltip(tooltipToggleEl) {
 
     function hide() {
         // Hide the tooltip
-            tooltipEl.classList.remove("opacity-100");
-            tooltipEl.classList.add("opacity-0");
-            tooltipEl.classList.remove("visible");
-            tooltipEl.classList.add("invisible");
+        if (tooltipEl.classList.contains("opacity-100", "visible")) {
+            tooltipEl.classList.remove("opacity-100", "visible");
+        } else {
+            tooltipEl.classList.add("opacity-0", "invisible");
+        }
         // Disable the event listeners
 
         popperInstance.setOptions((options) => ({
