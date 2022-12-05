@@ -1,3 +1,5 @@
+import Company from '../../../../assets/js/views/wizard/Company.vue'
+
 function sum(a, b) {
   return a + b;
 }
