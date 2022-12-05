@@ -10,7 +10,7 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "test": "jest",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "clear_jest": "jest --clearCache"
     },
     "dependencies": {
