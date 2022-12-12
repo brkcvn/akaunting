@@ -54,15 +54,17 @@ document.querySelectorAll("[data-table-body]").forEach((table) => {
 
     if (document.body.clientWidth <= 768) {
         table.querySelectorAll('[data-table-list]').forEach((actions) => {
-            actions.querySelector('[data-mobile-actions]').addEventListener('click', function() {
-                this.closest('td').querySelector('[data-mobile-actions-modal]').classList.add('show');
-                this.closest('td').querySelector('[data-mobile-actions-modal]').classList.remove('opacity-0', 'invisible');
-      
-                this.closest('td').querySelector('[data-mobile-actions-modal]').addEventListener('click', function() {
-                    this.classList.add('opacity-0', 'invisible');
-                    this.classList.remove('show');
+            if (actions.querySelector('[data-mobile-actions]')) {
+                actions.querySelector('[data-mobile-actions]').addEventListener('click', function() {
+                    this.closest('td').querySelector('[data-mobile-actions-modal]').classList.add('show');
+                    this.closest('td').querySelector('[data-mobile-actions-modal]').classList.remove('opacity-0', 'invisible');
+          
+                    this.closest('td').querySelector('[data-mobile-actions-modal]').addEventListener('click', function() {
+                        this.classList.add('opacity-0', 'invisible');
+                        this.classList.remove('show');
+                    });
                 });
-            });
+            }
         });
     }
 });
@@ -244,10 +246,12 @@ function runTooltip(tooltipToggleEl) {
 
     function show() {
         // Make the tooltip visible
-        tooltipEl.classList.remove("opacity-0");
-        tooltipEl.classList.add("opacity-100");
-        tooltipEl.classList.remove("invisible");
-        tooltipEl.classList.add("visible"); // Enable the event listeners
+        if (tooltipEl.classList.contains("opacity-0", "invisible")) {
+            tooltipEl.classList.remove("opacity-0", "invisible");
+        } else {
+            tooltipEl.classList.add("opacity-100", "visible");
+        }
+         // Enable the event listeners
 
         popperInstance.setOptions((options) => ({
             ...options,
@@ -265,10 +269,12 @@ function runTooltip(tooltipToggleEl) {
 
     function hide() {
         // Hide the tooltip
-        tooltipEl.classList.remove("opacity-100");
-        tooltipEl.classList.add("opacity-0");
-        tooltipEl.classList.remove("visible");
-        tooltipEl.classList.add("invisible"); // Disable the event listeners
+        if (tooltipEl.classList.contains("opacity-100", "visible")) {
+            tooltipEl.classList.remove("opacity-100", "visible");
+        } else {
+            tooltipEl.classList.add("opacity-0", "invisible");
+        }
+        // Disable the event listeners
 
         popperInstance.setOptions((options) => ({
             ...options,
@@ -449,16 +455,18 @@ document.querySelectorAll('[data-truncate-marquee]').forEach((truncate) => {
 
 //disable/enable icons ejected from data-truncate-marquee, HTML of icons ejected from parent element (data-truncate-marquee)
 document.querySelectorAll('[data-index-icon]').forEach((defaultText) => {
-    let icon_parents_element = defaultText.parentElement.parentElement.parentElement;
+    if (defaultText.closest('[data-table-list]')) {
+        let icon_parents_element = defaultText.parentElement.parentElement.parentElement;
     
-    if (icon_parents_element.classList.contains('flex')) {
-        icon_parents_element.appendChild(defaultText);
-        icon_parents_element.classList.remove('truncate');
-    } else {
-        if (icon_parents_element.classList.contains('overflow-x-hidden')) {
-            icon_parents_element.parentElement.appendChild(defaultText);
+        if (icon_parents_element.classList.contains('flex')) {
+            icon_parents_element.appendChild(defaultText);
+            icon_parents_element.classList.remove('truncate');
         } else {
-            defaultText.parentElement.appendChild(defaultText);
+            if (icon_parents_element.classList.contains('overflow-x-hidden')) {
+                icon_parents_element.parentElement.appendChild(defaultText);
+            } else {
+                defaultText.parentElement.appendChild(defaultText);
+            }
         }
     }
 });
@@ -472,6 +480,10 @@ document.querySelectorAll('[data-page-title-first]').forEach((first) => {
         let title_truncate = first.querySelector('[data-title-truncate]');
 
         if (title_truncate !== null) {
+            //added for equalize h1 width and parent element width. Because parent element has -ml-0.5 so didn't equalize
+            first.querySelector('h1').classList.add('mr-0.5');
+            //added for equalize h1 width and parent element width. Because parent element has -ml-0.5 so didn't equalize
+            
             if (first.clientWidth < title_truncate.clientWidth && second.clientHeight > 0) {
                 // added specific width styling for truncate text
                 title_truncate.style.width = first.clientWidth + 'px';
@@ -499,6 +511,8 @@ document.querySelectorAll('[data-page-title-first]').forEach((first) => {
                     this.classList.add('truncate');
                 });
                 // added truncate animation for truncated text
+
+                first.querySelector('h1').classList.remove('mr-0.5');
             }
         }
 
