@@ -38,6 +38,21 @@ import GLightbox from 'glightbox';
 
 Swiper.use([Navigation, Pagination]);
 
+import Bugsnag from './../exceptions/trackers/bugsnag';
+import Sentry from './../exceptions/trackers/sentry';
+
+// Exception Tracket start here!!s
+if (typeof exception_tracker != 'undefined') {
+    switch (exception_tracker.channel) {
+        case 'bugsnag':
+            Vue.use(Bugsnag);
+            break;
+        case 'sentry':
+            Vue.use(Sentry);
+            break;
+    }
+}
+
 var BreakException = {};
 
 export default {
@@ -164,7 +179,7 @@ export default {
 
         //swiper slider for long tabs items
         for (let [index, item] of document.querySelectorAll('[data-swiper]').entries()) {
-            if (item.clientWidth < item.querySelector('[data-tabs-swiper-wrapper]').clientWidth) {
+            if (item.clientWidth < item.querySelector('[data-tabs-swiper-wrapper]').clientWidth && ! item.querySelector('[data-tabs-swiper-wrapper]').getAttribute('data-disable-slider', true)) {
                 let initial_slide = 0;
                 let hash_split = window.location.hash.split('#')[1];
                 let loop = 0;
