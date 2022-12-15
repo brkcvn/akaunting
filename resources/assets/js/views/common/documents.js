@@ -113,8 +113,8 @@ const app = new Vue({
     methods: {
         onRefFocus(ref) {
             let index = this.form.items.length - 1;
-
-            if (this.$refs['items-' + index + '-' + ref] != undefined) {
+            
+            if (typeof (this.$refs['items-' + index + '-' + ref]) !== 'undefined') {
                 let first_ref = this.$refs['items-' + index + '-'  + ref];
                 first_ref != undefined ? first_ref[0].focus() : this.$refs[Object.keys(this.$refs)[0]][0].focus();
             }
@@ -470,11 +470,13 @@ const app = new Vue({
 
             let selected_tax;
 
-            this.dynamic_taxes.forEach(function(tax) {
-                if (tax.id == this.tax_id) {
-                    selected_tax = tax;
-                }
-            }, this);
+            if (this.dynamic_taxes.length) {
+                this.dynamic_taxes.forEach(function(tax) {
+                    if (tax.id == this.tax_id) {
+                        selected_tax = tax;
+                    }
+                }, this);
+            }
 
             this.items[item_index].tax_ids.push({
                 id: selected_tax.id,
@@ -814,11 +816,6 @@ const app = new Vue({
 
     watch: {
         'form.discount': function (newVal, oldVal) {
-            if (newVal > 99) {
-                newVal = oldVal;
-                return;
-            }
-            
             if (newVal != '' && newVal.search('^[-+]?([0-9]|[1-9][0-9]|100)*\.?[0-9]+$') !== 0) {
                 this.form.discount = oldVal;
                 this.form.discount = this.form.discount ? this.form.discount.replace(',', '.') : '';
