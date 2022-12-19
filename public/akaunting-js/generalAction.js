@@ -54,11 +54,12 @@ document.querySelectorAll("[data-table-body]").forEach((table) => {
 
     if (document.body.clientWidth <= 768) {
         table.querySelectorAll('[data-table-list]').forEach((actions) => {
-            if (actions.querySelector('[data-mobile-actions]')) {
-                actions.querySelector('[data-mobile-actions]').addEventListener('click', function() {
+            let actions_html = actions.querySelector('[data-mobile-actions]');
+            if (actions_html) {
+                actions_html.addEventListener('click', function() {
                     this.closest('td').querySelector('[data-mobile-actions-modal]').classList.add('show');
                     this.closest('td').querySelector('[data-mobile-actions-modal]').classList.remove('opacity-0', 'invisible');
-          
+            
                     this.closest('td').querySelector('[data-mobile-actions-modal]').addEventListener('click', function() {
                         this.classList.add('opacity-0', 'invisible');
                         this.classList.remove('show');
@@ -190,37 +191,40 @@ function runDropdown(dropdownToggleEl) {
         ],
     }); // toggle when click on the button
 
-    dropdownMenuEl.classList.toggle("hidden");
-    dropdownMenuEl.classList.toggle("block");
+    if (dropdownMenuEl !== null) {
+        dropdownMenuEl.classList.toggle("hidden");
+        dropdownMenuEl.classList.toggle("block");
 
-    function handleDropdownOutsideClick(event) {
-        var targetElement = event.target; // clicked element
-
-        if (
-            targetElement !== dropdownMenuEl &&
-            targetElement !== dropdownToggleEl &&
-            !dropdownToggleEl.contains(targetElement)
-        ) {
-            dropdownMenuEl.classList.add("hidden");
-            dropdownMenuEl.classList.remove("block");
-            document.body.removeEventListener(
-                "click",
-                handleDropdownOutsideClick,
-                true
-            );
+        function handleDropdownOutsideClick(event) {
+            var targetElement = event.target; // clicked element
+    
+            if (
+                targetElement !== dropdownMenuEl &&
+                targetElement !== dropdownToggleEl &&
+                !dropdownToggleEl.contains(targetElement)
+            ) {
+                dropdownMenuEl.classList.add("hidden");
+                dropdownMenuEl.classList.remove("block");
+                document.body.removeEventListener(
+                    "click",
+                    handleDropdownOutsideClick,
+                    true
+                );
+            }
+        } // hide popper when clicking outside the element
+    
+        document.body.addEventListener("click", handleDropdownOutsideClick, true);
+    
+        if (dropdownMenuEl.getAttribute("data-click-outside-none") != null) {
+            if (event.target.getAttribute("data-click-outside") != null || event.target.parentElement.getAttribute("data-click-outside") != null) {
+                dropdownMenuEl.classList.add("hidden");
+                dropdownMenuEl.classList.remove("block");
+                return;
+            }
+            
+            dropdownMenuEl.classList.add("block");
+            dropdownMenuEl.classList.remove("hidden");
         }
-    } // hide popper when clicking outside the element
-
-    document.body.addEventListener("click", handleDropdownOutsideClick, true);
-
-    if (dropdownMenuEl.getAttribute("data-click-outside-none") != null) {
-        if (event.target.getAttribute("data-click-outside") != null || event.target.parentElement.getAttribute("data-click-outside") != null) {
-            dropdownMenuEl.classList.add("hidden");
-            dropdownMenuEl.classList.remove("block");
-            return;
-        }
-        dropdownMenuEl.classList.add("block");
-        dropdownMenuEl.classList.remove("hidden");
     }
 }
 // Toggle dropdown elements using [data-dropdown-toggle]
@@ -246,46 +250,51 @@ function runTooltip(tooltipToggleEl) {
 
     function show() {
         // Make the tooltip visible
-        if (tooltipEl.classList.contains("opacity-0", "invisible")) {
-            tooltipEl.classList.remove("opacity-0", "invisible");
-        } else {
-            tooltipEl.classList.add("opacity-100", "visible");
+        if (tooltipEl !== null) {
+            if (tooltipEl.classList.contains("opacity-0", "invisible")) {
+                tooltipEl.classList.remove("opacity-0", "invisible");
+            } else {
+                tooltipEl.classList.add("opacity-100", "visible");
+            }
+
+             // Enable the event listeners
+
+            popperInstance.setOptions((options) => ({
+                ...options,
+                modifiers: [
+                    ...options.modifiers,
+                    {
+                        name: "eventListeners",
+                        enabled: true,
+                    },
+                ],
+            })); // Update its position
+
+            popperInstance.update();
         }
-         // Enable the event listeners
-
-        popperInstance.setOptions((options) => ({
-            ...options,
-            modifiers: [
-                ...options.modifiers,
-                {
-                    name: "eventListeners",
-                    enabled: true,
-                },
-            ],
-        })); // Update its position
-
-        popperInstance.update();
     }
 
     function hide() {
-        // Hide the tooltip
-        if (tooltipEl.classList.contains("opacity-100", "visible")) {
-            tooltipEl.classList.remove("opacity-100", "visible");
-        } else {
-            tooltipEl.classList.add("opacity-0", "invisible");
-        }
-        // Disable the event listeners
+        if (tooltipEl !== null) {
+            // Hide the tooltip
+            if (tooltipEl.classList.contains("opacity-100", "visible")) {
+                tooltipEl.classList.remove("opacity-100", "visible");
+            } else {
+                tooltipEl.classList.add("opacity-0", "invisible");
+            }
+            // Disable the event listeners
 
-        popperInstance.setOptions((options) => ({
-            ...options,
-            modifiers: [
-                ...options.modifiers,
-                {
-                    name: "eventListeners",
-                    enabled: false,
-                },
-            ],
-        }));
+            popperInstance.setOptions((options) => ({
+                ...options,
+                modifiers: [
+                    ...options.modifiers,
+                    {
+                        name: "eventListeners",
+                        enabled: false,
+                    },
+                ],
+            }));
+        }
     }
 
     var showEvents = [];

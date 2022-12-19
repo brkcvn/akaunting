@@ -78,7 +78,7 @@
 
     .disabled-money input, .disabled-money {
         background-color:transparent !important;
-        border: none;
+        border: none !important;
     }
 
     [type="radio"] {
@@ -166,6 +166,10 @@
         overflow-x: overlay;
     }
 
+    .overflow-y-overlay {
+        overflow-y: overlay;
+    }
+
     .py-top {
         padding-bottom: 16px;
         padding-top: 16px;
@@ -239,6 +243,12 @@
     #button-monthly {
         margin-left: unset !important;
     }
+
+    /* width of container, custom choose */
+    [custom-half] {
+        @apply sm:col-span-3 !important;
+    }
+    /* width of container, custom choose */
 }
 
 /* menu */
@@ -276,7 +286,7 @@
     @apply focus:outline-none focus:ring-transparent focus:border-transparent bg-transparent cursor-pointer;
 }
 
-.el-select .el-input .el-input__inner {
+.el-select .el-input .el-input__inner, .un-el-select {
     @apply w-full h-auto text-sm px-3 py-2.5 mt-1 rounded-lg border border-light-gray text-black placeholder-light-gray bg-white disabled:bg-gray-200 focus:outline-none focus:ring-transparent focus:border-purple;
     color:#595959 !important;
 }
@@ -561,7 +571,7 @@ html[dir='rtl'] .el-scrollbar__wrap {
 }
 
 .collapse-sub {
-    @apply opacity-0 h-0 overflow-hidden;
+    @apply block opacity-0 h-0 overflow-hidden;
 }
 
 .collapse-sub-report.collapse-sub {

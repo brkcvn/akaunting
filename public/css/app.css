@@ -416,7 +416,7 @@
   z-index: 99;
 }
 /*
-! tailwindcss v3.2.1 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -444,6 +444,7 @@
 2. Prevent adjustments of font size after orientation changes in iOS.
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
 */
 
 html {
@@ -453,6 +454,8 @@ html {
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
   font-family: Quicksand, system-ui; /* 4 */
+  -webkit-font-feature-settings: normal;
+          font-feature-settings: normal; /* 5 */
 }
 
 /*
@@ -1352,7 +1355,7 @@ input[type=file]::file-selector-button:hover{
 
 .disabled-money input, .disabled-money {
         background-color:transparent !important;
-        border: none;
+        border: none !important;
     }
 
 [type="radio"]{
@@ -1462,6 +1465,10 @@ input[type="date"]::-webkit-inner-spin-button,
 
 .overflow-overlay {
         overflow-x: overlay;
+    }
+
+.overflow-y-overlay {
+        overflow-y: overlay;
     }
 
 .py-top {
@@ -1591,6 +1598,17 @@ button, input, optgroup, select, textarea{
 #button-monthly {
         margin-left: unset !important;
     }
+
+/* width of container, custom choose */
+
+@media (min-width: 640px){
+
+  [custom-half]{
+    grid-column: span 3 / span 3 !important;
+  }
+}
+
+/* width of container, custom choose */
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -53593,7 +53611,7 @@ table thead a:hover{
   --tw-ring-color: transparent;
 }
 
-.el-select .el-input .el-input__inner{
+.el-select .el-input .el-input__inner, .un-el-select{
   margin-top: 0.25rem;
   height: auto;
   width: 100%;
@@ -53613,32 +53631,32 @@ table thead a:hover{
   color: rgb(66 66 66 / var(--tw-text-opacity));
 }
 
-.el-select .el-input .el-input__inner::-webkit-input-placeholder{
+.el-select .el-input .el-input__inner::-webkit-input-placeholder, .un-el-select::-webkit-input-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(199 201 217 / var(--tw-placeholder-opacity));
 }
 
-.el-select .el-input .el-input__inner::-moz-placeholder{
+.el-select .el-input .el-input__inner::-moz-placeholder, .un-el-select::-moz-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(199 201 217 / var(--tw-placeholder-opacity));
 }
 
-.el-select .el-input .el-input__inner:-ms-input-placeholder{
+.el-select .el-input .el-input__inner:-ms-input-placeholder, .un-el-select:-ms-input-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(199 201 217 / var(--tw-placeholder-opacity));
 }
 
-.el-select .el-input .el-input__inner::-ms-input-placeholder{
+.el-select .el-input .el-input__inner::-ms-input-placeholder, .un-el-select::-ms-input-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(199 201 217 / var(--tw-placeholder-opacity));
 }
 
-.el-select .el-input .el-input__inner::placeholder{
+.el-select .el-input .el-input__inner::placeholder, .un-el-select::placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(199 201 217 / var(--tw-placeholder-opacity));
 }
 
-.el-select .el-input .el-input__inner:focus{
+.el-select .el-input .el-input__inner:focus, .un-el-select:focus{
   --tw-border-opacity: 1;
   border-color: rgb(85 88 139 / var(--tw-border-opacity));
   outline: 2px solid transparent;
@@ -53646,12 +53664,12 @@ table thead a:hover{
   --tw-ring-color: transparent;
 }
 
-.el-select .el-input .el-input__inner:disabled{
+.el-select .el-input .el-input__inner:disabled, .un-el-select:disabled{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.el-select .el-input .el-input__inner {
+.el-select .el-input .el-input__inner, .un-el-select {
     color:#595959 !important;
 }
 
@@ -54051,6 +54069,7 @@ html[dir='rtl'] .el-scrollbar__wrap {
 }
 
 .collapse-sub{
+  display: block;
   height: 0px;
   overflow: hidden;
   opacity: 0;
@@ -56327,10 +56346,6 @@ body{
   right: -2rem;
 }
 
-[dir="rtl"] .rtl\:float-left{
-  float: left;
-}
-
 [dir="rtl"] .rtl\:m-0{
   margin: 0px;
 }
@@ -57528,6 +57543,11 @@ body{
       padding-right: 3rem;
     }
   }
+    .lg\:items-start{
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
 
     .dashboard .lg\:px-6{
     padding-left: 0px;
@@ -57540,12 +57560,6 @@ body{
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
-  }
-
-    .lg\:items-start{
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
   }
 
     .lg\:items-center{

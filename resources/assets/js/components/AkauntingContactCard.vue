@@ -547,7 +547,7 @@ export default {
 
                     let documentClasses = document.body.classList;
 
-                    documentClasses.remove('overflow-y-hidden', 'overflow-overlay', '-ml-4');
+                    documentClasses.remove('overflow-y-hidden', 'overflow-overlay');
                 }
             })
             .catch(error => {
@@ -563,11 +563,11 @@ export default {
 
             let documentClasses = document.body.classList;
 
-            documentClasses.remove('overflow-y-hidden', 'overflow-overlay', '-ml-4');
+            documentClasses.remove('overflow-y-hidden', 'overflow-overlay');
         },
 
         closeIfClickedOutside(event) {
-            if (!document.getElementById('select-contact-card-' + this._uid).contains(event.target) && event.target.className != 'btn btn-link p-0') {
+            if (!document.getElementById('select-contact-card-' + this._uid).contains(event.target)) {
                 this.show.contact_list = false;
 
                 document.removeEventListener('click', this.closeIfClickedOutside);
