@@ -256,7 +256,7 @@ export default {
         onInputDateSelected(selectedDates, dateStr, instance) {
             this.filtered[this.filter_index].value = dateStr;
 
-            let date = instance.formatDate(selectedDates[0], 'Y-m-d');
+            let date = selectedDates.length ? instance.formatDate(selectedDates[0], 'Y-m-d') : null;
 
             if (selectedDates.length > 1) {
                 let dates = [];
@@ -304,7 +304,7 @@ export default {
         onInput(evt) {
             this.search = evt.target.value;
             
-            let option_url = this.selected_options.length > 0 ? this.selected_options[this.filter_index].url : '';
+            let option_url = this.selected_options.length > 0 && this.selected_options[this.filter_index] !== undefined ? this.selected_options[this.filter_index].url : '';
 
             if (this.search) {
                 if (option_url.indexOf('?') === -1) {
