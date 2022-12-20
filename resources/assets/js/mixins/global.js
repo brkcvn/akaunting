@@ -119,6 +119,8 @@ export default {
                 storeCard: false,
                 card_id: 0,
             },
+
+            session_form: new Form('auth'),
         }
     },
 
@@ -1261,5 +1263,28 @@ export default {
                 this.errors.push(e);
             })
         },
+
+        // session form
+        sessionSubmit() {
+            window.axios({
+                method: this.session_form.method,
+                url: this.session_form.action,
+                data: this.session_form,
+                headers: {
+                    'X-CSRF-TOKEN': window.Laravel.csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                debugger;
+                if (response.status == 200) {
+                    document.querySelector('[data-login-modal]').classList.add('hidden');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
     }
 }

@@ -493,6 +493,10 @@ export default class Form {
 
     // Form fields check validation issue
     onFail(error) {
+        if (error.request.status == 422) {
+            document.querySelector('[data-login-modal]').classList.remove('hidden');
+        }
+
         if (typeof this.errors != "undefined") {
             this.errors.record(error.response.data.errors);
         }
