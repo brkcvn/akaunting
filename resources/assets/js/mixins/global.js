@@ -35,6 +35,7 @@ import { Select, Option, Steps, Step, Button, Link, Tooltip, ColorPicker } from 
 import Form from './../plugins/form';
 import Swiper, { Navigation, Pagination } from 'swiper';
 import GLightbox from 'glightbox';
+import SessionModal from './../plugins/session-modal';
 
 Swiper.use([Navigation, Pagination]);
 
@@ -1279,7 +1280,8 @@ export default {
             .then(response => {
                 debugger;
                 if (response.status == 200) {
-                    document.querySelector('[data-login-modal]').classList.add('hidden');
+                    this.session_modal = new SessionModal();
+                    this.session_modal.hide();
                 }
             })
             .catch(error => {

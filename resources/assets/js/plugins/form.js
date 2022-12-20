@@ -1,4 +1,5 @@
 import Errors from './error';
+import SessionModal from './session-modal';
 
 export default class Form {
     constructor(form_id) {
@@ -494,7 +495,8 @@ export default class Form {
     // Form fields check validation issue
     onFail(error) {
         if (error.request.status == 422) {
-            document.querySelector('[data-login-modal]').classList.remove('hidden');
+            this.session_modal = new SessionModal();
+            this.session_modal.show();
         }
 
         if (typeof this.errors != "undefined") {
