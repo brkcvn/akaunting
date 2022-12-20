@@ -1278,7 +1278,6 @@ export default {
                 }
             })
             .then(response => {
-                debugger;
                 if (response.status == 200) {
                     this.session_modal = new SessionModal();
                     this.session_modal.hide();
