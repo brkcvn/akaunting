@@ -84,12 +84,10 @@
 
                         {!! $content !!}
 
-                    <div x-data="{ session_modal: false }">
+                    <div>
                         <div
-                            x-on:toggle-modal.window="session_modal = !session_modal"
-                            x-bind:class="{ 'flex': session_modal, 'hidden': ! session_modal }"
                             data-login-modal
-                            class="modal w-full h-full fixed top-0 left-0 right-0 z-50 overflow-y-auto overflow-hidden modal-add-new fade justify-center items-start show flex-wrap modal-background"
+                            class="modal w-full h-full fixed top-0 left-0 right-0 z-50 overflow-y-auto overflow-hidden modal-add-new fade justify-center items-start show flex hidden flex-wrap modal-background"
                         >
                             <div class="w-full my-10 m-auto flex flex-col max-w-2xl">
                                 <div class="modal-content">
