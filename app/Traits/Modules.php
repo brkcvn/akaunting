@@ -439,6 +439,15 @@ trait Modules
             return false;
         }
 
+        // Check if module is installed in cloud
+        if (request()->getHost() == 'app.akaunting.com') {
+            $modules = Cache::get('cloud.companies.' . company_id() . '.modules.installed', []);
+
+            if (in_array($alias, $modules)) {
+                return true;
+            }
+        }
+
         if (module($alias)->disabled()) {
             return false;
         }
