@@ -494,9 +494,10 @@ export default class Form {
 
     // Form fields check validation issue
     onFail(error) {
-        if (error.request.status == 422) {
+        if (error.request.status == 419) {
             this.session_modal = new SessionModal();
             this.session_modal.show();
+            return;
         }
 
         if (typeof this.errors != "undefined") {

@@ -96,7 +96,7 @@
                                             Your session time has passed
                                         </div>
                                     </div>
-                                    <div class="py-1 px-5 bg-body">
+                                    <div class="py-1 px-5 bg-body rounded-bl-lg rounded-br-lg">
                                         <x-form id="auth" route="login">
                                             <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
                                                 <x-form.group.email
@@ -114,7 +114,7 @@
                                                 />
                                             </div>
 
-                                            <div class="p-5 bg-body rounded-bl-lg rounded-br-lg border-gray-300">
+                                            <div class="py-5 bg-body border-gray-300">
                                                 <div class="flex items-center justify-end">
                                                     <button
                                                         type="button"
