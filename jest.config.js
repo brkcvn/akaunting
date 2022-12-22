@@ -4,9 +4,9 @@ module.exports = {
     testRegex: 'resources/assets/js/.*.test.js$',
     "testEnvironment": "jsdom",
     moduleFileExtensions: [
-        'js',
+        'vue',
         'json',
-        'vue'
+        'js'
       ],
       transform: {
         "^.+\\.(js|jsx)$": "babel-jest",
