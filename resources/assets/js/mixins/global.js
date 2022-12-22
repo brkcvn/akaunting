@@ -122,6 +122,11 @@ export default {
             },
 
             session_form: new Form('auth'),
+
+            min_date: false,
+            item_name_input: false,
+            price_name_input: false,
+            quantity_name_input: false,
         }
     },
 
@@ -1265,7 +1270,6 @@ export default {
             })
         },
 
-        // session form
         sessionSubmit() {
             window.axios({
                 method: this.session_form.method,
@@ -1286,6 +1290,47 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-        }
+        },
+
+        //custom input settings for invoice
+        onSmallWidthColumn(item) {
+            this.$refs[item].$el.setAttribute('custom-half', true);
+        },
+
+        onFullWidthColumn(item) {
+            this.$refs[item].$el.removeAttribute('custom-half');
+        },
+
+        settingsInvoice() {
+            if (this.form.item_name == 'custom') {
+                this.item_name_input = true;
+                this.onSmallWidthColumn("item_name");
+            } else {
+                this.item_name_input = false;
+                this.onFullWidthColumn("item_name");
+            }
+
+            if (this.form.price_name == 'custom') {
+                this.price_name_input = true;
+                this.onSmallWidthColumn("price_name");
+            } else {
+                this.price_name_input = false;
+                this.onFullWidthColumn("price_name");
+            }
+
+            if (this.form.quantity_name == 'custom') {
+                this.quantity_name_input = true;
+                this.onSmallWidthColumn("quantity_name");
+            } else {
+                this.quantity_name_input = false;
+                this.onFullWidthColumn("quantity_name");
+            }
+            
+        },
+
+        // set minimum date for date component
+        setMinDate(date) {
+            this.min_date = date;
+        },
     }
 }
