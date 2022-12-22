@@ -808,6 +808,7 @@ export default {
                     this.sorted_options.push({
                         key: response.data.data[this.add_new.field.key].toString(),
                         value: response.data.data[this.add_new.field.value],
+                        level: response.data.data.parent_id ? 1 : 0,
                     });
 
                     this.new_options[response.data.data[this.add_new.field.key]] = response.data.data[this.add_new.field.value];
@@ -993,6 +994,10 @@ export default {
             if (this.group) {
                 // Option set sort_option data
                 if (! Array.isArray(options)) {
+                    if (typeof(this.selected) == 'string') {
+                        this.selected = '';
+                    }
+
                     for (const [index, _options] of Object.entries(options)) {
                         let values = [];
 
