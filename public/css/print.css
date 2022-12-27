@@ -752,6 +752,10 @@ html[dir='rtl'] .print-alignment {
     border-bottom: 1px solid;
 }
 
+.print_hidden {
+    display: none;
+}
+
 html[dir='ltr'] .print-heading {
     text-align: left;
 }

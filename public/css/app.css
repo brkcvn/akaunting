@@ -54599,6 +54599,11 @@ body{
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-800:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-200:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
@@ -54875,6 +54880,11 @@ body{
   background-size: 100% 2px;
 }
 
+.group:hover .group-hover\:text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .group:hover .group-hover\:text-purple-700{
   --tw-text-opacity: 1;
   color: rgb(64 66 104 / var(--tw-text-opacity));
@@ -54883,11 +54893,6 @@ body{
 .group:hover .group-hover\:text-gray-500{
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:text-white{
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:opacity-100{
@@ -57158,6 +57163,11 @@ body{
     padding-bottom: 2.5rem;
   }
 
+  .sm\:px-14{
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
   .sm\:px-0{
     padding-left: 0px;
     padding-right: 0px;
@@ -57166,6 +57176,10 @@ body{
   .sm\:px-2{
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+
+  .sm\:pt-24{
+    padding-top: 6rem;
   }
 
   .sm\:text-xs{
@@ -57191,6 +57205,11 @@ body{
   .sm\:text-2xl{
     font-size: 1.375rem;
     line-height: 1.5rem;
+  }
+
+  .sm\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .sm\:text-6xl{

@@ -18,7 +18,7 @@
          @endforeach
          @keydown.window.escape="isOpen = false"
          @toggle-spotlight.window="toggleOpen()"
-         class="fixed z-10 px-4 pt-16 items-start justify-center inset-0 sm:pt-24 hidden">
+         class="fixed z-10 px-4 pt-16 items-start justify-center inset-0 sm:pt-24 hidden print_hidden">
         <div x-show="isOpen" @click="isOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-150"
              x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
