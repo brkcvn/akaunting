@@ -25,8 +25,6 @@ const handleKeydown = (event) => {
     const keyName = event.key;
     const print_template_html = document.querySelector('.print-template');
     const matchingRoute = '';
-    // const constainsDocID = !isNaN(urlPath.substr(-1));
-    // const urlPath = window.location.href;
 
     if (keyName === ('Meta' || 'Control' || 'Alt')) {
         return;
