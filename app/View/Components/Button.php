@@ -47,7 +47,7 @@ class Button extends Component
 
     protected function getClass($class)
     {
-        $default = 'px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6';
+        $default = 'px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6 outline-purple';
 
         switch ($this->kind) {
             case 'primary':

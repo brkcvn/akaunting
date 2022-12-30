@@ -68,7 +68,7 @@
                     <div class="my-10">
                         <x-link
                             href="https://akaunting.com/accounting-software?utm_source=software&utm_medium=payment_index&utm_campaign=plg"
-                            class="bg-purple text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6 hover:bg-purple-700"
+                            class="bg-purple text-white px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6 outline-purple hover:bg-purple-700"
                             override="class"
                         >
                             {{ trans('portal.get_started') }}

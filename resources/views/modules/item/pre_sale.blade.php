@@ -151,7 +151,7 @@
                                         href="/"
                                         kind="primary"
                                         override="class"
-                                        class="w-full flex items-center justify-center px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6 bg-green hover:bg-green-700 text-white disabled:bg-green-100"
+                                        class="w-full flex items-center justify-center px-3 py-1.5 mb-3 sm:mb-0 rounded-xl text-sm font-medium leading-6 outline-purple bg-green hover:bg-green-700 text-white disabled:bg-green-100"
                                     >
                                     <akaunting-countdown id="countdown-pre-sale"
                                         :year="{{ (int) $module->pre_sale_date->year }}"
