@@ -524,6 +524,10 @@ html[dir='rtl'] .el-scrollbar__wrap {
     background-color: transparent;
 }
 
+.el-select-dropdown__item.selected.hover .new-badge {
+    background-color: #6ea152 !important;
+}
+
 @media only screen and (max-width: 480px) {
     .el-range-editor.el-input__inner {
         width: 100%;
