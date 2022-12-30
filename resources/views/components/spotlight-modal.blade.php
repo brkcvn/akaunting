@@ -57,63 +57,73 @@
                     </template> -->
                     <li class="p-2">
                         <ul class="text-sm text-gray-700">
-                            <li class="flex cursor-default select-none items-center rounded-md px-3 py-2 group hover:bg-purple">
-                                <span class="material-icons text-gray-400 text-xl group-hover:text-white">description</span>
-                                <span class="ml-3 flex-auto truncate group-hover:text-white">
-                                    Invoice
-                                </span>
-                                <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
-                                    <kbd class="font-sans">⌘</kbd>
-                                    <kbd class="font-sans">Q</kbd>
-                                </span>
+                            <li class="rounded-md group hover:bg-purple">
+                                <a href="/" class="flex cursor-pointer select-none items-center px-3 py-2">
+                                    <span class="material-icons text-gray-400 text-xl group-hover:text-white">description</span>
+                                    <span class="ml-3 flex-auto truncate group-hover:text-white">
+                                        Invoice
+                                    </span>
+                                    <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
+                                        <kbd class="font-sans">⌘</kbd>
+                                        <kbd class="font-sans">Q</kbd>
+                                    </span>
+                                </a>
                             </li>
 
-                            <li class="flex cursor-default select-none items-center rounded-md px-3 py-2 group hover:bg-purple">
-                                <span class="material-icons text-gray-400 text-xl group-hover:text-white">request_quote</span>
-                                <span class="ml-3 flex-auto truncate group-hover:text-white">
-                                    Income
-                                </span>
-                                <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
-                                    <kbd class="font-sans">⌘</kbd>
-                                    <kbd class="font-sans">R</kbd>
-                                </span>
+                            <li class="rounded-md group hover:bg-purple">
+                                <a href="/" class="flex cursor-pointer select-none items-center px-3 py-2">
+                                    <span class="material-icons text-gray-400 text-xl group-hover:text-white">request_quote</span>
+                                    <span class="ml-3 flex-auto truncate group-hover:text-white">
+                                        Income
+                                    </span>
+                                    <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
+                                        <kbd class="font-sans">⌘</kbd>
+                                        <kbd class="font-sans">R</kbd>
+                                    </span>
+                                </a>
                             </li>
 
-                            <li class="flex cursor-default select-none items-center rounded-md px-3 py-2 group hover:bg-purple">
-                                <span class="material-icons text-gray-400 text-xl group-hover:text-white">person</span>
-                                <span class="ml-3 flex-auto truncate group-hover:text-white">
-                                    Customer
-                                </span>
-                                <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
-                                    <kbd class="font-sans">⌘</kbd>
-                                    <kbd class="font-sans">C</kbd>
-                                </span>
+                            <li class="rounded-md group hover:bg-purple">
+                                <a href="/" class="flex cursor-pointer select-none items-center px-3 py-2">
+                                    <span class="material-icons text-gray-400 text-xl group-hover:text-white">person</span>
+                                    <span class="ml-3 flex-auto truncate group-hover:text-white">
+                                        Customer
+                                    </span>
+                                    <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
+                                        <kbd class="font-sans">⌘</kbd>
+                                        <kbd class="font-sans">C</kbd>
+                                    </span>
+                                </a>
                             </li>
 
-                            <li class="flex cursor-default select-none items-center rounded-md px-3 py-2 group hover:bg-purple">
-                                <span class="material-icons text-gray-400 text-xl group-hover:text-white">file_open</span>
-                                <span class="ml-3 flex-auto truncate group-hover:text-white">
-                                    Bill
-                                </span>
-                                <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
-                                    <kbd class="font-sans">⌘</kbd>
-                                    <kbd class="font-sans">B</kbd>
-                                </span>
+                            <li class="rounded-md group hover:bg-purple">
+                                <a href="/" class="flex cursor-pointer select-none items-center px-3 py-2">
+                                    <span class="material-icons text-gray-400 text-xl group-hover:text-white">file_open</span>
+                                    <span class="ml-3 flex-auto truncate group-hover:text-white">
+                                        Bill
+                                    </span>
+                                    <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
+                                        <kbd class="font-sans">⌘</kbd>
+                                        <kbd class="font-sans">B</kbd>
+                                    </span>
+                                </a>
                             </li>
 
-                            <li class="flex cursor-default select-none items-center rounded-md px-3 py-2 group hover:bg-purple">
-                                <span class="material-icons text-gray-400 text-xl group-hover:text-white">paid</span>
-                                <span class="ml-3 flex-auto truncate group-hover:text-white">
-                                    Expense
-                                </span>
-                                <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
-                                    <kbd class="font-sans">⌘</kbd>
-                                    <kbd class="font-sans">P</kbd>
-                                </span>
+                            <li class="rounded-md group hover:bg-purple">
+                                <a href="/" class="flex cursor-pointer select-none items-center px-3 py-2">
+                                    <span class="material-icons text-gray-400 text-xl group-hover:text-white">paid</span>
+                                    <span class="ml-3 flex-auto truncate group-hover:text-white">
+                                        Expense
+                                    </span>
+                                    <span class="ml-3 flex-none text-xs font-semibold text-gray-400 group-hover:text-white">
+                                        <kbd class="font-sans">⌘</kbd>
+                                        <kbd class="font-sans">P</kbd>
+                                    </span>
+                                </a>
                             </li>
 
-                            <li class="flex cursor-default select-none items-center rounded-md px-3 py-2 group hover:bg-purple">
-                                <a href="/">
+                            <li class="rounded-md group hover:bg-purple">
+                                <a href="/" class="flex cursor-pointer select-none items-center px-3 py-2">
                                     <span class="material-icons text-gray-400 text-xl group-hover:text-white">engineering</span>
                                     <span class="ml-3 flex-auto truncate group-hover:text-white">
                                         Vendor
