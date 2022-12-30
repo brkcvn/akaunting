@@ -29,19 +29,11 @@
                                         name="notSent"
                                         :key="variant"
                                         :colorId="`${color}-${variant}`"
-                                        class="rounded-full m-1 color cursor-pointer"
+                                        class="rounded-full m-1 color cursor-pointer outline-purple"
                                         :class="[`bg-${color}-${variant}`, small ? 'w-6 h-6 lg:w-4 lg:h-4' : 'w-8 h-8 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8']"
                                         @click="setColor($event)"
                                         @keyup.enter="setColor($event)"
                                     >
-
-                                    <!-- <div v-for="variant in variants"
-                                        :key="variant"
-                                        :colorId="`${color}-${variant}`"
-                                        class="rounded-full m-1 color cursor-pointer"
-                                        :class="[`bg-${color}-${variant}`, small ? 'w-6 h-6 lg:w-4 lg:h-4' : 'w-8 h-8 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8']"
-                                        @click="setColor($event)"
-                                    ></div> -->
                                 </div>
                             </div>
                         </div>
